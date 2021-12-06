@@ -24,6 +24,8 @@ class User(db.Model, UserMixin):
 
     image = db.relationship('Image', back_populates='user')
     post = db.relationship('Post', back_populates='user')
+    comment = db.relationship('Comment', back_populates='user')
+
     followers = db.relationship(
         "User",
         secondary=follows,
@@ -53,5 +55,3 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'profile_image_url': self.profile_image_url
         }
-
-
