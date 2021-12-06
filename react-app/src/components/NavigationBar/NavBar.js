@@ -1,7 +1,14 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import LogoutButton from '../auth/LogoutButton';
+import SearchField from './SearchField'
+import CreatePostFormModal from '../CreatePostModal';
+
+// importing css
+import "./NavBar.css"
+import CreatePostForm from '../CreatePostModal/CreatePostForm';
+
 
 const NavBar = () => {
   return (
@@ -10,6 +17,17 @@ const NavBar = () => {
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
             Home
+          </NavLink>
+        </li>
+        <li>
+          {/* <NavLink to='/' exact={true}>
+            Create Post
+          </NavLink> */}
+          <CreatePostFormModal />
+        </li>
+        <li>
+          <NavLink to='/' exact={true}>
+            Profile Page
           </NavLink>
         </li>
         <li>
@@ -29,6 +47,9 @@ const NavBar = () => {
         </li>
         <li>
           <LogoutButton />
+        </li>
+        <li>
+          <SearchField />
         </li>
       </ul>
     </nav>
