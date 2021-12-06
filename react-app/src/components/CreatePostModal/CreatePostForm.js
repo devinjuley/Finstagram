@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // thunk import
 // import { login } from '../../store/session'
@@ -8,15 +8,20 @@ import { useDispatch } from 'react-redux';
 
 const CreatePostForm = () => {
    const dispatch = useDispatch();
-
-   const [credential, setCredential] = useState('');
-   const [password, setPassword] = useState('');
+   const sessionUser = useSelector(state => state.session.user);
+   const [caption, setCaption] = useState('');
+   const [image_url, setImage_URL] = useState('');
    const [errors, setErrors] = useState([]);
 
    const handleSubmit = (e) => {
       e.preventDefault();
+      const newPost = {
+         user_id: sessionUser.id,
+         content: caption,
+         image_url,
+      };
       setErrors([]);
-      // return dispatch(login({ credential, password }))
+      // return dispatch(login({ image_url, caption }))
       //    .catch(async (res) => {
       //       const data = await res.json();
       //       if (data && data.errors) setErrors(data.errors);
@@ -26,29 +31,23 @@ const CreatePostForm = () => {
 
    return (
       <div >
-         <form
-            onSubmit={handleSubmit}
-         >
-            <ul>
-               {errors.map((error, i) => (
-                  <li key={i}>{error}</li>
-               ))}
-            </ul>
+         {console.log(sessionUser)}
+         <form onSubmit={handleSubmit}>
+            <input type='file' />
             <input
                type='text'
-               placeholder='Username or Email'
-               value={credential}
-               onChange={(e) => setCredential(e.target.value)}
-               required
+               value={image_url}
+               onChange={(e) => setImage_URL(e.target.value)}
+               placeholder='This is for testing'
             />
-            <input
-               type='password'
-               placeholder='Password'
-               value={password}
-               onChange={(e) => setPassword(e.target.value)}
-               required
+            <textarea
+               value={caption}
+               placeholder='Add a caption to this photo!'
+               onChange={(e) => setCaption(e.target.value)}
             />
-            <button type='submit'>Create Post</button>
+            <button type='submit'>
+               Submit
+            </button>
          </form>
       </div>
    );
