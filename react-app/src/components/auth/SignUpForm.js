@@ -5,6 +5,9 @@ import { signUp } from '../../store/session';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+  const [profile_image_url, setProfileImgUrl] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,11 +18,23 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(first_name, last_name, profile_image_url, username, email, password));
       if (data) {
         setErrors(data)
       }
     }
+  };
+
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
+  };
+
+  const updateProfileImgUrl = (e) => {
+    setProfileImgUrl(e.target.value);
   };
 
   const updateUsername = (e) => {
@@ -48,6 +63,33 @@ const SignUpForm = () => {
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
+      </div>
+      <div>
+        <label>First Name</label>
+        <input
+          type='text'
+          name='first_name'
+          onChange={updateFirstName}
+          value={first_name}
+        ></input>
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input
+          type='text'
+          name='last_name'
+          onChange={updateLastName}
+          value={last_name}
+        ></input>
+      </div>
+      <div>
+        <label>Load Profile Image</label>
+        <input
+          type='text'
+          name='profile_image_url'
+          onChange={updateProfileImgUrl}
+          value={profile_image_url}
+        ></input>
       </div>
       <div>
         <label>User Name</label>
