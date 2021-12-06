@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .images import seed_images, undo_images
 from .posts import seed_posts, undo_posts
 from .follows import seed_follows, undo_follows
+from .comments import seed_comments, undo_comments
 
 
 # Creates a seed group to hold our commands
@@ -17,7 +18,7 @@ def seed():
     seed_posts()
     seed_images()
     seed_follows()
-
+    seed_comments()
     # Add other seed functions here
 
 
@@ -28,4 +29,5 @@ def undo():
     undo_images()
     undo_posts()
     undo_follows()
+    undo_comments()
     # Add other undo functions here
