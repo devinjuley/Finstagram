@@ -7,7 +7,6 @@ class CreatePostForm(FlaskForm):
     content = StringField('content')
 
 
-class CreateImage(FlaskForm):
+class CreateImageForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
-    post_id = IntegerField('post_id', validators=[DataRequired()])
     image_url = StringField('image_url', validators=[DataRequired()])
