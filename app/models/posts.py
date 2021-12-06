@@ -1,9 +1,7 @@
 from .db import db
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
 
 
-class Post(db.Model, UserMixin):
+class Post(db.Model):
     __tablename__ = 'posts'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -13,6 +11,8 @@ class Post(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime(timezone=True), nullable=False, default=db.func.now(), onupdate=db.func.now())
 
     user = db.relationship('User', back_populates='post')
+    comment = db.relationship('Comment', back_populates='post')
+
 
     def to_dict(self):
         return {
