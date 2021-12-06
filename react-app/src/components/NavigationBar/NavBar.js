@@ -1,7 +1,12 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import LogoutButton from '../auth/LogoutButton';
+import SearchField from './SearchField'
+
+// importing css
+import "./NavBar.css"
+
 
 const NavBar = () => {
   return (
@@ -10,6 +15,16 @@ const NavBar = () => {
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
             Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to='/' exact={true}>
+            Create Post
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to='/' exact={true}>
+            Profile Page
           </NavLink>
         </li>
         <li>
@@ -29,6 +44,9 @@ const NavBar = () => {
         </li>
         <li>
           <LogoutButton />
+        </li>
+        <li>
+          <SearchField />
         </li>
       </ul>
     </nav>
