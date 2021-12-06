@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required
 from app.models import Post, Image, db
 from app.forms import CreatePostForm, CreateImageForm
@@ -10,9 +10,7 @@ post_routes = Blueprint('posts', __name__)
 def createPost():
     form = CreatePostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    post_id = None
     if form.validate_on_submit():
-        # print(form_post)
         new_post = Post(
             user_id=form.data['user_id'],
             content=form.data['content'],
@@ -31,7 +29,8 @@ def createPost():
             )
             db.session.add(new_image)
             db.session.commit()
-            return 'test'
+
+            return Post.query.get(postId).to_dict()
+            
     else:
-        print('bad data')
         return 'bad data'

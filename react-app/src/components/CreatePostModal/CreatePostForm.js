@@ -2,18 +2,18 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // thunk import
-// import { login } from '../../store/session'
+import { createNewPost } from '../../store/post'
 
 // import styles from './LoginForm.module.css'
 
-const CreatePostForm = () => {
+const CreatePostForm = ({ hideForm }) => {
    const dispatch = useDispatch();
    const sessionUser = useSelector(state => state.session.user);
    const [caption, setCaption] = useState('');
    const [image_url, setImage_URL] = useState('');
    const [errors, setErrors] = useState([]);
 
-   const handleSubmit = (e) => {
+   const handleSubmit = async (e) => {
       e.preventDefault();
       const newPost = {
          user_id: sessionUser.id,
@@ -21,17 +21,20 @@ const CreatePostForm = () => {
          image_url,
       };
       setErrors([]);
-      // return dispatch(login({ image_url, caption }))
-      //    .catch(async (res) => {
-      //       const data = await res.json();
-      //       if (data && data.errors) setErrors(data.errors);
-      //    });
+      let submittedPost = await dispatch(createNewPost(newPost))
+         .catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+         });
+      // console.log("this is the thing", submittedPost)
+      if (submittedPost) {
+         hideForm()
+      }
    }
 
 
    return (
       <div >
-         {console.log(sessionUser)}
          <form onSubmit={handleSubmit}>
             <input type='file' />
             <input
