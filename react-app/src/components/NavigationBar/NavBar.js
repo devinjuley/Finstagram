@@ -3,9 +3,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import SearchField from './SearchField'
+import CreatePostFormModal from '../CreatePostModal';
 
 // importing css
 import "./NavBar.css"
+import CreatePostForm from '../CreatePostModal/CreatePostForm';
 
 
 const NavBar = () => {
@@ -18,9 +20,10 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/' exact={true}>
+          {/* <NavLink to='/' exact={true}>
             Create Post
-          </NavLink>
+          </NavLink> */}
+          <CreatePostFormModal />
         </li>
         <li>
           <NavLink to='/' exact={true}>
