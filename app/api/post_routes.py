@@ -1,16 +1,16 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import Post, Image, db
-from app.forms import CreatePostForm, CreateImage
+from app.forms import CreatePostForm, CreateImageForm
 
 post_routes = Blueprint('posts', __name__)
 
 @post_routes.route('/new', methods=['POST'])
+# @login_required
 def createPost():
     form = CreatePostForm()
-    # form_image = CreateImage()
-    print(form)
     form['csrf_token'].data = request.cookies['csrf_token']
+    post_id = None
     if form.validate_on_submit():
         # print(form_post)
         new_post = Post(
@@ -19,8 +19,19 @@ def createPost():
         )
         db.session.add(new_post)
         db.session.commit()
-        print(new_post.to_dict())
-        return 'ok'
+        postId = new_post.id
+    
+        form_image = CreateImageForm()
+        form_image['csrf_token'].data = request.cookies['csrf_token']
+        if form_image.validate_on_submit():
+            new_image = Image(
+                user_id=form_image.data['user_id'],
+                post_id=postId,
+                image_url=form_image.data['image_url']
+            )
+            db.session.add(new_image)
+            db.session.commit()
+            return 'test'
     else:
         print('bad data')
         return 'bad data'
