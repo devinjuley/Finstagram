@@ -5,8 +5,27 @@ from app.forms import CreatePostForm, CreateImageForm
 
 post_routes = Blueprint('posts', __name__)
 
+
+# get posts route (discover posts route handler)
+@post_routes.route('/discover')
+def getPosts():
+    posts = Post.query.join(Image).all()
+
+    posts_dict = {}
+    for post in posts:
+        posts_dict[post.to_dict()['id']] = post.to_dict()
+        posts_dict[post.to_dict()['id']]['images'] = []
+        for image in post.image:
+            posts_dict[post.to_dict()['id']]['images'].append(image.to_dict())
+
+    return {
+        'posts': posts_dict
+    }
+
+
+# create new post route
 @post_routes.route('/new', methods=['POST'])
-# @login_required
+@login_required
 def createPost():
     form = CreatePostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -18,7 +37,7 @@ def createPost():
         db.session.add(new_post)
         db.session.commit()
         postId = new_post.id
-    
+
         form_image = CreateImageForm()
         form_image['csrf_token'].data = request.cookies['csrf_token']
         if form_image.validate_on_submit():
@@ -31,6 +50,6 @@ def createPost():
             db.session.commit()
 
             return Post.query.get(postId).to_dict()
-            
+
     else:
         return 'bad data'

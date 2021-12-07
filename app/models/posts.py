@@ -12,6 +12,7 @@ class Post(db.Model):
 
     user = db.relationship('User', back_populates='post')
     comment = db.relationship('Comment', back_populates='post')
+    image = db.relationship('Image', back_populates='post')
 
 
     def to_dict(self):
