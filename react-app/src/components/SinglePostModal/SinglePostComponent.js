@@ -2,8 +2,11 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // thunk import
-import { createNewPost } from '../../store/post'
+import { deleteSinglePostThunk } from '../../store/post'
+
+// impost CSS
 import '../../context/Modal.css'
+
 // import styles from './LoginForm.module.css'
 
 const SinglePost = ({ hideForm, post }) => {
@@ -13,40 +16,30 @@ const SinglePost = ({ hideForm, post }) => {
    const [image_url, setImage_URL] = useState('');
    const [errors, setErrors] = useState([]);
 
-
    const handleEdit = () => {
 
    }
-   const handleDelete = () => {
-
+   
+   const handleDelete = async () => {
+      const deleted_post = await dispatch(deleteSinglePostThunk(post.id))
+      hideForm()
    }
 
-   const handleSubmit = async (e) => {
-      e.preventDefault();
-      const newPost = {
-         user_id: sessionUser.id,
-         content: caption,
-         image_url,
-      };
-      setErrors([]);
-      let submittedPost = await dispatch(createNewPost(newPost))
-         .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-         });
-      if (submittedPost) {
-         hideForm()
-      }
+   let buttons
+   if (sessionUser.id === post.user_id) {
+      buttons = (
+         <>
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
+         </>
+      )
    }
-
 
    return (
       <div>
          <img src={post?.images[0]?.image_url} />
          <div>{post?.content}</div>
-         <button onClick={handleEdit}>edit</button>
-         <button onClick={handleDelete}>delete</button>
-
+         {buttons}
       </div>
    );
 };
