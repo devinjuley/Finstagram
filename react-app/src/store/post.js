@@ -1,12 +1,18 @@
 // constants
 const CREATE_POST = 'post/CREATE_POST';
+const GET_ALL_POSTS = 'post/GET_ALL_POSTS';
 
 
 // action creators
 const createPost = (post) => ({
     type: CREATE_POST,
     payload: post
-})
+});
+
+const getAllPosts = (posts) => ({
+    type: GET_ALL_POSTS,
+    payload: posts
+});
 
 // thunks
 export const createNewPost = (newPost) => async (dispatch) => {
@@ -20,12 +26,20 @@ export const createNewPost = (newPost) => async (dispatch) => {
 
         if (response.ok) {
             const post = await response.json();
-            console.log("this is the reponse obj", post)
             dispatch(createPost(post))
             return post;
         }
     } catch (err) {
         console.log(err)
+    }
+};
+
+export const getAllPostsThunk = () => async(dispatch) => {
+    const response = await fetch('/api/posts/discover');
+    if (response.ok) {
+        const posts = await response.json();
+        dispatch(getAllPosts(posts));
+        return posts;
     }
 }
 
@@ -38,6 +52,14 @@ const postReducer = (state = initialState, action) => {
             const newState = {
                 ...state,
                 [action.payload.id]: action.payload
+            }
+            return newState;
+        }
+        case GET_ALL_POSTS: {
+            console.log(action.payload)
+            const newState = {
+                ...state,
+                ...action.payload.posts
             }
             return newState;
         }
