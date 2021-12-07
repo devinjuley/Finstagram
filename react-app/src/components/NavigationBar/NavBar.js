@@ -23,7 +23,12 @@ const NavBar = () => {
           {/* <NavLink to='/' exact={true}>
             Create Post
           </NavLink> */}
-          <CreatePostFormModal />
+          <CreatePostFormModal activeClassName='active'/>
+        </li>
+        <li>
+          <NavLink to='/posts/discover' exact={true} activeClassName='active'>
+            Discover
+          </NavLink>
         </li>
         <li>
           <NavLink to='/' exact={true}>

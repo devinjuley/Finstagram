@@ -12,6 +12,7 @@ class Image(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), nullable=False, default=db.func.now(), onupdate=db.func.now())
 
     user = db.relationship('User', back_populates='image')
+    post = db.relationship('Post', back_populates='image')
 
     def to_dict(self):
         return {
