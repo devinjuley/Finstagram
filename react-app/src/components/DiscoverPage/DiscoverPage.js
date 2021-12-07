@@ -36,34 +36,21 @@ function Discover() {
    const hideForm = () => setShowModal(false)
    const posts_arr = Object.assign([], posts)
 
-   // let content
-
    useEffect(() => {
       dispatch(getAllPostsThunk())
    }, [dispatch])
 
-   // const openSinglePost = (e) => {
-   //    setShowModal(true)
-   //    console.log(e.target.value)
-   //    content = (
-   //       showModal && (
-   //          <Modal onClose={() => setShowModal(false)}>
-   //             <SinglePost hideForm={hideForm} post={e.target.value} />
-   //          </Modal>
-   //       )
-   //    )
-   // }
+
 
 
    return (
       <div>
          <h1>You made it here</h1>
          {posts_arr.map(post => (
-            <div >
+            <div key={post.id}>
                <SinglePostTile post={post} />
             </div>
          ))}
-         {/* {content} */}
       </div>
    )
 }

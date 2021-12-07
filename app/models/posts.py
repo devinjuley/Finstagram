@@ -11,8 +11,8 @@ class Post(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), nullable=False, default=db.func.now(), onupdate=db.func.now())
 
     user = db.relationship('User', back_populates='posts')
-    comments = db.relationship('Comment', back_populates='posts')
-    images = db.relationship('Image', back_populates='posts')
+    comments = db.relationship('Comment', back_populates='posts', cascade="all, delete-orphan")
+    images = db.relationship('Image', back_populates='posts', cascade="all, delete-orphan")
 
 
     def to_dict(self):
