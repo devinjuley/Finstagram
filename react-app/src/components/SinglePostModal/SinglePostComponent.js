@@ -12,18 +12,18 @@ import '../../context/Modal.css'
 const SinglePost = ({ hideForm, post }) => {
    const dispatch = useDispatch();
    const sessionUser = useSelector(state => state.session.user);
-   const [caption, setCaption] = useState('');
-   const [image_url, setImage_URL] = useState('');
    const [errors, setErrors] = useState([]);
 
    const handleEdit = () => {
 
    }
-   
-   const handleDelete = async () => {
-      const deleted_post = await dispatch(deleteSinglePostThunk(post.id))
+
+   const handleDelete = () => {
+      dispatch(deleteSinglePostThunk(post.id))
       hideForm()
    }
+
+
 
    let buttons
    if (sessionUser.id === post.user_id) {
@@ -35,12 +35,19 @@ const SinglePost = ({ hideForm, post }) => {
       )
    }
 
-   return (
-      <div>
+   let content
+   content = (
+      <>
          <img src={post?.images[0]?.image_url} />
          <div>{post?.content}</div>
          {buttons}
-      </div>
+      </>
+   )
+
+   return (
+      <>
+         {content}
+      </>
    );
 };
 
