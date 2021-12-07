@@ -9,6 +9,10 @@ post_routes = Blueprint('posts', __name__)
 # get posts route (discover posts route handler)
 @post_routes.route('/discover')
 def getPosts():
+
+    # # FROM DAMIAN
+    # db.session.query(Post, Image).filter(Post.id == Image.post_id).all()
+
     posts = Post.query.join(Image).all()
 
     posts_dict = {}
