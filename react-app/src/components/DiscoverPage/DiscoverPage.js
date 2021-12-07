@@ -21,7 +21,11 @@ function Discover() {
    return (
       <div>
          <h1>You made it here</h1>
-         {console.log(posts_arr)}
+         {posts_arr.map(post => (
+            <div key={post?.id}>
+               <img src={post?.images[0]?.image_url} alt='image post'/>
+            </div>
+         ))}
       </div>
    )
 }

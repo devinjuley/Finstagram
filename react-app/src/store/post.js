@@ -56,7 +56,6 @@ const postReducer = (state = initialState, action) => {
             return newState;
         }
         case GET_ALL_POSTS: {
-            console.log(action.payload)
             const newState = {
                 ...state,
                 ...action.payload.posts
