@@ -22,9 +22,9 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), nullable=False, default=db.func.now(), onupdate=db.func.now())
 
-    image = db.relationship('Image', back_populates='user')
-    post = db.relationship('Post', back_populates='user')
-    comment = db.relationship('Comment', back_populates='user')
+    images = db.relationship('Image', back_populates='user')
+    posts = db.relationship('Post', back_populates='user')
+    comments = db.relationship('Comment', back_populates='user')
 
     followers = db.relationship(
         "User",

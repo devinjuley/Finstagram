@@ -10,9 +10,9 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, default=db.func.now())
     updated_at = db.Column(db.DateTime(timezone=True), nullable=False, default=db.func.now(), onupdate=db.func.now())
 
-    user = db.relationship('User', back_populates='post')
-    comment = db.relationship('Comment', back_populates='post')
-    image = db.relationship('Image', back_populates='post')
+    user = db.relationship('User', back_populates='posts')
+    comments = db.relationship('Comment', back_populates='posts')
+    images = db.relationship('Image', back_populates='posts')
 
 
     def to_dict(self):
@@ -20,4 +20,5 @@ class Post(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'content': self.content,
+            'images': [image.to_dict() for image in self.images]
         }
