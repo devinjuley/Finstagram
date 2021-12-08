@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, redirect
+from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.forms.edit_post_form import EditPostForm
 from app.models import Post, Image, db
@@ -66,6 +66,7 @@ def deletePost(postId):
     return post.to_dict()
 
 
+# TO DO: implement current_user
 # edit post route
 @post_routes.route('/<int:postId>/edit', methods=['PUT'])
 @login_required
