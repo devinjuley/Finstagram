@@ -21,3 +21,10 @@ class Comment(db.Model):
          'post_id': self.post_id,
          'content': self.content,
       }
+
+   def to_dict_delete(self):
+      return {
+         'id': self.id,
+         'post_id': self.post_id,
+         # 'content': self.content,
+      }

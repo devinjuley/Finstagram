@@ -28,11 +28,12 @@ def createComment():
       return 'bad data'
 
 
-# delete post route
-# @post_routes.route('/<int:postId>/delete', methods=['DELETE'])
+# delete comment route
+@comment_routes.route('/<int:commentId>/delete', methods=['DELETE'])
 # @login_required
-# def deletePost(postId):
-#     post = Post.query.get(postId)
-#     db.session.delete(post)
-#     db.session.commit()
-#     return post.to_dict()
+def deleteComment(commentId):
+    comment = Comment.query.get(commentId)
+   #  print("---------================ inside route", comment)
+    db.session.delete(comment)
+    db.session.commit()
+    return comment.to_dict_delete()

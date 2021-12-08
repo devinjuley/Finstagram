@@ -4,7 +4,7 @@ import EditSinglePost from './SinglePostEditComponent';
 import CreateCommentForm from './CreateCommentComponent';
 
 // thunk import
-import { deleteSinglePostThunk } from '../../store/post'
+import { deleteSinglePostThunk, deleteCommentThunk } from '../../store/post'
 
 // impost CSS
 import '../../context/Modal.css'
@@ -16,9 +16,11 @@ const SinglePost = ({ hideForm, post }) => {
    const sessionUser = useSelector(state => state.session.user);
    const [errors, setErrors] = useState([]);
    const [showEditForm, setShowEditForm] = useState(false);
+   const commentsArray = Object.assign([], post.comments)
 
    let content;
    let buttons;
+   let commentButtons;
 
    const handleEdit = () => {
       setShowEditForm(true)
@@ -27,6 +29,14 @@ const SinglePost = ({ hideForm, post }) => {
    const handleDelete = () => {
       dispatch(deleteSinglePostThunk(post.id))
       hideForm()
+   }
+
+   const handleEditComment = () => {
+
+   }
+
+   const handleDeleteComment = (e) => {
+      dispatch(deleteCommentThunk(e.target.value))
    }
 
    if (sessionUser.id === post.user_id) {
@@ -38,6 +48,16 @@ const SinglePost = ({ hideForm, post }) => {
 
       )
    }
+   const commentChecker = (comment) => {
+      if (sessionUser.id === comment.user.id) {
+         commentButtons = (
+            <div>
+               <button onClick={handleEditComment}>Edit</button>
+               <button onClick={handleDeleteComment} value={comment.id}>Delete</button>
+            </div>
+         )
+      }
+   }
 
    content = (
       <div>
@@ -45,7 +65,7 @@ const SinglePost = ({ hideForm, post }) => {
             <img src={post?.images[0]?.image_url} />
          </div>
          <div>
-            {post?.comments.map(comment => (
+            {commentsArray.map(comment => (
                <div key={comment?.id}>
                   <div>
                      {comment?.user?.username}
@@ -53,6 +73,8 @@ const SinglePost = ({ hideForm, post }) => {
                   <div>
                      {comment?.content}
                   </div>
+                  {commentChecker(comment)}
+                  {commentButtons}
                </div>
             ))}
          </div>
