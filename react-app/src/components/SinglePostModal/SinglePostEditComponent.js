@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editSinglePostThunk } from '../../store/post';
+
 const EditSinglePost = ({ setShowEditForm, post }) => {
     const dispatch = useDispatch();
     const [postContent, setPostContent] = useState(post.content);

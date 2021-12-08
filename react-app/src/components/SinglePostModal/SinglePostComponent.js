@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EditSinglePost from './SinglePostEditComponent';
 import CreateCommentForm from './CreateCommentComponent';
+import CommentComponent from './CommentComponent';
 
 // thunk import
 import { deleteSinglePostThunk, deleteCommentThunk } from '../../store/post'
@@ -16,11 +17,11 @@ const SinglePost = ({ hideForm, post }) => {
    const sessionUser = useSelector(state => state.session.user);
    const [errors, setErrors] = useState([]);
    const [showEditForm, setShowEditForm] = useState(false);
+
    const commentsArray = Object.assign([], post.comments)
 
    let content;
    let buttons;
-   let commentButtons;
 
    const handleEdit = () => {
       setShowEditForm(true)
@@ -29,15 +30,7 @@ const SinglePost = ({ hideForm, post }) => {
    const handleDelete = () => {
       dispatch(deleteSinglePostThunk(post.id))
       hideForm()
-   }
-
-   const handleEditComment = () => {
-
-   }
-
-   const handleDeleteComment = (e) => {
-      dispatch(deleteCommentThunk(e.target.value))
-   }
+   };
 
    if (sessionUser.id === post.user_id) {
       buttons = (
@@ -48,16 +41,7 @@ const SinglePost = ({ hideForm, post }) => {
 
       )
    }
-   const commentChecker = (comment) => {
-      if (sessionUser.id === comment.user.id) {
-         commentButtons = (
-            <div>
-               <button onClick={handleEditComment}>Edit</button>
-               <button onClick={handleDeleteComment} value={comment.id}>Delete</button>
-            </div>
-         )
-      }
-   }
+
 
    content = (
       <div>
@@ -71,10 +55,9 @@ const SinglePost = ({ hideForm, post }) => {
                      {comment?.user?.username}
                   </div>
                   <div>
-                     {comment?.content}
+                     <CommentComponent comment={comment}/>
                   </div>
-                  {commentChecker(comment)}
-                  {commentButtons}
+
                </div>
             ))}
          </div>
