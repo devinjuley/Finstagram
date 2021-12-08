@@ -18,7 +18,7 @@ const EditSinglePost = ({ setShowEditForm, post }) => {
     }
 
     return (
-        <>
+        <div>
             <form onSubmit={handleEditSubmission}>
                 <textarea
                     value={postContent}
@@ -26,8 +26,7 @@ const EditSinglePost = ({ setShowEditForm, post }) => {
                 />
                 <button type="submit">Submit</button>
             </form>
-
-        </>
+        </div>
     )
 }
 

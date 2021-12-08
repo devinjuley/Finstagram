@@ -3,6 +3,7 @@ const CREATE_POST = 'post/CREATE_POST';
 const GET_ALL_POSTS = 'post/GET_ALL_POSTS';
 const DELETE_SINGLE_POST = 'post/DELETE_SINGLE_POST';
 const EDIT_SINGLE_POST = 'post/EDIT_SINGLE_POST';
+const ADD_COMMENT = 'post/ADD_COMMENT'
 
 
 // action creators
@@ -25,6 +26,12 @@ const editSinglePost = (post) => ({
     type: EDIT_SINGLE_POST,
     payload: post
 });
+
+const addComment = (comment) => ({
+    type: ADD_COMMENT,
+    payload: comment
+})
+
 
 // thunks
 export const createNewPost = (newPost) => async (dispatch) => {
@@ -79,9 +86,24 @@ export const editSinglePostThunk = (post) => async (dispatch) => {
         dispatch(editSinglePost(editedPost));
         return editedPost;
     }
-}
+};
 
-const initialState = {}
+export const addCommentThunk = (comment) => async (dispatch) => {
+    const response = await fetch('/api/comments/new', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(comment)
+    });
+
+    if (response.ok) {
+        const comment = await response.json();
+        dispatch(addComment(comment));
+        return comment;
+    }
+};
+
+
+const initialState = {};
 // reducer
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -112,6 +134,12 @@ const postReducer = (state = initialState, action) => {
                 [action.payload.id]: action.payload
             }
             return newState;
+        }
+        case ADD_COMMENT: {
+            const postId = action.payload.post_id
+            const newState = { ...state }
+            newState[postId].comments.push(action.payload);
+            return newState
         }
         default:
             return state;
