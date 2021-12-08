@@ -1,28 +1,32 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-const EditSinglePost = ({post}) => {
+import { editSinglePostThunk } from '../../store/post';
+const EditSinglePost = ({ setShowEditForm, post }) => {
     const dispatch = useDispatch();
-    const [postContent, setPostContent] = useState('');
+    const [postContent, setPostContent] = useState(post.content);
 
 
     const handleEditSubmission = (e) => {
+        e.preventDefault()
+        const editPost = {
+            content: postContent,
+            post_id: post.id
+        }
 
+        dispatch(editSinglePostThunk(editPost))
+        setShowEditForm(false)
     }
 
     return (
         <>
-            <a>
-                {console.log('Edit button here')}
-                {console.log(post)}
-            </a>
-            <img src={post?.images[0]?.image_url} />
             <form onSubmit={handleEditSubmission}>
                 <textarea
-                  value={postContent}
-                  onChange={(e) => setPostContent(e.target.value)}
+                    value={postContent}
+                    onChange={(e) => setPostContent(e.target.value)}
                 />
+                <button type="submit">Submit</button>
             </form>
+
         </>
     )
 }

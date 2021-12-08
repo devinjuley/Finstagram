@@ -13,15 +13,17 @@ const SinglePost = ({ hideForm, post }) => {
    const dispatch = useDispatch();
    const sessionUser = useSelector(state => state.session.user);
    const [errors, setErrors] = useState([]);
+   const [postContent, setPostContent] = useState(post.content);
+   const [showEditForm, setShowEditForm] = useState(false);
+   const handleEditSubmission = (e) => {
+
+   }
    let content;
    let buttons;
 
+
    const handleEdit = () => {
-      content = (
-         <>
-            <EditSinglePost post={post}/>
-         </>
-      )
+      setShowEditForm(true)
    };
 
    const handleDelete = () => {
@@ -32,25 +34,29 @@ const SinglePost = ({ hideForm, post }) => {
    if (sessionUser.id === post.user_id) {
       buttons = (
          <>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+            {!showEditForm && (<button onClick={handleEdit}>Edit</button>)}
+            {!showEditForm && (<button onClick={handleDelete}>Delete</button>)}
          </>
+
       )
    }
+
+
    content = (
       <>
          <img src={post?.images[0]?.image_url} />
-         <div>{post?.content}</div>
+         {!showEditForm && (<div>{post?.content}</div>)}
          {buttons}
       </>
    )
 
 
-
-
    return (
       <>
          {content}
+         {showEditForm && (
+            <EditSinglePost post={post} setShowEditForm={setShowEditForm} />
+         )}
       </>
    );
 };
