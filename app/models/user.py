@@ -55,3 +55,10 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'profile_image_url': self.profile_image_url
         }
+
+    def to_dict_for_comments(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'profile_image_url': self.profile_image_url
+        }
