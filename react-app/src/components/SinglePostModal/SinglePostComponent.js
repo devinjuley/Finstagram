@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import EditSinglePost from './SinglePostEditComponent';
 // thunk import
 import { deleteSinglePostThunk } from '../../store/post'
 
@@ -13,19 +13,22 @@ const SinglePost = ({ hideForm, post }) => {
    const dispatch = useDispatch();
    const sessionUser = useSelector(state => state.session.user);
    const [errors, setErrors] = useState([]);
+   let content;
+   let buttons;
 
    const handleEdit = () => {
-
-   }
+      content = (
+         <>
+            <EditSinglePost post={post}/>
+         </>
+      )
+   };
 
    const handleDelete = () => {
       dispatch(deleteSinglePostThunk(post.id))
       hideForm()
    }
 
-
-
-   let buttons
    if (sessionUser.id === post.user_id) {
       buttons = (
          <>
@@ -34,8 +37,6 @@ const SinglePost = ({ hideForm, post }) => {
          </>
       )
    }
-
-   let content
    content = (
       <>
          <img src={post?.images[0]?.image_url} />
@@ -43,6 +44,9 @@ const SinglePost = ({ hideForm, post }) => {
          {buttons}
       </>
    )
+
+
+
 
    return (
       <>
