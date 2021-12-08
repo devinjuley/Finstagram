@@ -2,22 +2,24 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // thunk import
-// import { editSinglePostThunk } from '../../store/post';
+import { addCommentThunk } from '../../store/post';
 
 const CreateCommentForm = ({ post }) => {
    const dispatch = useDispatch();
+   const sessionUser = useSelector(state => state.session.user)
    const [commentContent, setCommentContent] = useState('');
 
 
    const handleCommentSubmission = (e) => {
       e.preventDefault()
-      // const editPost = {
-      //    content: postContent,
-      //    post_id: post.id
-      // }
+      const comment = {
+         content: commentContent,
+         post_id: post.id,
+         user_id: sessionUser.id
+      }
 
-      // dispatch(editSinglePostThunk(editPost))
-      // setShowEditForm(false)
+      dispatch(addCommentThunk(comment))
+      setCommentContent('')
    }
 
    return (
