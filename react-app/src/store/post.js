@@ -4,6 +4,7 @@ const GET_ALL_POSTS = 'post/GET_ALL_POSTS';
 const DELETE_SINGLE_POST = 'post/DELETE_SINGLE_POST';
 const EDIT_SINGLE_POST = 'post/EDIT_SINGLE_POST';
 const ADD_COMMENT = 'post/ADD_COMMENT'
+const DELETE_COMMENT = 'post/DELETE_COMMENT'
 
 
 // action creators
@@ -29,6 +30,11 @@ const editSinglePost = (post) => ({
 
 const addComment = (comment) => ({
     type: ADD_COMMENT,
+    payload: comment
+})
+
+const deleteComment = (comment) => ({
+    type: DELETE_COMMENT,
     payload: comment
 })
 
@@ -102,6 +108,18 @@ export const addCommentThunk = (comment) => async (dispatch) => {
     }
 };
 
+export const deleteCommentThunk = (commentId) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${commentId}/delete`, {
+        method: 'DELETE'
+    })
+    if (response.ok) {
+        const comment = await response.json()
+        // console.log('this is in the thunk', comment)
+        dispatch(deleteComment(comment))
+        return comment
+    }
+}
+
 
 const initialState = {};
 // reducer
@@ -138,7 +156,15 @@ const postReducer = (state = initialState, action) => {
         case ADD_COMMENT: {
             const postId = action.payload.post_id
             const newState = { ...state }
-            newState[postId].comments.push(action.payload);
+            newState[postId].comments[action.payload.id] = action.payload;
+            return newState
+        }
+        case DELETE_COMMENT: {
+            const postId = action.payload.post_id
+            const newState = {
+                ...state
+            }
+            delete newState[postId].comments[action.payload.id]
             return newState
         }
         default:
