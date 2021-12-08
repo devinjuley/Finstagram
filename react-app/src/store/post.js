@@ -67,10 +67,10 @@ export const deleteSinglePostThunk = (postId) => async (dispatch) => {
     }
 };
 
-export const editSinglePostThunk = (post) => async(dispatch) => {
-    const response = await fetch(`/api/posts/${post.id}/edit`, {
+export const editSinglePostThunk = (post) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${post.post_id}/edit`, {
         method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(post)
     });
 
