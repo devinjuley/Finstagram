@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import Post, Comment, db
 from app.forms import CreateCommentForm
+from app.forms import EditCommentForm
 
 comment_routes = Blueprint('comments', __name__)
 
@@ -30,9 +31,24 @@ def createComment():
 
 # delete comment route
 @comment_routes.route('/<int:commentId>/delete', methods=['DELETE'])
-# @login_required
+@login_required
 def deleteComment(commentId):
     comment = Comment.query.get(commentId)
     db.session.delete(comment)
     db.session.commit()
     return comment.to_dict_delete()
+
+
+# edit comment route
+@comment_routes.route('/<int:commentId>/edit', methods=['PUT'])
+# @login_required
+def editComment(commentId):
+   editedCommentForm = EditCommentForm()
+   editedCommentForm['csrf_token'].data = request.cookies['csrf_token']
+   if editedCommentForm.validate_on_submit():
+      comment = Comment.query.get(commentId)
+      comment.content = editedCommentForm.data['content']
+      db.session.commit()
+      return comment.to_dict()
+   else:
+      return 'bad data'

@@ -27,3 +27,4 @@ class Comment(db.Model):
          'id': self.id,
          'post_id': self.post_id,
       }
+
