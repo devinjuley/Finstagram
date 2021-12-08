@@ -113,7 +113,8 @@ export const deleteCommentThunk = (commentId) => async (dispatch) => {
         method: 'DELETE'
     })
     if (response.ok) {
-        const comment = response.json()
+        const comment = await response.json()
+        // console.log('this is in the thunk', comment)
         dispatch(deleteComment(comment))
         return comment
     }

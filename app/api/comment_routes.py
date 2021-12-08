@@ -33,7 +33,6 @@ def createComment():
 # @login_required
 def deleteComment(commentId):
     comment = Comment.query.get(commentId)
-   #  print("---------================ inside route", comment)
     db.session.delete(comment)
     db.session.commit()
     return comment.to_dict_delete()
