@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request, redirect
-from flask_login import login_required
+from flask_login import login_required, current_user
+from app.forms.edit_post_form import EditPostForm
 from app.models import Post, Image, db
-from app.forms import CreatePostForm, CreateImageForm
+from app.forms import CreatePostForm, CreateImageForm, EditPostForm
 
 post_routes = Blueprint('posts', __name__)
 
@@ -63,3 +64,18 @@ def deletePost(postId):
     db.session.delete(post)
     db.session.commit()
     return post.to_dict()
+
+
+# edit post route
+@post_routes.route('/<int:postId>/edit', methods=['PUT'])
+@login_required
+def editPost(postId):
+    editedPostForm = EditPostForm()
+    editedPostForm['csrf_token'].data = request.cookies['csrf_token']
+    if editedPostForm.validate_on_submit():
+        post = Post.query.get(postId)
+        post.content = editedPostForm.data['content']
+        db.session.commit()
+        return post.to_dict()
+    else:
+        return 'bad data'
