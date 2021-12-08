@@ -20,9 +20,6 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          {/* <NavLink to='/' exact={true}>
-            Create Post
-          </NavLink> */}
           <CreatePostFormModal activeClassName='active'/>
         </li>
         <li>

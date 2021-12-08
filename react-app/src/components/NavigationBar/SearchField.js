@@ -1,28 +1,31 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+// import thunk
+
+
 
 const SearchField = () => {
    const history = useHistory();
    const [searchString, setSearchString] = useState('');
 
-   const updateSearch = (e) => {
-      setSearchString(e.target.value);
-
-      // TO DO: create search funtion for activities
-
+   const handeSubmit = (e) => {
+      e.preventDefault()
+      // dispatch search thunk
       return
    }
 
    return (
-      <>
-         <input
-            placeholder='Search...'
-            type='text'
-            value={searchString}
-            onChange={updateSearch}
-         />
-      </>
+      <div>
+         <form onSubmit={handeSubmit}>
+            <input
+               placeholder='Search...'
+               type='search'
+               value={searchString}
+               onChange={(e) => setSearchString(e.target.value)}
+            />
+         </form>
+      </div>
    );
 };
 
