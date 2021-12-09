@@ -16,12 +16,12 @@ const CommentComponent = ({ comment }) => {
 
     const commentChecker = (comment) => {
         if (sessionUser.id === comment.user.id) {
-           commentButtons = (
-              <div>
-                 <button onClick={() => setShowCommentEditForm(true)}>Edit</button>
-                 <button onClick={handleDeleteComment} value={comment.id}>Delete</button>
-              </div>
-           )
+            commentButtons = (
+                <div>
+                    <button onClick={() => setShowCommentEditForm(true)}>Edit</button>
+                    <button onClick={handleDeleteComment} value={comment.id}>Delete</button>
+                </div>
+            )
         }
     }
 
@@ -31,7 +31,7 @@ const CommentComponent = ({ comment }) => {
             {!showCommentEditForm && (commentChecker(comment))}
             {!showCommentEditForm && (commentButtons)}
             {showCommentEditForm && (
-                <EditSingleComment comment={comment} setShowCommentEditForm={setShowCommentEditForm}/>
+                <EditSingleComment comment={comment} setShowCommentEditForm={setShowCommentEditForm} />
             )}
         </div>
     )

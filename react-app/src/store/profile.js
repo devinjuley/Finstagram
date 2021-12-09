@@ -11,11 +11,12 @@ const getProfile = (profile) => ({
 export const getProfileThunk = (userId) => async(dispatch) => {
     const response = await fetch(`/api/users/${userId}`);
     if(response.ok) {
-        const posts = await response.json();
-        dispatch(getProfile(posts));
-        return posts;
+        const profile = await response.json();
+        dispatch(getProfile(profile));
+        return profile;
     }
 };
+
 
 // reducer
 const initialState = {};

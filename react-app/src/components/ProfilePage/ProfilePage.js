@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { SinglePostTile } from '../DiscoverPage/DiscoverPage';
+
+//thunk import
 import { getProfileThunk } from '../../store/profile';
 
 
 function ProfilePage() {
     const dispatch = useDispatch();
+    const sessionUser = useSelector(state => state.session.user);
     const posts = useSelector(state => state.posts)
     const profile = useSelector(state => state.profile);
     const profilePosts = Object.assign([], profile.posts)
@@ -17,13 +20,31 @@ function ProfilePage() {
         dispatch(getProfileThunk(userId))
     }, [dispatch, posts])
 
+    // useEffect(() => {
+
+    // }, [profile])
+
     const handleFollowSubmit = () => {
 
     };
 
     let followButtonContent;
+    if (sessionUser.id == userId) {
+        followButtonContent = null
+    } else if (userId in sessionUser.follows) {
+        followButtonContent = (
+            <div>
+                <button>Unfollow</button>
+            </div>
+        )
+    } else {
+        followButtonContent = (
+            <div>
+                <button>Follow</button>
+            </div>
+        )
+    }
 
-    // // if ()
     // <button type='submit' onClick={handleFollowSubmit}>Follow</button>
 
     return (
