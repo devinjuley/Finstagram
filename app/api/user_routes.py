@@ -29,12 +29,12 @@ def users(search_term):
     return {'users': [user.to_dict_for_search() for user in users]}
 
 
-
+# user pro page posts
 @user_routes.route('/<int:id>')
-@login_required
+# @login_required
 def user(id):
     user = User.query.get(id)
-    return user.to_dict()
+    return user.to_dict_for_profile()
 
 
 # query = meta.Session.query(User).filter(
