@@ -58,7 +58,7 @@ const SinglePost = ({ hideForm, post }) => {
                         <img src={comment?.user.profile_image_url} className='commented-user-profile-image-dj' />
                      </div>
                      <div>
-                        <div className='single-post-comment-username-dj'>{comment?.user?.username}</div>
+                        {/* <div className='single-post-comment-username-dj'>{comment?.user?.username}</div> */}
                      </div>
                      <div>
                         <CommentComponent comment={comment} />

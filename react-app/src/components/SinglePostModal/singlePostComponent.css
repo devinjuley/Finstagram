@@ -50,6 +50,7 @@ body {
     resize: none;
     padding-top: 10px;
     padding-left: 15px;
+    outline: none;
 }
 
 .post-comment-form-dj {
@@ -65,7 +66,13 @@ body {
 
 .single-post-comment-username-dj {
     font-weight: bold;
-    padding-right: 5px;
+    /* padding-right: 5px; */
+    /* font-size: 13px; */
+    text-decoration: none;
+    color: black;
+}
+.single-post-comment-username-dj:hover {
+    text-decoration: underline;
 }
 
 .comment-username-and-comment-dj {

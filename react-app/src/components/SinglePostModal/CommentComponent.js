@@ -16,22 +16,23 @@ const CommentComponent = ({ comment }) => {
 
     const commentChecker = (comment) => {
         if (sessionUser.id === comment.user.id) {
-           commentButtons = (
-              <div>
-                 <button onClick={() => setShowCommentEditForm(true)}>Edit</button>
-                 <button onClick={handleDeleteComment} value={comment.id}>Delete</button>
-              </div>
-           )
+            commentButtons = (
+                <div>
+                    <button onClick={() => setShowCommentEditForm(true)}>Edit</button>
+                    <button onClick={handleDeleteComment} value={comment.id}>Delete</button>
+                </div>
+            )
         }
     }
 
     return (
         <div>
-            {!showCommentEditForm && (comment?.content)}
+            <a href={''} className='single-post-comment-username-dj'>{!showCommentEditForm && (comment?.user?.username)}</a>
+            <span> {!showCommentEditForm && (comment?.content)}</span>
             {!showCommentEditForm && (commentChecker(comment))}
             {!showCommentEditForm && (commentButtons)}
             {showCommentEditForm && (
-                <EditSingleComment comment={comment} setShowCommentEditForm={setShowCommentEditForm}/>
+                <EditSingleComment comment={comment} setShowCommentEditForm={setShowCommentEditForm} />
             )}
         </div>
     )
