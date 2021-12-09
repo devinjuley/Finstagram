@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import SearchField from './SearchField'
 import CreatePostFormModal from '../CreatePostModal';
+import { useSelector } from 'react-redux';
 
 // importing css
 import "./NavBar.css"
@@ -11,6 +11,7 @@ import CreatePostForm from '../CreatePostModal/CreatePostForm';
 
 
 const NavBar = () => {
+  const sessionUser = useSelector(state => state.session.user)
   return (
     <nav>
       <ul>
@@ -28,7 +29,7 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/' exact={true}>
+          <NavLink to={`/users/${sessionUser?.id}`} exact={true}>
             Profile Page
           </NavLink>
         </li>

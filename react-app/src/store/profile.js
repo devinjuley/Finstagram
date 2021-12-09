@@ -1,18 +1,18 @@
 // constant
-const GET_PROFILE_POSTS = 'profile/GET_PROFILE_POSTS';
+const GET_PROFILE = 'profile/GET_PROFILE';
 
 // action creater
-const getProfilePosts = (profile) => ({
-    type: GET_PROFILE_POSTS,
+const getProfile = (profile) => ({
+    type: GET_PROFILE,
     payload: profile
 });
 
 // thunk
-const getProfilePostsThunk = (userId) => async(dispatch) => {
+export const getProfileThunk = (userId) => async(dispatch) => {
     const response = await fetch(`/api/users/${userId}`);
     if(response.ok) {
         const posts = await response.json();
-        dispatch(getProfilePosts(posts));
+        dispatch(getProfile(posts));
         return posts;
     }
 };
@@ -21,7 +21,7 @@ const getProfilePostsThunk = (userId) => async(dispatch) => {
 const initialState = {};
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_PROFILE_POSTS: {
+        case GET_PROFILE: {
             const newState = {
                 ...action.payload
             }

@@ -34,6 +34,7 @@ def users(search_term):
 # @login_required
 def user(id):
     user = User.query.get(id)
+    print('-----------------', user.to_dict_for_profile())
     return user.to_dict_for_profile()
 
 

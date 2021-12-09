@@ -18,7 +18,7 @@ const SearchField = () => {
    useEffect(() => {
       if (searchString === '') {
          setSearchString(null)
-         dispatch(getSearchResultsThunk(null))
+         // dispatch(getSearchResultsThunk(null))
       } else {
          dispatch(getSearchResultsThunk(searchString))
       }
