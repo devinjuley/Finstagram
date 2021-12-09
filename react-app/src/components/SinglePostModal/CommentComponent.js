@@ -27,7 +27,7 @@ const CommentComponent = ({ comment }) => {
 
     return (
         <div>
-            <a href={''} className='single-post-comment-username-dj'>{!showCommentEditForm && (comment?.user?.username)}</a>
+            <a href={`/users/${comment?.user.id}`} className='single-post-comment-username-dj'>{!showCommentEditForm && (comment?.user?.username)}</a>
             <span> {!showCommentEditForm && (comment?.content)}</span>
             {!showCommentEditForm && (commentChecker(comment))}
             {!showCommentEditForm && (commentButtons)}

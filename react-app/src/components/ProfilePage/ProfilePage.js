@@ -5,6 +5,7 @@ import { SinglePostTile } from '../DiscoverPage/DiscoverPage';
 
 //thunk import
 import { getProfileThunk } from '../../store/profile';
+import { addFollowThunk } from '../../store/follows';
 
 
 function ProfilePage() {
@@ -13,19 +14,15 @@ function ProfilePage() {
     const posts = useSelector(state => state.posts)
     const profile = useSelector(state => state.profile);
     const profilePosts = Object.assign([], profile.posts)
-
     const { userId } = useParams()
+    const sessionUserId = sessionUser.id
 
     useEffect(() => {
         dispatch(getProfileThunk(userId))
-    }, [dispatch, posts])
-
-    // useEffect(() => {
-
-    // }, [profile])
+    }, [dispatch, posts, userId])
 
     const handleFollowSubmit = () => {
-
+        dispatch(addFollowThunk(userId))
     };
 
     let followButtonContent;
@@ -40,7 +37,7 @@ function ProfilePage() {
     } else {
         followButtonContent = (
             <div>
-                <button>Follow</button>
+                <button onClick={handleFollowSubmit}>Follow</button>
             </div>
         )
     }

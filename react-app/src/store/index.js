@@ -4,12 +4,14 @@ import session from './session'
 import posts from './post';
 import search from './search'
 import profile from './profile'
+import follows from './follows'
 
 const rootReducer = combineReducers({
   session,
   posts,
   search,
-  profile
+  profile,
+  follows
 });
 
 

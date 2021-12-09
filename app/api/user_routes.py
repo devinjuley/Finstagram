@@ -1,9 +1,10 @@
 from operator import not_, or_
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from werkzeug.wrappers import request
-from app.models import User
+from flask import Blueprint, jsonify, request
+from flask_login import login_required, current_user
+from app.models import User, db
 from sqlalchemy import or_
+from app.forms import FollowForm
+from app.models.user import follows
 
 user_routes = Blueprint('users', __name__)
 
@@ -34,13 +35,21 @@ def users(search_term):
 # @login_required
 def user(id):
     user = User.query.get(id)
-    print('-----------------', user.to_dict_for_profile())
+    # print('-----------------', user.to_dict_for_profile())
     return user.to_dict_for_profile()
 
 
-# query = meta.Session.query(User).filter(
-#     and_(
-#         User.firstname.like(search_var1),
-#         User.lastname.like(search_var2)
-#     )
-# )
+
+@user_routes.route('/follows/<int:followingId>', methods=['POST'])
+@login_required
+def follows(followingId):
+    # form = FollowForm()
+    print('------------', current_user.get_id())
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    # if form.validate_on_submit():
+    user = User.query.get(current_user.get_id())
+    # user = User.query.get(sessionUserId)
+    new_follow = User.query.get(followingId)
+    user.follow(new_follow)
+    db.session.commit()
+    return 'hi'
