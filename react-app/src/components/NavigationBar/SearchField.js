@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import thunk
@@ -24,7 +24,9 @@ const SearchField = () => {
       }
    }, [dispatch, searchString])
 
-
+   const handleRedirect = (e) => {
+      return history.push(`/users/${e.target.value}`)
+   }
 
    return (
       <div>
@@ -38,10 +40,10 @@ const SearchField = () => {
          />
          <div style={resultDivStyle} >
             {searchResults?.map(user => (
-               <div key={user?.id}>
+               <a key={user?.id} href={`/users/${user.id}`}>
                   <div>{user?.username}</div>
                   <div>{user?.first_name + ' ' + user?.last_name}</div>
-               </div>
+               </a>
             ))}
          </div>
       </div>
