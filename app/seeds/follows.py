@@ -53,7 +53,15 @@ def seed_follows():
         follower_id= 5,
         followed_id= 4
     )
-    
+    follow13 = insert(follows).values(
+        follower_id= 1,
+        followed_id= 2
+    )
+    follow14 = insert(follows).values(
+        follower_id= 1,
+        followed_id= 3
+    )
+
     db.session.execute(follow1)
     db.session.execute(follow2)
     db.session.execute(follow3)
@@ -66,6 +74,8 @@ def seed_follows():
     db.session.execute(follow10)
     db.session.execute(follow11)
     db.session.execute(follow12)
+    db.session.execute(follow13)
+    db.session.execute(follow14)
 
     db.session.commit()
 

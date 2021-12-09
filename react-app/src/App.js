@@ -8,7 +8,9 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import Discover from './components/DiscoverPage/DiscoverPage';
+import ProfilePage from './components/ProfilePage/ProfilePage';
 import { authenticate } from './store/session';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,7 +44,7 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
+          <ProfilePage />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
