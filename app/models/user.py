@@ -46,6 +46,11 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def follow(self, id):
+        if id not in self.following:
+            self.following.append(id)
+            return self
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -80,7 +85,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'first_name': self.first_name,
             'last_name': self.last_name,
-            # 'posts': {post.to_dict()['id']: post.to_dict() for post in self.posts}
+            'posts': {post.to_dict()['id']: post.to_dict() for post in self.posts}
         }
 
     def to_dict_for_profile(self):
