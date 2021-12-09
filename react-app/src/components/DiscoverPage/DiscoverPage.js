@@ -17,14 +17,16 @@ export const SinglePostTile = ({ post }) => {
    const hideForm = () => setShowModal(false)
    const [showModal, setShowModal] = useState(false);
    return (
-      <>
-         <img src={post?.images[0]?.image_url} alt='image post' onClick={() => setShowModal(true)} />
-         {showModal && (
-            <Modal onClose={() => setShowModal(false)}>
-               <SinglePost hideForm={hideForm} post={post} />
-            </Modal>
-         )}
-      </>
+      <div className='single-post-tile-dj'>
+         <div>
+            <img src={post?.images[0]?.image_url} alt='image post' onClick={() => setShowModal(true)} className='single-post-image-dj' />
+            {showModal && (
+               <Modal onClose={() => setShowModal(false)}>
+                  <SinglePost hideForm={hideForm} post={post} />
+               </Modal>
+            )}
+         </div>
+      </div>
    );
 
 }
@@ -44,8 +46,7 @@ function Discover() {
 
 
    return (
-      <div>
-         <h1>You made it here</h1>
+      <div className='discover-parent-div-dj'>
          {posts_arr.map(post => (
             <div key={post.id}>
                <SinglePostTile post={post} />

@@ -8,7 +8,7 @@ import CommentComponent from './CommentComponent';
 import { deleteSinglePostThunk, deleteCommentThunk } from '../../store/post'
 
 // impost CSS
-import '../../context/Modal.css'
+import './singlePostComponent.css'
 
 // import styles from './LoginForm.module.css'
 
@@ -44,28 +44,35 @@ const SinglePost = ({ hideForm, post }) => {
 
 
    content = (
-      <div>
-         <div>
-            <img src={post?.images[0]?.image_url} />
-         </div>
-         <div>
-            {commentsArray.map(comment => (
-               <div key={comment?.id}>
-                  <div>
-                     {comment?.user?.username}
-                  </div>
-                  <div>
-                     <CommentComponent comment={comment}/>
-                  </div>
+      <div className='single-post-parent-dj'>
+         <img src={post?.images[0]?.image_url} className='single-post-image-in-modal-dj' />
+         <div className='single-post-child-2-dj'>
+            <div className='comments-inner-div-dj'>
+               {!showEditForm && (
 
-               </div>
-            ))}
-         </div>
-         <div>
-            {!showEditForm && (<div>{post?.content}</div>)}
-         </div>
-         <div>
-            {buttons}
+                  <div className='single-post-caption-dj'>{post?.content}</div>
+               )}
+               {commentsArray.map(comment => (
+                  <div key={comment?.id} className='comment-username-and-comment-dj'>
+                     <div>
+                        <img src={comment?.user.profile_image_url} className='commented-user-profile-image-dj' />
+                     </div>
+                     <div>
+                        <div className='single-post-comment-username-dj'>{comment?.user?.username}</div>
+                     </div>
+                     <div>
+                        <CommentComponent comment={comment} />
+                     </div>
+
+                  </div>
+               ))}
+               {buttons}
+            </div>
+            <div className='post-comment-dj'>
+               {!showEditForm && (
+                  <CreateCommentForm post={post} />
+               )}
+            </div>
          </div>
       </div>
    )
@@ -78,11 +85,6 @@ const SinglePost = ({ hideForm, post }) => {
          <div>
             {showEditForm && (
                <EditSinglePost post={post} setShowEditForm={setShowEditForm} />
-            )}
-         </div>
-         <div>
-            {!showEditForm && (
-               <CreateCommentForm post={post} />
             )}
          </div>
 
