@@ -2,7 +2,7 @@ from operator import not_, or_
 from flask import Blueprint, jsonify
 from flask_login import login_required
 from werkzeug.wrappers import request
-from app.models import User, db
+from app.models import User
 from sqlalchemy import or_
 
 user_routes = Blueprint('users', __name__)
@@ -26,7 +26,7 @@ def users(search_term):
                 )
             ).all()
 
-    return {'users': [user.to_dict() for user in users]}
+    return {'users': [user.to_dict_for_search() for user in users]}
 
 
 
