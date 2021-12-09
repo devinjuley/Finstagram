@@ -13,7 +13,7 @@ import SinglePost from '../SinglePostModal/SinglePostComponent';
 import { Modal } from '../../context/Modal';
 import '../../context/Modal.css'
 
-const SinglePostTile = ({ post }) => {
+export const SinglePostTile = ({ post }) => {
    const hideForm = () => setShowModal(false)
    const [showModal, setShowModal] = useState(false);
    return (

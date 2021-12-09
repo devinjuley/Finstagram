@@ -80,3 +80,4 @@ def editPost(postId):
         return post.to_dict()
     else:
         return 'bad data'
+
