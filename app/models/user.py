@@ -53,7 +53,9 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'username': self.username,
             'email': self.email,
-            'profile_image_url': self.profile_image_url
+            'profile_image_url': self.profile_image_url,
+            'follows': {user.to_dict_for_follows()['id']:user.to_dict_for_follows() for user in self.followers}
+
         }
 
     def to_dict_for_comments(self):
@@ -78,7 +80,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'first_name': self.first_name,
             'last_name': self.last_name,
-            'posts': {post.to_dict()['id']: post.to_dict() for post in self.posts}
+            # 'posts': {post.to_dict()['id']: post.to_dict() for post in self.posts}
         }
 
     def to_dict_for_profile(self):

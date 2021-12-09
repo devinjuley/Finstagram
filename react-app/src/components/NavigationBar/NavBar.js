@@ -7,11 +7,10 @@ import { useSelector } from 'react-redux';
 
 // importing css
 import "./NavBar.css"
-import CreatePostForm from '../CreatePostModal/CreatePostForm';
-
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
+
   return (
     <nav>
       <ul>
