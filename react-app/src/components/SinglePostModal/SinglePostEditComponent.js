@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editSinglePostThunk } from '../../store/post';
+import './singlePostComponent.css'
 
 const EditSinglePost = ({ setShowEditForm, post }) => {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const EditSinglePost = ({ setShowEditForm, post }) => {
     }
 
     return (
-        <div>
+        <div className='edit-comment-parent-dj'>
             <form onSubmit={handleEditSubmission}>
                 <textarea
                     value={postContent}

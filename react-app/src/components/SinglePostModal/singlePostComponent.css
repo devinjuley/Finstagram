@@ -1,0 +1,92 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+}
+.single-post-parent-dj {
+    display: flex;
+}
+
+.single-post-image-in-modal-dj {
+    height: 550px;
+    width: 500px;
+    object-fit: cover;
+    /* padding-right: 10px; */
+}
+
+/* .edit-comment-parent-dj {
+    height: 100px;
+    grid-area: 2;
+} */
+
+.single-post-child-2-dj {
+    height: auto;
+    margin: 0 auto;
+}
+
+.comments-inner-div-dj {
+    height: 500px;
+    border-bottom: 1px solid lightgray;
+    width: 300px;
+    padding-top: 10px;
+    width: 375px;
+}
+
+.post-comment-dj {
+    display: flex;
+    justify-content: center;
+}
+
+.post-comment-button-dj {
+    border: none;
+    color: rgb(31, 170, 216);
+    background-color: white;
+    padding-top: 10px;
+}
+
+.post-comment-text-area-dj {
+    width: 300px;
+    height: 20px;
+    border: none;
+    resize: none;
+    padding-top: 10px;
+    padding-left: 15px;
+    outline: none;
+}
+
+.post-comment-form-dj {
+    display: flex;
+    padding-right: 10px;
+}
+
+.single-post-caption-dj {
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.single-post-comment-username-dj {
+    font-weight: bold;
+    /* padding-right: 5px; */
+    /* font-size: 13px; */
+    text-decoration: none;
+    color: black;
+}
+.single-post-comment-username-dj:hover {
+    text-decoration: underline;
+}
+
+.comment-username-and-comment-dj {
+    display: flex;
+    align-items: center;
+    padding-right: 4px;
+}
+
+.commented-user-profile-image-dj {
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}

@@ -1,0 +1,19 @@
+.discover-parent-div-dj {
+    display: flex;
+    flex-wrap: wrap;
+    width: 927px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.single-post-tile-dj {
+    width: 277px;
+    height: 277px;
+    padding: 10px;
+}
+
+.single-post-image-dj {
+    object-fit: cover;
+    width: 277px;
+    height: 277px;
+}
