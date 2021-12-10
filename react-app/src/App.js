@@ -28,18 +28,14 @@ function App() {
 
   if (!loaded) {
     return null;
-  }
+  };
+
   if (sessionUser?.id) {
+
     return (
       <BrowserRouter>
         <NavBar />
         <Switch>
-          {/* <Route path='/login' exact={true}>
-            <LoginForm />
-          </Route>
-          <Route path='/signup' exact={true}>
-            <SignUpForm />
-          </Route> */}
           <Route path='/posts/discover' exact={true}>
             <Discover />
           </Route>
@@ -54,9 +50,11 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
-    );
+    )
+
   } else {
     history.push('/');
+
     return (
       <BrowserRouter>
         <Switch>
@@ -69,8 +67,8 @@ function App() {
         </Switch>
       </BrowserRouter>
     )
-  }
 
+  };
 }
 
 export default App;

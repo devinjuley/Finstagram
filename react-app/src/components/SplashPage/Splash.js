@@ -1,13 +1,22 @@
 import { NavLink, useHistory } from 'react-router-dom';
 import LoginForm from '../auth/LoginForm';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { login } from '../../store/session';
+
 // import { getAllPostsThunk } from '../../store/post';
 // import { getFollowsThunk } from '../../store/follows';
 
 const Splash = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
 
-
+    const handleDemoLogin = async () => {
+        const email = 'demo@aa.io';
+        const password = 'password'
+        await dispatch(login(email,password))
+        return history.push('/')
+    };
 
     return (
         <div className='container-for-everything'>
@@ -25,6 +34,9 @@ const Splash = () => {
                     </span>
                 </div>
             )}
+            <div>
+                <button onClick={handleDemoLogin}>Demo</button>
+            </div>
         </div>
     )
 };

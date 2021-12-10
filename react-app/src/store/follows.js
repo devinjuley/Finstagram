@@ -5,9 +5,9 @@ const GET_FOLLOWS = 'follows/GET_FOLLOWS'
 
 
 // action creater
-const addFollow = (user) => ({
+const addFollow = (follows) => ({
     type: ADD_FOLLOW,
-    payload: user
+    payload: follows
 });
 
 const removeFollow = (data) => ({
@@ -30,9 +30,9 @@ export const addFollowThunk = (payload) => async (dispatch) => {
     });
 
     if (response.ok) {
-        const user = await response.json()
-        dispatch(addFollow(user));
-        return user;
+        const follows = await response.json()
+        dispatch(addFollow(follows));
+        return follows;
     };
 };
 
@@ -65,15 +65,19 @@ const followsReducer = (state = initialState, action) => {
         case ADD_FOLLOW: {
             const newState = {
                 ...state,
+                ...action.payload
             }
-            newState[action.payload.id] = action.payload.follows
+            // newState[action.payload.id] = action.payload.follows
             return newState
         }
         case REMOVE_FOLLOW: {
             const newState = {
-                ...state,
+                ...state
             }
-            delete newState[action.payload.user_id][action.payload.unfollowed_id]
+            console.log(action.payload, '==============')
+            if (action.payload.unfollowed_id in newState) {
+                delete newState[action.payload.unfollowed_id]
+            }
             return newState
         }
         case GET_FOLLOWS: {

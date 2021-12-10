@@ -5,8 +5,7 @@ import { SinglePostTile } from '../DiscoverPage/DiscoverPage';
 
 //thunk import
 import { getProfileThunk } from '../../store/profile';
-import { addFollowThunk } from '../../store/follows';
-import { removeFollowThunk } from '../../store/follows';
+import { addFollowThunk, removeFollowThunk, getFollowsThunk } from '../../store/follows';
 import { getProfilePostsThunk } from '../../store/post'
 
 
@@ -17,23 +16,25 @@ function ProfilePage() {
     const sessionUser = useSelector(state => state.session.user);
     const profile = useSelector(state => state.profile);
     useSelector(state => state.posts)
+    useSelector(state => state.follows)
 
-    // const profileFollows = useSelector(state => state.profile.follows);
-    // const follows = useSelector(state => state.follows[profile.id])
     const profilePosts = Object.assign([], profile.posts)
     let { userId } = useParams()
 
     useEffect(() => {
-        if (sessionUser.id === userId) {
+        if (sessionUser.id == userId) {
             dispatch(getProfileThunk(sessionUser.id))
             dispatch(getProfilePostsThunk(sessionUser.id))
+            dispatch(getFollowsThunk(sessionUser.id))
         } else {
             dispatch(getProfileThunk(userId))
             dispatch(getProfilePostsThunk(userId))
+            dispatch(getFollowsThunk(sessionUser.id))
         }
     }, [dispatch, userId]);
 
-    if (sessionUser.id === userId) {
+
+    if (sessionUser.id == userId) {
         if (buttonContent !== false) {
             setButtonContent(false)
         }
@@ -43,21 +44,21 @@ function ProfilePage() {
         setUnfollowButton(true)
     }
 
-    const handleFollowSubmit = () => {
+    const handleFollowSubmit = async () => {
         const payload = {
             follower_id: sessionUser.id,
             followed_id: Number(userId)
         }
-        dispatch(addFollowThunk(payload))
+        await dispatch(addFollowThunk(payload))
         setUnfollowButton(true)
     };
 
-    const handleUnfollowSubmit = () => {
+    const handleUnfollowSubmit = async () => {
         const payload = {
             follower_id: sessionUser.id,
             followed_id: Number(userId)
         }
-        dispatch(removeFollowThunk(payload))
+        await dispatch(removeFollowThunk(payload))
         setUnfollowButton(false)
     };
 
