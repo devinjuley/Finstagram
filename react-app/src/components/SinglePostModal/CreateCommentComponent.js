@@ -26,7 +26,7 @@ const CreateCommentForm = ({ post }) => {
    }
 
    return (
-      <div>
+      <div className='post-a-comment-parent-dj'>
          <form onSubmit={handleCommentSubmission} className='post-comment-form-dj'>
             <textarea
                className='post-comment-text-area-dj'
