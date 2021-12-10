@@ -12,11 +12,12 @@ const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
 
   return (
-    <nav>
+    <nav id='nav-om'>
       <ul className='navbar-ul-dj'>
         <li>
-          <NavLink to='/' exact={true} activeClassName='active' id='home-button-dj'>
+          <NavLink to='/' exact={true} activeClassName='active' id='home-button-om'>
             𝙵𝚒𝚗𝚜𝚝𝚊𝚐𝚛𝚊𝚖
+            {/* <img src='https://fontspool.com/pngimages/1131639161101.png' alt='logo' id='logo'/> */}
           </NavLink>
         </li>
         <li>
