@@ -16,34 +16,24 @@ const NavBar = () => {
     <div id='nav-om'>
       <div className='navbar-ul-dj'>
         <img
-          className='logo'
+          id='logo'
           onClick={() => history.push('/')}
-          
+          src='https://media.discordapp.net/attachments/917128220552331345/918969992798699540/pngimages_1041639168432.png'
         />
+        <div id='search-om'>
+          <SearchField />
+        </div>
         <div>
           <CreatePostFormModal activeClassName='active' />
         </div>
         <div>
           <NavLink to='/posts/discover' exact={true} activeClassName='active'>
-            discover
+            Discover
           </NavLink>
         </div>
         <div>
           <NavLink to={`/users/${sessionUser?.id}`} exact={true}>
             Profile Page
-          </NavLink>
-        </div>
-        <div>
-          <SearchField />
-        </div>
-        <div>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
           </NavLink>
         </div>
         <div>
