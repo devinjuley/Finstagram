@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom'
 
 // thunk import
 import { addCommentThunk } from '../../store/post';
@@ -7,7 +8,7 @@ import { addCommentThunk } from '../../store/post';
 // css
 import './singlePostComponent.css'
 
-const CreateCommentForm = ({ post }) => {
+const CreateCommentForm = ({ showModal, setShowModal, post }) => {
    const dispatch = useDispatch();
    const sessionUser = useSelector(state => state.session.user)
    const [commentContent, setCommentContent] = useState('');
@@ -23,6 +24,9 @@ const CreateCommentForm = ({ post }) => {
 
       dispatch(addCommentThunk(comment))
       setCommentContent('')
+      if (showModal == false) {
+         setShowModal(true)
+      }
    }
 
    return (

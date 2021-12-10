@@ -9,11 +9,39 @@ import { getFollowsThunk } from '../../store/follows';
 import './MainFeed.css';
 
 //single post modal
-// import SinglePost from '../SinglePostModal/SinglePostComponent';
-// import SinglePostModal from '../SinglePostModal';
-// import { Modal } from '../../context/Modal';
-// import '../../context/Modal.css'
+import SinglePost from '../SinglePostModal/SinglePostComponent';
+import { Modal } from '../../context/Modal';
+import '../../context/Modal.css'
 
+import CreateCommentForm from '../SinglePostModal/CreateCommentComponent';
+
+export const MainFeedTile = ({ post }) => {
+    const hideForm = () => setShowModal(false)
+    const [showModal, setShowModal] = useState(false);
+    return (
+        <div className='single-post-tile-mainfeed-dj'>
+            <div className='single-post-mainfeed-dj'>
+                <div className='pic-and-usename-mainfeed-dj'>
+                    <img src={post?.user?.profile_image_url} className='commented-user-profile-image-dj' />
+                    <a href={`/users/${post?.user?.id}`} className='single-post-username-mainfeed-dj'>{post?.user?.username}</a>
+                </div>
+                <img src={post?.images[0]?.image_url} alt='post' onClick={() => setShowModal(true)} className='single-post-image-mainfeed-dj' />
+                <div className='usename-and-comment-mainfeed-dj'>
+                    <a href={`/users/${post?.user?.id}`} className='single-post-username-mainfeed-dj'>{post?.user?.username}</a>
+                    <span>{post?.content}</span>
+                </div>
+                <div onClick={() => setShowModal(true)} className='view-all-comments-mainfeed-dj'>View all comments</div>
+                <CreateCommentForm post={post} showModal={showModal} setShowModal={setShowModal} />
+                {showModal && (
+                    <Modal onClose={() => setShowModal(false)}>
+                        <SinglePost hideForm={hideForm} post={post} />
+                    </Modal>
+                )}
+            </div>
+        </div>
+    );
+
+}
 
 function MainFeed() {
     const dispatch = useDispatch();
@@ -38,10 +66,10 @@ function MainFeed() {
     posts_arr.reverse()
 
     return (
-        <div className='discover-parent-div-dj'>
+        <div>
             {posts_arr.map(post => (
                 <div key={post.id}>
-                    <SinglePostTile post={post} />
+                    <MainFeedTile post={post} />
                 </div>
             ))}
         </div>

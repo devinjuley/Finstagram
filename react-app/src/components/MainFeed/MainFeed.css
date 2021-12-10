@@ -1,0 +1,45 @@
+.single-post-tile-mainfeed-dj {
+    padding-top: 100px;
+    width: 435px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+
+.single-post-image-mainfeed-dj {
+    object-fit: contain;
+    width: 434px;
+    height: 550px;
+    cursor: pointer;
+    background-color: black;
+    
+}
+
+.single-post-mainfeed-dj {
+    border: 1px solid lightgray;
+    background-color: #ffff;
+    height: 690px;
+}
+
+.pic-and-usename-mainfeed-dj {
+    display: flex;
+    align-items: center;
+}
+
+.single-post-username-mainfeed-dj {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.view-all-comments-mainfeed-dj {
+    color: gray;
+    font-size: 12px;
+    cursor: pointer;
+    padding-left: 5px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgray;
+}
+.usename-and-comment-mainfeed-dj {
+    padding-left: 5px;
+}
