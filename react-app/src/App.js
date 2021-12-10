@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import Discover from './components/DiscoverPage/DiscoverPage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import Splash from './components/SplashPage/Splash';
+import MainFeed from './components/MainFeed/MainFeed';
 import { authenticate } from './store/session';
 
 
@@ -19,7 +20,7 @@ function App() {
   const sessionUser = useSelector(state => state.session.user)
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -43,14 +44,13 @@ function App() {
             <Discover />
           </Route>
           <ProtectedRoute path='/users' exact={true} >
-            <UsersList/>
+            <UsersList />
           </ProtectedRoute>
           <ProtectedRoute path='/users/:userId' exact={true} >
             <ProfilePage />
           </ProtectedRoute>
           <Route path='/'>
-            <h1>Logged in home page</h1>
-            <Splash />
+            <MainFeed />
           </Route>
         </Switch>
       </BrowserRouter>

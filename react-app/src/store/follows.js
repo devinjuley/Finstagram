@@ -15,9 +15,9 @@ const removeFollow = (data) => ({
     payload: data
 });
 
-const getFollows = (user) => ({
+const getFollows = (follows) => ({
     type: GET_FOLLOWS,
-    payload: user
+    payload: follows
 });
 
 
@@ -25,7 +25,7 @@ const getFollows = (user) => ({
 export const addFollowThunk = (payload) => async (dispatch) => {
     const response = await fetch(`/api/users/follows/new`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     });
 
@@ -48,9 +48,14 @@ export const removeFollowThunk = (payload) => async (dispatch) => {
     };
 };
 
-// export const getFollowsThunk = (payload) => async (dispatch) => {
-//     // const response = await
-// }
+export const getFollowsThunk = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}/follows`)
+    if (response.ok) {
+        const follows = await response.json();
+        dispatch(getFollows(follows))
+        return follows
+    }
+}
 
 
 // reducer
@@ -70,6 +75,13 @@ const followsReducer = (state = initialState, action) => {
             }
             delete newState[action.payload.user_id][action.payload.unfollowed_id]
             return newState
+        }
+        case GET_FOLLOWS: {
+            const newState = {
+                ...state,
+                ...action.payload
+            }
+            return newState;
         }
         default:
             return state
