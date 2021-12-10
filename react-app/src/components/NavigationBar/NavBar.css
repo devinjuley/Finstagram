@@ -2,9 +2,29 @@
     display: flex;
     list-style-type: none;
     justify-content: center;
+    height: 60px;
 }
 
 
-#home-button-dj {
-    text-decoration: none;
+/* #home-button-dj {
+    /* text-decoration: none; */
+
+
+#home-button-om {
+    object-fit: contain;
+}
+
+#nav-om {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    top: 0;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
+    position: fixed;
+    z-index: 3;
+    background-color: rgba(var(--d87,255,255,255),1);
+    -webkit-box-align: center;
 }
