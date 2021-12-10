@@ -33,7 +33,7 @@ const SearchField = () => {
             className="search-input-field-th"
             onClick={(e) => setResultDivStyle({ visibility: 'visible' })}
          />
-         <div style={resultDivStyle} >
+         <div style={resultDivStyle} className='results-field-om' >
             {searchResults?.map(user => (
                <a key={user?.id} href={`/users/${user.id}`}>
                   <div>{user?.username}</div>

@@ -14,10 +14,14 @@
     object-fit: contain;
 }
 
+#logo {
+    bottom: 10px;
+}
+
 #nav-om {
     height: 60px;
     width: 100%;
-    display: flex;
+    display: inline-block;
     box-sizing: border-box;
     align-items: center;
     top: 0;
@@ -27,4 +31,23 @@
     z-index: 3;
     background-color: rgba(var(--d87,255,255,255),1);
     -webkit-box-align: center;
+}
+
+#search-om {
+    width: 268px;
+    height: 36px;
+    position: relative;
+    margin-top: 12px;
+}
+
+.search-input-field-th {
+    border: solid 1px rgba(var(--b6a,219,219,219),1);
+    border-radius: 3px;
+    height: 100%;
+    width: 100%;
+    /* position: absolute; */
+}
+
+.results-field-om {
+    z-index: 3;
 }
