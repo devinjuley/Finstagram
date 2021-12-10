@@ -22,6 +22,7 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(first_name, last_name, profile_image_url, username, email, password));
       if (data) {
         setErrors(data)
+        return
       }
     }
     return history.push('/');
