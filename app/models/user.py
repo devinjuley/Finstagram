@@ -9,6 +9,7 @@ follows = db.Table(
     db.Column("followed_id", db.Integer, db.ForeignKey("users.id"), nullable=False)
 )
 
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -52,10 +53,7 @@ class User(db.Model, UserMixin):
             return self.to_dict
 
     def unfollow(self, user):
-        print('in the unfollow method =====================')
-        print('in the unfollow method =====================')
         if user in self.following:
-            print(self.following, '=========================')
             self.following.remove(user)
             return self.to_dict()
 
