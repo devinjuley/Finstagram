@@ -78,7 +78,7 @@ def addFollows():
         new_follow = User.query.get(followed_id)
         new_follow.follow(user)
         db.session.commit()
-        return user.to_dict()
+        return user.to_dict()['follows']
 
 
 # remove a follower user route
@@ -93,4 +93,3 @@ def removeFollow(follower_id, followed_id):
         'user_id': follower_id,
         'unfollowed_id': followed_id
     }
-
