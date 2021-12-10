@@ -12,7 +12,7 @@ import './singlePostComponent.css'
 
 // import styles from './LoginForm.module.css'
 
-const SinglePost = ({ hideForm, post }) => {
+const SinglePost = ({ hideForm, setShowModal, post }) => {
    const dispatch = useDispatch();
    const sessionUser = useSelector(state => state.session.user);
    const postComments = useSelector(state => state.posts[post.id].comments)
@@ -76,7 +76,7 @@ const SinglePost = ({ hideForm, post }) => {
             </div>
             <div className='post-comment-dj'>
                {!showEditForm && (
-                  <CreateCommentForm post={post} />
+                  <CreateCommentForm post={post} setShowModal={setShowModal} />
                )}
             </div>
          </div>

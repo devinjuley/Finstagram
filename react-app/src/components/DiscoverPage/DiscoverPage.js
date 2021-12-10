@@ -22,7 +22,7 @@ export const SinglePostTile = ({ post }) => {
             <img src={post?.images[0]?.image_url} alt='post' onClick={() => setShowModal(true)} className='single-post-image-dj' />
             {showModal && (
                <Modal onClose={() => setShowModal(false)}>
-                  <SinglePost hideForm={hideForm} post={post} />
+                  <SinglePost hideForm={hideForm} post={post} setShowModal={setShowModal} />
                </Modal>
             )}
          </div>
