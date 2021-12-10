@@ -13,24 +13,27 @@ const NavBar = () => {
 
   return (
     <nav>
-      <ul>
+      <ul className='navbar-ul-dj'>
         <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+          <NavLink to='/' exact={true} activeClassName='active' id='home-button-dj'>
+            𝙵𝚒𝚗𝚜𝚝𝚊𝚐𝚛𝚊𝚖
           </NavLink>
         </li>
         <li>
-          <CreatePostFormModal activeClassName='active'/>
+          <CreatePostFormModal activeClassName='active' />
         </li>
         <li>
           <NavLink to='/posts/discover' exact={true} activeClassName='active'>
-            Discover
+            discover
           </NavLink>
         </li>
         <li>
           <NavLink to={`/users/${sessionUser?.id}`} exact={true}>
             Profile Page
           </NavLink>
+        </li>
+        <li>
+          <SearchField />
         </li>
         <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
@@ -49,9 +52,6 @@ const NavBar = () => {
         </li>
         <li>
           <LogoutButton />
-        </li>
-        <li>
-          <SearchField />
         </li>
       </ul>
     </nav>

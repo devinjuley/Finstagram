@@ -26,21 +26,21 @@ function ProfilePage() {
     };
 
     let followButtonContent;
-    if (sessionUser.id == userId) {
-        followButtonContent = null
-    } else if (userId in sessionUser.follows) {
-        followButtonContent = (
-            <div>
-                <button>Unfollow</button>
-            </div>
-        )
-    } else {
-        followButtonContent = (
-            <div>
-                <button onClick={handleFollowSubmit}>Follow</button>
-            </div>
-        )
-    }
+    // if (sessionUser.id == userId) {
+    //     followButtonContent = null
+    // } else if (userId in sessionUser.follows) {
+    //     followButtonContent = (
+    //         <div>
+    //             <button>Unfollow</button>
+    //         </div>
+    //     )
+    // } else {
+    //     followButtonContent = (
+    //         <div>
+    //             <button onClick={handleFollowSubmit}>Follow</button>
+    //         </div>
+    //     )
+    // }
 
     // <button type='submit' onClick={handleFollowSubmit}>Follow</button>
 

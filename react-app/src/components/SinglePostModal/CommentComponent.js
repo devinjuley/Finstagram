@@ -18,8 +18,8 @@ const CommentComponent = ({ comment }) => {
         if (sessionUser.id === comment.user.id) {
             commentButtons = (
                 <div>
-                    <button onClick={() => setShowCommentEditForm(true)}>Edit</button>
-                    <button onClick={handleDeleteComment} value={comment.id}>Delete</button>
+                    <button onClick={() => setShowCommentEditForm(true)} className='comment-edit-and-delete-button-dj'>Edit</button>
+                    <button onClick={handleDeleteComment} value={comment.id} className='comment-edit-and-delete-button-dj'>Delete</button>
                 </div>
             )
         }
