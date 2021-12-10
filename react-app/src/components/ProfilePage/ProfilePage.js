@@ -10,39 +10,55 @@ import { addFollowThunk } from '../../store/follows';
 
 function ProfilePage() {
     const dispatch = useDispatch();
+    const [unfollowButton, setUnfollowButton] = useState(false)
+    const [buttonContent, setButtonContent] = useState(true)
     const sessionUser = useSelector(state => state.session.user);
     const posts = useSelector(state => state.posts)
     const profile = useSelector(state => state.profile);
+    // const follows = useSelector(state => state.follows[profile.id])
     const profilePosts = Object.assign([], profile.posts)
-    const { userId } = useParams()
-    const sessionUserId = sessionUser.id
+    let { userId } = useParams()
 
     useEffect(() => {
-        dispatch(getProfileThunk(userId))
-    }, [dispatch, posts, userId])
+        if (sessionUser.id == userId) {
+            dispatch(getProfileThunk(sessionUser.id))
+        } else {
+            dispatch(getProfileThunk(userId))
+        }
+    }, [dispatch]);
+
 
     const handleFollowSubmit = () => {
-        dispatch(addFollowThunk(userId))
+        const payload = {
+            follower_id: sessionUser.id,
+            followed_id: Number(userId)
+        }
+        dispatch(addFollowThunk(payload))
+        setUnfollowButton(true)
     };
 
-    let followButtonContent;
-    // if (sessionUser.id == userId) {
-    //     followButtonContent = null
-    // } else if (userId in sessionUser.follows) {
-    //     followButtonContent = (
-    //         <div>
-    //             <button>Unfollow</button>
-    //         </div>
-    //     )
-    // } else {
-    //     followButtonContent = (
-    //         <div>
-    //             <button onClick={handleFollowSubmit}>Follow</button>
-    //         </div>
-    //     )
-    // }
+    if (sessionUser.id == userId) {
+        if (buttonContent != false) {
+            setButtonContent(false)
+        }
+    }
 
-    // <button type='submit' onClick={handleFollowSubmit}>Follow</button>
+    let button = null;
+    if (buttonContent) {
+        if (!unfollowButton) {
+            button = (
+                <div>
+                    <button onClick={handleFollowSubmit}>Follow</button>
+                </div>
+            )
+        } else {
+            button = (
+                <div>
+                    <button>Unfollow</button>
+                </div>
+            )
+        }
+    }
 
     return (
         <div>
@@ -60,7 +76,7 @@ function ProfilePage() {
                 </div>
             </div>
             <div className='profile-follow'>
-                {followButtonContent}
+                {button}
             </div>
             <div className='profile-posts'>
                 <div>
