@@ -1,9 +1,13 @@
 import { NavLink, useHistory } from 'react-router-dom';
 import LoginForm from '../auth/LoginForm';
 import { useSelector } from 'react-redux';
+// import { getAllPostsThunk } from '../../store/post';
+// import { getFollowsThunk } from '../../store/follows';
 
 const Splash = () => {
     const sessionUser = useSelector(state => state.session.user);
+
+
 
     return (
         <div className='container-for-everything'>

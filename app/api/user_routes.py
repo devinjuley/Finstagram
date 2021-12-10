@@ -47,24 +47,23 @@ def userPosts(id):
 
 
 # # post for a given users main feed (followers posts)
-# @user_routes.route('<int:id>/follows/posts')
-# # @login_required
-# def followersPosts(id):
-#     user = User.query.get(id)
-#     # # for follower in user.followers:
-#     #     # print('you are in the for loop =================')
-#     #     # print(follower.to_dict_for_posts(),'==================')
+@user_routes.route('<int:id>/follows')
+@login_required
+def usersFollowers(id):
+    user = User.query.get(id)
+    # # for follower in user.followers:
+    #     # print('you are in the for loop =================')
+    #     # print(follower.to_dict_for_posts(),'==================')
 
-#     # return {'posts': {follower.to_dict_for_posts() for follower in user.followers}}
-#     # # followers = User.query.filter(User.id in user.followers)
-#     # # return {'posts'}
+    # return {'posts': {follower.to_dict_for_posts() for follower in user.followers}}
+    # # followers = User.query.filter(User.id in user.followers)
+    # # return {'posts'}
 
-#     return {
-#         'posts': {follower[follower.id]['posts']['id']: follower[follower.id]['posts']['id'].to_dict() for follower in user.to_dict()['follows'] for post in follower['posts'] }
-#     }
+    # return {
+    #     'posts': {follower[follower.id]['posts']['id']: follower[follower.id]['posts']['id'].to_dict() for follower in user.to_dict()['follows'] for post in follower['posts'] }
+    # }
 
-#     return user.to_dict()['follows']
-
+    return user.to_dict()['follows']
 
 # add a follower user route
 @user_routes.route('/follows/new', methods=['POST'])
@@ -94,3 +93,4 @@ def removeFollow(follower_id, followed_id):
         'user_id': follower_id,
         'unfollowed_id': followed_id
     }
+
