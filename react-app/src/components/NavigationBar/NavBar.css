@@ -1,1 +1,10 @@
+.navbar-ul-dj {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+}
 
+
+#home-button-dj {
+    text-decoration: none;
+}

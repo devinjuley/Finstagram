@@ -66,8 +66,6 @@ body {
 
 .single-post-comment-username-dj {
     font-weight: bold;
-    /* padding-right: 5px; */
-    /* font-size: 13px; */
     text-decoration: none;
     color: black;
 }
@@ -77,8 +75,9 @@ body {
 
 .comment-username-and-comment-dj {
     display: flex;
-    align-items: center;
+    /* align-items: ; */
     padding-right: 4px;
+
 }
 
 .commented-user-profile-image-dj {
@@ -89,4 +88,18 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
+    /* align-items: baseline; */
+}
+
+.post-edit-and-delete-button-dj {
+    border: none;
+    color: rgb(31, 170, 216);
+    background-color: white;
+}
+
+.comment-edit-and-delete-button-dj {
+    border: none;
+    color: rgb(31, 170, 216);
+    background-color: white;
+    font-size: 10px;
 }

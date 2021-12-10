@@ -35,8 +35,8 @@ const SinglePost = ({ hideForm, post }) => {
    if (sessionUser.id === post.user_id) {
       buttons = (
          <div>
-            {!showEditForm && (<button onClick={handleEdit}>Edit</button>)}
-            {!showEditForm && (<button onClick={handleDelete}>Delete</button>)}
+            {!showEditForm && (<button onClick={handleEdit} className='post-edit-and-delete-button-dj'>Edit</button>)}
+            {!showEditForm && (<button onClick={handleDelete} className='post-edit-and-delete-button-dj'>Delete</button>)}
          </div>
 
       )
@@ -48,6 +48,7 @@ const SinglePost = ({ hideForm, post }) => {
          <img src={post?.images[0]?.image_url} className='single-post-image-in-modal-dj' />
          <div className='single-post-child-2-dj'>
             <div className='comments-inner-div-dj'>
+               {console.log(post)}
                {!showEditForm && (
 
                   <div className='single-post-caption-dj'>{post?.content}</div>

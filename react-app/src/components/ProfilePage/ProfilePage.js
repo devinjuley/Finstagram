@@ -60,7 +60,6 @@ function ProfilePage() {
         }
     }
 
-
     return (
         <div>
             <div className='profile-image'>
