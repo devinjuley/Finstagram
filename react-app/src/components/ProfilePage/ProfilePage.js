@@ -17,16 +17,20 @@ function ProfilePage() {
     const profile = useSelector(state => state.profile);
     // const follows = useSelector(state => state.follows[profile.id])
     const profilePosts = Object.assign([], profile.posts)
-    const { userId } = useParams()
-    const sessionUserId = sessionUser.id
+    let { userId } = useParams()
 
     useEffect(() => {
-        dispatch(getProfileThunk(userId))
-    }, [dispatch, userId]);
+        if (sessionUser.id == userId) {
+            dispatch(getProfileThunk(sessionUser.id))
+        } else {
+            dispatch(getProfileThunk(userId))
+        }
+    }, [dispatch]);
+
 
     const handleFollowSubmit = () => {
         const payload = {
-            follower_id: sessionUserId,
+            follower_id: sessionUser.id,
             followed_id: Number(userId)
         }
         dispatch(addFollowThunk(payload))
@@ -34,7 +38,26 @@ function ProfilePage() {
     };
 
     if (sessionUser.id == userId) {
-        setButtonContent(false)
+        if (buttonContent != false) {
+            setButtonContent(false)
+        }
+    }
+
+    let button = null;
+    if (buttonContent) {
+        if (!unfollowButton) {
+            button = (
+                <div>
+                    <button onClick={handleFollowSubmit}>Follow</button>
+                </div>
+            )
+        } else {
+            button = (
+                <div>
+                    <button>Unfollow</button>
+                </div>
+            )
+        }
     }
 
 
@@ -54,19 +77,7 @@ function ProfilePage() {
                 </div>
             </div>
             <div className='profile-follow'>
-
-                {buttonContent && (!unfollowButton && (
-                    <div>
-                        <button onClick={handleFollowSubmit}>Follow</button>
-                    </div>
-                ))}
-
-                {buttonContent && (unfollowButton && (
-                    <div>
-                    <button>Unfollow</button>
-                </div>
-                ))}
-
+                {button}
             </div>
             <div className='profile-posts'>
                 <div>
