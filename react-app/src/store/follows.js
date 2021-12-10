@@ -1,5 +1,7 @@
 // constants
 const ADD_FOLLOW = 'follows/ADD_FOLLOW';
+const GET_FOLLOWS = 'follows/GET_FOLLOWS'
+
 
 // action creater
 const addFollow = (user) => ({
@@ -7,21 +9,31 @@ const addFollow = (user) => ({
     payload: user
 });
 
+const getFollows = (user) => ({
+    type: GET_FOLLOWS,
+    payload: user
+})
+
+
 // thunk
-export const addFollowThunk = (userId) => async (dispatch) => {
-    const response = await fetch(`/api/users/follows/${userId}`, {
+export const addFollowThunk = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/users/follows/new`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(userId)
+        body: JSON.stringify(payload)
     });
+
     if (response.ok) {
         const user = await response.json()
         dispatch(addFollow(user));
         return user;
-    } else {
-        console.log('ya fucked up')
-    }
+    };
+};
+
+export const getFollowsThunk = (payload) => async (dispatch) => {
+    // const response = await
 }
+
 
 // reducer
 const initialState = {};
@@ -31,7 +43,7 @@ const followsReducer = (state = initialState, action) => {
             const newState = {
                 ...state,
             }
-            newState[action.payload.follows] = action.payload.follows
+            newState[action.payload.id] = action.payload.follows
             return newState
         }
         default:
@@ -40,3 +52,6 @@ const followsReducer = (state = initialState, action) => {
 }
 
 export default followsReducer;
+
+
+// const response = await fetch(`/api/users/${payload.follow_id}/follows/${payload.follower_id}`, {

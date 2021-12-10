@@ -49,7 +49,7 @@ class User(db.Model, UserMixin):
     def follow(self, id):
         if id not in self.following:
             self.following.append(id)
-            return self
+            return self.to_dict
 
     def to_dict(self):
         return {
@@ -60,7 +60,6 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'profile_image_url': self.profile_image_url,
             'follows': {user.to_dict_for_follows()['id']:user.to_dict_for_follows() for user in self.followers}
-
         }
 
     def to_dict_for_comments(self):

@@ -10,39 +10,33 @@ import { addFollowThunk } from '../../store/follows';
 
 function ProfilePage() {
     const dispatch = useDispatch();
+    const [unfollowButton, setUnfollowButton] = useState(false)
+    const [buttonContent, setButtonContent] = useState(true)
     const sessionUser = useSelector(state => state.session.user);
     const posts = useSelector(state => state.posts)
     const profile = useSelector(state => state.profile);
+    // const follows = useSelector(state => state.follows[profile.id])
     const profilePosts = Object.assign([], profile.posts)
     const { userId } = useParams()
     const sessionUserId = sessionUser.id
 
     useEffect(() => {
         dispatch(getProfileThunk(userId))
-    }, [dispatch, posts, userId])
+    }, [dispatch, userId]);
 
     const handleFollowSubmit = () => {
-        dispatch(addFollowThunk(userId))
+        const payload = {
+            follower_id: sessionUserId,
+            followed_id: Number(userId)
+        }
+        dispatch(addFollowThunk(payload))
+        setUnfollowButton(true)
     };
 
-    let followButtonContent;
     if (sessionUser.id == userId) {
-        followButtonContent = null
-    } else if (userId in sessionUser.follows) {
-        followButtonContent = (
-            <div>
-                <button>Unfollow</button>
-            </div>
-        )
-    } else {
-        followButtonContent = (
-            <div>
-                <button onClick={handleFollowSubmit}>Follow</button>
-            </div>
-        )
+        setButtonContent(false)
     }
 
-    // <button type='submit' onClick={handleFollowSubmit}>Follow</button>
 
     return (
         <div>
@@ -60,7 +54,19 @@ function ProfilePage() {
                 </div>
             </div>
             <div className='profile-follow'>
-                {followButtonContent}
+
+                {buttonContent && (!unfollowButton && (
+                    <div>
+                        <button onClick={handleFollowSubmit}>Follow</button>
+                    </div>
+                ))}
+
+                {buttonContent && (unfollowButton && (
+                    <div>
+                    <button>Unfollow</button>
+                </div>
+                ))}
+
             </div>
             <div className='profile-posts'>
                 <div>
