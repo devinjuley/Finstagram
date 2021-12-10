@@ -4,12 +4,17 @@ body {
 }
 .single-post-parent-dj {
     display: flex;
+    width: 1300px;
+    height: 600px;
+    
+
 }
 
 .single-post-image-in-modal-dj {
-    height: 550px;
-    width: 500px;
-    object-fit: cover;
+    height: 600px;
+    width: 845px;
+    object-fit: contain;
+    background-color: lightgray;
     /* padding-right: 10px; */
 }
 
@@ -24,12 +29,14 @@ body {
 }
 
 .comments-inner-div-dj {
-    height: 500px;
+    height: 545px;
     border-bottom: 1px solid lightgray;
     width: 300px;
     padding-top: 10px;
-    width: 375px;
+    width: 453px;
+
 }
+
 
 .post-comment-dj {
     display: flex;
@@ -44,12 +51,12 @@ body {
 }
 
 .post-comment-text-area-dj {
-    width: 300px;
+    width: 370px;
     height: 20px;
     border: none;
     resize: none;
     padding-top: 10px;
-    padding-left: 15px;
+    padding-left: 10px;
     outline: none;
 }
 
@@ -59,7 +66,7 @@ body {
 }
 
 .single-post-caption-dj {
-    border-bottom: 1px solid lightgray;
+    /* border-bottom: 1px solid lightgray; */
     padding-bottom: 10px;
     padding-left: 10px;
 }
@@ -75,8 +82,10 @@ body {
 
 .comment-username-and-comment-dj {
     display: flex;
-    /* align-items: ; */
-    padding-right: 4px;
+    align-items: center;
+    /* padding-right: 4px; */
+    width: 420px;
+    
 
 }
 
@@ -87,7 +96,9 @@ body {
     object-fit: cover;
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 10px;
     margin-top: 10px;
+    align-items: center;
     /* align-items: baseline; */
 }
 
@@ -102,4 +113,47 @@ body {
     color: rgb(31, 170, 216);
     background-color: white;
     font-size: 10px;
+}
+
+.single-post-owner-username-dj {
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+   
+}
+
+.single-post-owner-username-dj:hover {
+    text-decoration: underline;
+}
+
+.single-post-owner-username-and-caption-dj {
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    padding-right: 4px;
+}
+.single-post-owner-comment-dj {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.post-caption-dj {
+    padding-left: 5px;
+}
+
+.div-for-scroll {
+    overflow-y: scroll;
+    height: 479px;
+    width: 452px;
+    
+}
+
+.div-for-scroll::-webkit-scrollbar {
+    display: none;
+}
+.comment-div-dj {
+    width: 380px;
+    
 }
