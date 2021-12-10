@@ -26,7 +26,6 @@ const CreatePostForm = ({ hideForm }) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
          });
-      // console.log("this is the thing", submittedPost)
       if (submittedPost) {
          hideForm()
       }

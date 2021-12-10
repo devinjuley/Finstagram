@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { SinglePostTile } from '../DiscoverPage/DiscoverPage';
 
 //thunk import
 import { getProfileThunk } from '../../store/profile';
 import { addFollowThunk } from '../../store/follows';
+import { removeFollowThunk } from '../../store/follows';
+import { getProfilePostsThunk } from '../../store/post'
 
 
 function ProfilePage() {
@@ -13,20 +15,33 @@ function ProfilePage() {
     const [unfollowButton, setUnfollowButton] = useState(false)
     const [buttonContent, setButtonContent] = useState(true)
     const sessionUser = useSelector(state => state.session.user);
-    const posts = useSelector(state => state.posts)
     const profile = useSelector(state => state.profile);
+    useSelector(state => state.posts)
+
+    // const profileFollows = useSelector(state => state.profile.follows);
     // const follows = useSelector(state => state.follows[profile.id])
     const profilePosts = Object.assign([], profile.posts)
     let { userId } = useParams()
 
     useEffect(() => {
-        if (sessionUser.id == userId) {
+        if (sessionUser.id === userId) {
             dispatch(getProfileThunk(sessionUser.id))
+            dispatch(getProfilePostsThunk(sessionUser.id))
         } else {
             dispatch(getProfileThunk(userId))
+            dispatch(getProfilePostsThunk(userId))
         }
-    }, [dispatch]);
+    }, [dispatch, userId]);
 
+    if (sessionUser.id === userId) {
+        if (buttonContent !== false) {
+            setButtonContent(false)
+        }
+    };
+
+    if (userId in sessionUser.follows && !unfollowButton) {
+        setUnfollowButton(true)
+    }
 
     const handleFollowSubmit = () => {
         const payload = {
@@ -37,11 +52,14 @@ function ProfilePage() {
         setUnfollowButton(true)
     };
 
-    if (sessionUser.id == userId) {
-        if (buttonContent != false) {
-            setButtonContent(false)
+    const handleUnfollowSubmit = () => {
+        const payload = {
+            follower_id: sessionUser.id,
+            followed_id: Number(userId)
         }
-    }
+        dispatch(removeFollowThunk(payload))
+        setUnfollowButton(false)
+    };
 
     let button = null;
     if (buttonContent) {
@@ -54,7 +72,7 @@ function ProfilePage() {
         } else {
             button = (
                 <div>
-                    <button>Unfollow</button>
+                    <button onClick={handleUnfollowSubmit}>Unfollow</button>
                 </div>
             )
         }

@@ -6,6 +6,7 @@ const EDIT_SINGLE_POST = 'post/EDIT_SINGLE_POST';
 const ADD_COMMENT = 'post/ADD_COMMENT'
 const DELETE_COMMENT = 'post/DELETE_COMMENT';
 const EDIT_COMMENT = 'post/EDIT_COMMENT';
+const GET_PROFILE_POSTS = 'post/GET_PROFILE_POSTS'
 
 
 // action creators
@@ -16,6 +17,11 @@ const createPost = (post) => ({
 
 const getAllPosts = (posts) => ({
     type: GET_ALL_POSTS,
+    payload: posts
+});
+
+const getProfilePosts = (posts) => ({
+    type: GET_PROFILE_POSTS,
     payload: posts
 });
 
@@ -74,6 +80,15 @@ export const getAllPostsThunk = () => async (dispatch) => {
     }
 };
 
+export const getProfilePostsThunk = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}/posts`)
+    if (response.ok) {
+        const posts = await response.json();
+        dispatch(getProfilePosts(posts));
+        return posts
+    };
+};
+
 export const deleteSinglePostThunk = (postId) => async (dispatch) => {
     const response = await fetch(`/api/posts/${postId}/delete`, {
         method: 'DELETE'
@@ -126,10 +141,10 @@ export const deleteCommentThunk = (commentId) => async (dispatch) => {
     }
 };
 
-export const editCommentThunk = (comment) => async(dispatch) => {
+export const editCommentThunk = (comment) => async (dispatch) => {
     const response = await fetch(`/api/comments/${comment.id}/edit`, {
         method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(comment)
     });
 
@@ -193,6 +208,13 @@ const postReducer = (state = initialState, action) => {
                 ...state
             }
             newState[postId].comments[action.payload.id] = action.payload
+            return newState
+        }
+        case GET_PROFILE_POSTS: {
+            const newState = {
+                ...state,
+                ...action.payload.posts
+            };
             return newState
         }
         default:

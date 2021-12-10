@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useHistory, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import thunk
@@ -11,7 +10,6 @@ import './NavBar.css'
 const SearchField = () => {
    const dispatch = useDispatch();
    const searchResults = useSelector(state => state?.search?.users)
-   const history = useHistory();
    const [searchString, setSearchString] = useState('');
    const [resultDivStyle, setResultDivStyle] = useState({ visibility: 'hidden' })
 
@@ -24,9 +22,6 @@ const SearchField = () => {
       }
    }, [dispatch, searchString])
 
-   const handleRedirect = (e) => {
-      return history.push(`/users/${e.target.value}`)
-   }
 
    return (
       <div>
