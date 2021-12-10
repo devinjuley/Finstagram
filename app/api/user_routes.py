@@ -17,7 +17,7 @@ def getAllUsers():
 
 # users search route
 @user_routes.route('/<string:search_term>', methods=['GET'])
-# @login_required
+@login_required
 def users(search_term):
     users = User.query.filter(
                 or_(
@@ -38,6 +38,15 @@ def user(id):
     return user.to_dict_for_profile()
 
 
+# posts for given user profile
+@user_routes.route('/<int:id>/posts')
+# @login_required
+def userPosts(id):
+    user = User.query.get(id)
+    return user.to_dict_for_posts()
+
+
+# add a follower user route
 @user_routes.route('/follows/new', methods=['POST'])
 @login_required
 def addFollows():
@@ -51,3 +60,17 @@ def addFollows():
         new_follow.follow(user)
         db.session.commit()
         return user.to_dict()
+
+
+# remove a follower user route
+@user_routes.route('/<int:follower_id>/follows/<int:followed_id>/delete', methods=['DELETE'])
+@login_required
+def removeFollow(follower_id, followed_id):
+    user = User.query.get(follower_id)
+    unfollow_user = User.query.get(followed_id)
+    unfollow_user.unfollow(user)
+    db.session.commit()
+    return {
+        'user_id': follower_id,
+        'unfollowed_id': followed_id
+    }

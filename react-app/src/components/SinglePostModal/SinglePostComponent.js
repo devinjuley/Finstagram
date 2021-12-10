@@ -15,10 +15,12 @@ import './singlePostComponent.css'
 const SinglePost = ({ hideForm, post }) => {
    const dispatch = useDispatch();
    const sessionUser = useSelector(state => state.session.user);
+   const postComments = useSelector(state => state.posts[post.id].comments)
    const [errors, setErrors] = useState([]);
    const [showEditForm, setShowEditForm] = useState(false);
 
-   const commentsArray = Object.assign([], post.comments)
+   // const commentsArray = Object.assign([], post.comments)
+   const commentsArray = Object.assign([], postComments)
 
    let content;
    let buttons;
@@ -48,6 +50,7 @@ const SinglePost = ({ hideForm, post }) => {
          <img src={post?.images[0]?.image_url} className='single-post-image-in-modal-dj' />
          <div className='single-post-child-2-dj'>
             <div className='comments-inner-div-dj'>
+
                <div className='single-post-owner-username-and-caption-dj'>
                   <img src={post?.user.profile_image_url} className='commented-user-profile-image-dj' />
                   <a href={`/users/${post?.user.user_id}`} className='single-post-owner-username-dj'>{post?.user?.username}</a>
@@ -66,7 +69,6 @@ const SinglePost = ({ hideForm, post }) => {
                         <div>
                            <CommentComponent comment={comment} />
                         </div>
-
                      </div>
                   ))}
                   {buttons}
