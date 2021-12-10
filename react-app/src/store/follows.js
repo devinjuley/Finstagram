@@ -1,5 +1,6 @@
 // constants
 const ADD_FOLLOW = 'follows/ADD_FOLLOW';
+const REMOVE_FOLLOW = 'follows/REMOVE_FOLLOW'
 const GET_FOLLOWS = 'follows/GET_FOLLOWS'
 
 
@@ -9,10 +10,15 @@ const addFollow = (user) => ({
     payload: user
 });
 
+const removeFollow = (data) => ({
+    type: REMOVE_FOLLOW,
+    payload: data
+});
+
 const getFollows = (user) => ({
     type: GET_FOLLOWS,
     payload: user
-})
+});
 
 
 // thunk
@@ -30,9 +36,21 @@ export const addFollowThunk = (payload) => async (dispatch) => {
     };
 };
 
-export const getFollowsThunk = (payload) => async (dispatch) => {
-    // const response = await
-}
+export const removeFollowThunk = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/users/${payload.follower_id}/follows/${payload.followed_id}/delete`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(removeFollow(data));
+        return data;
+    };
+};
+
+// export const getFollowsThunk = (payload) => async (dispatch) => {
+//     // const response = await
+// }
 
 
 // reducer
@@ -44,6 +62,13 @@ const followsReducer = (state = initialState, action) => {
                 ...state,
             }
             newState[action.payload.id] = action.payload.follows
+            return newState
+        }
+        case REMOVE_FOLLOW: {
+            const newState = {
+                ...state,
+            }
+            delete newState[action.payload.user_id][action.payload.unfollowed_id]
             return newState
         }
         default:

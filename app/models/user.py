@@ -46,10 +46,18 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def follow(self, id):
-        if id not in self.following:
-            self.following.append(id)
+    def follow(self, user):
+        if user not in self.following:
+            self.following.append(user)
             return self.to_dict
+
+    def unfollow(self, user):
+        print('in the unfollow method =====================')
+        print('in the unfollow method =====================')
+        if user in self.following:
+            print(self.following, '=========================')
+            self.following.remove(user)
+            return self.to_dict()
 
     def to_dict(self):
         return {
@@ -96,4 +104,9 @@ class User(db.Model, UserMixin):
             'profile_image_url': self.profile_image_url,
             'posts': {post.to_dict()['id']: post.to_dict() for post in self.posts},
             'follows': [user.to_dict_for_follows() for user in self.followers]
+        }
+
+    def to_dict_for_posts(self):
+        return {
+            'posts': {post.to_dict()['id']: post.to_dict() for post in self.posts},
         }

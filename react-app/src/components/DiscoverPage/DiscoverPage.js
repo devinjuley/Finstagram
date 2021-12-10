@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+
 //import thunk
 import { getAllPostsThunk } from '../../store/post';
 
@@ -19,7 +19,7 @@ export const SinglePostTile = ({ post }) => {
    return (
       <div className='single-post-tile-dj'>
          <div>
-            <img src={post?.images[0]?.image_url} alt='image post' onClick={() => setShowModal(true)} className='single-post-image-dj' />
+            <img src={post?.images[0]?.image_url} alt='post' onClick={() => setShowModal(true)} className='single-post-image-dj' />
             {showModal && (
                <Modal onClose={() => setShowModal(false)}>
                   <SinglePost hideForm={hideForm} post={post} />
@@ -34,8 +34,6 @@ export const SinglePostTile = ({ post }) => {
 function Discover() {
    const dispatch = useDispatch();
    const posts = useSelector(state => state.posts)
-   const [showModal, setShowModal] = useState(false);
-   const hideForm = () => setShowModal(false)
    const posts_arr = Object.assign([], posts)
 
    useEffect(() => {
