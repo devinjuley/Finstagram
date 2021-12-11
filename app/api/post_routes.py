@@ -6,6 +6,16 @@ from app.forms import CreatePostForm, CreateImageForm, EditPostForm
 
 post_routes = Blueprint('posts', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 
 # get posts route (discover posts route handler)
 @post_routes.route('/discover')
@@ -35,13 +45,13 @@ def createPost():
             user_id=form.data['user_id'],
             content=form.data['content'],
         )
-        db.session.add(new_post)
-        db.session.commit()
-        postId = new_post.id
-
         form_image = CreateImageForm()
         form_image['csrf_token'].data = request.cookies['csrf_token']
+        
         if form_image.validate_on_submit():
+            db.session.add(new_post)
+            db.session.commit()
+            postId = new_post.id
             new_image = Image(
                 user_id=form_image.data['user_id'],
                 post_id=postId,
@@ -51,9 +61,10 @@ def createPost():
             db.session.commit()
 
             return Post.query.get(postId).to_dict()
-
+        else:
+            return {'errors': validation_errors_to_error_messages(form.errors)}, 401
     else:
-        return 'bad data'
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # delete post route
@@ -80,4 +91,3 @@ def editPost(postId):
         return post.to_dict()
     else:
         return 'bad data'
-
