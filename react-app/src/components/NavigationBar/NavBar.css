@@ -71,6 +71,32 @@
 
 .results-field-om {
     z-index: 3;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin-top: 13px;
+    border-radius: 3px;
+    overflow-y: auto;
+    max-height: 200px;
+}
+.results-field-om::-webkit-scrollbar {
+    /* display: none; */
+}
+
+.username-and-fullname-search-results-dj {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.search-results-person-username-dj {
+    color: black;
+    font-weight: 600;
+
+}
+
+.search-results-person-fullname-dj {
+    color: gray;
+    font-size: 12px;
 }
 
 .navbar-discover-link-dj {
@@ -84,7 +110,7 @@
     padding-top: 2px;
     padding-bottom: 6px;
     color: black;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .navbar-discover-li-dj {
@@ -104,7 +130,7 @@
     padding-top: 0px;
     padding-bottom: 3px;
     color: black;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
 }
 
@@ -138,3 +164,4 @@
     border-radius: 3px;
     height: 20px; */
 }
+

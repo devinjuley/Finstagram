@@ -19,12 +19,6 @@ const NavBar = () => {
           <NavLink to='/' exact={true} id='logo'>
             Finstagram
           </NavLink>
-          {/* <img
-            id='logo'
-            onClick={() => history.push('/')}
-            src='https://media.discordapp.net/attachments/917128220552331345/918969992798699540/pngimages_1041639168432.png'
-            alt='logo'
-          /> */}
         </li>
         <li id='search-om'>
           <SearchField />

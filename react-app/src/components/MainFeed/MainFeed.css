@@ -28,7 +28,7 @@
 
 .single-post-username-mainfeed-dj {
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     color: black;
 }
 
@@ -88,7 +88,7 @@
 
 .username-inside-follow-list-dj {
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     color: black;
 }
 
@@ -101,7 +101,7 @@
     color: gray;
 }
 .people-you-follow-mapping-dj {
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 200px;
 }
 
@@ -111,7 +111,7 @@
 }
 
 .session-user-username-dj {
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: none;
     color: black;
 }

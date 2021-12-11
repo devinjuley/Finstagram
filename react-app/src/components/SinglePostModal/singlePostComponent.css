@@ -73,7 +73,7 @@ body {
 }
 
 .single-post-comment-username-dj {
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: none;
     color: black;
 }
@@ -117,7 +117,7 @@ body {
 }
 
 .single-post-owner-username-dj {
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: none;
     color: black;
    
