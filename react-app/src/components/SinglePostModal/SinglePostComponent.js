@@ -53,7 +53,7 @@ const SinglePost = ({ hideForm, setShowModal, post }) => {
 
                <div className='single-post-owner-username-and-caption-dj'>
                   <img src={post?.user.profile_image_url} className='commented-user-profile-image-dj' />
-                  <a href={`/users/${post?.user.user_id}`} className='single-post-owner-username-dj'>{post?.user?.username}</a>
+                  <a href={`/users/${post?.user.id}`} className='single-post-owner-username-dj'>{post?.user?.username}</a>
                </div>
                <div className='div-for-scroll'>
                   <div className='single-post-owner-comment-dj'>
