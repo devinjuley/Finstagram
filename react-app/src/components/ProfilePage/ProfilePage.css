@@ -5,20 +5,21 @@
 
 #profile-page-info-container-om {
     display: flex;
-    flex-direction: row;
-    width: 927px;
-    margin: 0 auto;
-    padding-left: 7%;
+    width: 760px;
+    /* margin: 0 auto; */
+    justify-content: center;
+    padding-left: 5%;
     padding-right: 7%;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 50px;
+    box-sizing: border-box;
 }
 
 #profile-image-om {
-    width:100%;
     border-radius: 50%;
-    height: 150px;
-    width: 150px;
-    border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
     object-fit: cover;
+    height: 140px;
+    width: 150px;
 }
 
 #profile-info-om {
@@ -31,7 +32,7 @@
 
 #profile-username-om {
     font-size: 25px;
-    font-weight: lighter;
+    font-weight: 300;
 }
 
 .profile-follow-om {
@@ -45,7 +46,30 @@
     height: 30px;
     cursor: pointer;
     color: white;
-    border-color: rgba(var(--d69,0,149,246),1);
+    padding-left:19px;
+    padding-bottom:8px;
+    padding-top:5px;
+    padding-right:19px;
+    border-color: rg5a(var(--d69,0,149,246),1);
+}
+
+.profile-unfollow-om {
+    font-size: 14px;
+    font-weight: 600;
+    /* line-height: 26px; */
+    /* overflow: hidden; */
+    border-radius: 3px;
+    background-color: transparent;
+    width: 92px;
+    height: 30px;
+    cursor: pointer;
+    color: black;
+    padding-left:10px;
+    padding-bottom:8px;
+    padding-top:5px;
+    padding-right:10px;
+    /* border-color: rg5a(var(--d69,0,149,246),1); */
+    border: 1px solid lightgray;
 }
 
 #profile-posts{
@@ -59,4 +83,35 @@
     flex-wrap: wrap;
     margin: 0 auto;
     justify-content: center;
+}
+
+.profile-parent-div-dj {
+    display: flex;
+    flex-wrap: wrap;
+    width: 780px;
+    height: auto;
+    margin: 0 auto;
+    /* margin: 0 2 auto 0; */
+    padding-top: 20px;
+    padding-left:15px;
+    /* justify-content: center; */
+}
+
+.profile-page-info-megacontainer-om {
+    display: flex;
+    justify-content: center;
+    margin-left: 11px;
+    /* width: 780px; */
+}
+
+.profile-page-POSTS {
+    font-size: 14px;
+    text-align: center;
+    color: gray;
+    font-weight: 600;
+    padding-top: 15px;
+}
+
+.profile-button-house-om {
+    margin-top: 10px;
 }

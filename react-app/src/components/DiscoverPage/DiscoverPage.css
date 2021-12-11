@@ -1,22 +1,24 @@
 .discover-parent-div-dj {
     display: flex;
     flex-wrap: wrap;
-    width: 891px;
+    width: 780px;
     height: auto;
     margin: 0 auto;
+    /* margin: 0 2 auto 0; */
     padding-top: 100px;
+    padding-left:15px;
     /* justify-content: center; */
 }
 
 .single-post-tile-dj {
-    width: 277px;
-    height: 277px;
+    width: 239px;
+    height: 239px;
     padding: 10px;
 }
 
 .single-post-image-dj {
     object-fit: cover;
-    width: 277px;
-    height: 277px;
+    width: 239px;
+    height: 239px;
     cursor: pointer;
 }
