@@ -67,6 +67,7 @@
     padding-left: 12px;
     outline: none;
     /* position: absolute; */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .results-field-om {
@@ -101,13 +102,13 @@
 
 .navbar-discover-link-dj {
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 25px;
     text-decoration: none;
     border-radius: 25px;
-    border: 3px solid black;
+    /* border: 3px solid black; */
     padding-left: 8px;
     padding-right: 7px;
-    padding-top: 2px;
+    /* padding-top: 2px; */
     padding-bottom: 6px;
     color: black;
     font-weight: 600;
@@ -115,7 +116,7 @@
 
 .navbar-discover-li-dj {
     /* height: 10px; */
-    margin-top: 20px;
+    margin-top: 14px;
     margin-left: 10px;
 }
 
@@ -164,4 +165,3 @@
     border-radius: 3px;
     height: 20px; */
 }
-
