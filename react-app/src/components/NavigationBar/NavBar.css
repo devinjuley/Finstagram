@@ -1,8 +1,19 @@
+/* @font-face {
+    font-family: 'billabong';
+    src: url('http://fonts.cdnfonts.com/css/billabong') format('woff');
+    /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+
+/* @import url('http://fonts.cdnfonts.com/css/billabong') */
 .navbar-ul-dj {
     display: flex;
     list-style-type: none;
-    justify-content: space-between;
-    height: 60px;
+    /* justify-content: space-between; */
+    /* height: 60px; */
+    margin-top: 10px;
+    width: 790px;
+    margin: 0 auto;
+    /* align-items: center; */
 }
 
 
@@ -11,16 +22,24 @@
 
 
 #logo-container-om {
-    padding-bottom: 20px
+    /* padding-bottom: 20px */
+    margin-top: 9px;
+    margin-left: 5px;
 }
 
 #logo {
-    padding-top: -10px;
+    /* padding-top: px; */
+    margin-right: 150px;
+    font-family: 'Billabong', sans-serif;
+    text-decoration: none;
+    font-size: 35px;
+    color: black;
 }
 
 #nav-om {
     height: 60px;
     width: 100%;
+    left: 0;
     display: inline-block;
     box-sizing: border-box;
     align-items: start;
@@ -35,7 +54,7 @@
 
 #search-om {
     width: 268px;
-    height: 36px;
+    /* height: 36px; */
     position: relative;
     margin-top: 12px;
 }
@@ -43,11 +62,106 @@
 .search-input-field-th {
     border: solid 1px rgba(var(--b6a,219,219,219),1);
     border-radius: 3px;
-    height: 100%;
-    width: 100%;
+    height: 35px;
+    width: 268px;
+    padding-left: 12px;
+    outline: none;
     /* position: absolute; */
 }
 
 .results-field-om {
     z-index: 3;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin-top: 13px;
+    border-radius: 3px;
+    overflow-y: auto;
+    max-height: 200px;
 }
+.results-field-om::-webkit-scrollbar {
+    /* display: none; */
+}
+
+.username-and-fullname-search-results-dj {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.search-results-person-username-dj {
+    color: black;
+    font-weight: 600;
+
+}
+
+.search-results-person-fullname-dj {
+    color: gray;
+    font-size: 12px;
+}
+
+.navbar-discover-link-dj {
+    margin-top: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 25px;
+    border: 3px solid black;
+    padding-left: 8px;
+    padding-right: 7px;
+    padding-top: 2px;
+    padding-bottom: 6px;
+    color: black;
+    font-weight: 600;
+}
+
+.navbar-discover-li-dj {
+    /* height: 10px; */
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.navbar-create-post-link-dj {
+    margin-top: 10px;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 3px;
+    border: 3px solid black;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 0px;
+    padding-bottom: 3px;
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.navbar-create-post-li-dj {
+    margin-top: 20px;
+    margin-left: 25px;
+}
+
+.commented-user-profile-image-navbar-dj {
+    margin-top: 14px;
+    margin-left: 10px;
+    height: 32px;
+    width: 32px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.navbar-logout-button-dj {
+    border: none;
+    background-color: white;
+    color: #0095F6;
+    font-family: 'Billabong', sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.navbar-logout-li-dj {
+    margin-top: 20px;
+    margin-left: 30px;
+    /* border: 1px solid #0095F6;
+    border-radius: 3px;
+    height: 20px; */
+}
+

@@ -19,13 +19,14 @@ const EditSingleComment = ({ comment, setShowCommentEditForm }) => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleEditSubmission}>
+        <div className='post-a-comment-parent-dj'>
+            <form onSubmit={handleEditSubmission} className='post-comment-form-dj'>
                 <textarea
+                    className='edit-comment-text-area-dj'
                     value={commentContent}
                     onChange={(e) => setCommentContent(e.target.value)}
                 />
-                <button type="submit">Submit</button>
+                <button type="submit" className='edit-comment-button-dj'>Submit</button>
             </form>
         </div>
     )

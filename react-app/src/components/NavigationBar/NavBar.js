@@ -16,30 +16,27 @@ const NavBar = () => {
     <nav id='nav-om'>
       <ul className='navbar-ul-dj'>
         <li id='logo-container-om'>
-          <img
-            id='logo'
-            onClick={() => history.push('/')}
-            src='https://media.discordapp.net/attachments/917128220552331345/918969992798699540/pngimages_1041639168432.png'
-            alt='logo'
-          />
+          <NavLink to='/' exact={true} id='logo'>
+            Finstagram
+          </NavLink>
         </li>
         <li id='search-om'>
           <SearchField />
         </li>
-        <li>
+        <li className='navbar-create-post-li-dj'>
           <CreatePostFormModal activeClassName='active' />
         </li>
-        <li>
-          <NavLink to='/posts/discover' exact={true} activeClassName='active'>
-            Discover
+        <li className='navbar-discover-li-dj'>
+          <NavLink to='/posts/discover' exact={true} className='navbar-discover-link-dj'>
+            >
           </NavLink>
         </li>
         <li>
           <NavLink to={`/users/${sessionUser?.id}`} exact={true}>
-            Profile Page
+            <img src={sessionUser?.profile_image_url} className='commented-user-profile-image-navbar-dj' />
           </NavLink>
         </li>
-        <li>
+        <li className='navbar-logout-li-dj'>
           <LogoutButton />
         </li>
       </ul>

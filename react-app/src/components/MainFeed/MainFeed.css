@@ -28,7 +28,7 @@
 
 .single-post-username-mainfeed-dj {
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     color: black;
 }
 
@@ -43,6 +43,8 @@
 .usename-and-comment-mainfeed-dj {
     padding-left: 5px;
     padding-top: 5px;
+    overflow-y: auto;
+    height: 19px;
 }
 
 .mainfeed-parent-div-dj {
@@ -71,6 +73,7 @@
     width: 65px;
     border-radius: 50px;
     margin-right: 10px;
+    object-fit: cover;
     /* margin-bottom: 10px; */
 }
 
@@ -87,7 +90,7 @@
 
 .username-inside-follow-list-dj {
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     color: black;
 }
 
@@ -100,24 +103,21 @@
     color: gray;
 }
 .people-you-follow-mapping-dj {
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 200px;
 }
 
-.people-you-follow-mapping-dj::-webkit-scrollbar {
-    /* background-color: blue; */
 
-}
 
 .session-user-username-dj {
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: none;
     color: black;
 }
 
-/* .mainfeed-caption-dj {
-    padding-top: 5px;
-} */
+.mainfeed-caption-dj {
+    overflow-y: auto;
+}
 
 .footer {
 
