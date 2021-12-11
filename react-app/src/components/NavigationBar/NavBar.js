@@ -13,39 +13,37 @@ const NavBar = () => {
   const history = useHistory();
 
   return (
-    <div id='nav-om'>
-      <div className='navbar-ul-dj'>
-        <img
-          id='logo'
-          onClick={() => history.push('/')}
-          src='https://media.discordapp.net/attachments/917128220552331345/918969992798699540/pngimages_1041639168432.png'
-        />
-        <div id='search-om'>
+    <nav id='nav-om'>
+      <ul className='navbar-ul-dj'>
+        <li id='logo-container-om'>
+          <img
+            id='logo'
+            onClick={() => history.push('/')}
+            src='https://media.discordapp.net/attachments/917128220552331345/918969992798699540/pngimages_1041639168432.png'
+            alt='logo'
+          />
+        </li>
+        <li id='search-om'>
           <SearchField />
-        </div>
-        <div>
+        </li>
+        <li>
           <CreatePostFormModal activeClassName='active' />
-        </div>
-        <div>
+        </li>
+        <li>
           <NavLink to='/posts/discover' exact={true} activeClassName='active'>
             Discover
           </NavLink>
-        </div>
-        <div>
+        </li>
+        <li>
           <NavLink to={`/users/${sessionUser?.id}`} exact={true}>
             Profile Page
           </NavLink>
-        </div>
-        <div>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </div>
-        <div>
+        </li>
+        <li>
           <LogoutButton />
-        </div>
-      </div>
-    </div>
+        </li>
+      </ul>
+    </nav>
   );
 }
 

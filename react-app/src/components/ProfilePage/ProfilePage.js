@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { SinglePostTile } from '../DiscoverPage/DiscoverPage';
 
+import './ProfilePage.css'
+
 //thunk import
 import { getProfileThunk } from '../../store/profile';
 import { addFollowThunk, removeFollowThunk, getFollowsThunk } from '../../store/follows';
@@ -80,22 +82,20 @@ function ProfilePage() {
     }
 
     return (
-        <div>
-            <div className='profile-image'>
-                <div>
-                    <img src={profile?.profile_image_url} alt='profile-image' />
+        <div id='profile-page-container-om'>
+            <div id='profile-page-info-container-om'>
+                <img src={profile?.profile_image_url} alt='profile-image' id='profile-image-om' />
+                <div id='profile-info-om'>
+                    <div>
+                        {profile?.username}
+                    </div>
+                    <div>
+                        {profile?.first_name + ' ' + profile?.last_name}
+                    </div>
                 </div>
-            </div>
-            <div className='profile-info'>
-                <div>
-                    {profile?.username}
+                <div className='profile-follow'>
+                    {button}
                 </div>
-                <div>
-                    {profile?.first_name + ' ' + profile?.last_name}
-                </div>
-            </div>
-            <div className='profile-follow'>
-                {button}
             </div>
             <div className='profile-posts'>
                 <div>
