@@ -71,6 +71,7 @@
     width: 65px;
     border-radius: 50px;
     margin-right: 10px;
+    object-fit: cover;
     /* margin-bottom: 10px; */
 }
 

@@ -7,7 +7,7 @@ function CreatePostFormModal() {
    const hideForm = () => setShowModal(false)
    return (
       <>
-         <a onClick={() => setShowModal(true)}>Create Post</a>
+         <a onClick={() => setShowModal(true)} className='navbar-create-post-link-dj'>+</a>
          {showModal && (
             <Modal onClose={() => setShowModal(false)}>
                <CreatePostForm hideForm={hideForm} />
