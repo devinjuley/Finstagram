@@ -18,7 +18,6 @@ const SinglePost = ({ hideForm, setShowModal, post }) => {
    const postComments = useSelector(state => state.posts[post.id].comments)
    const [errors, setErrors] = useState([]);
    const [showEditForm, setShowEditForm] = useState(false);
-
    // const commentsArray = Object.assign([], post.comments)
    const commentsArray = Object.assign([], postComments)
 
@@ -53,12 +52,12 @@ const SinglePost = ({ hideForm, setShowModal, post }) => {
 
                <div className='single-post-owner-username-and-caption-dj'>
                   <img src={post?.user.profile_image_url} className='commented-user-profile-image-dj' />
-                  <a href={`/users/${post?.user.user_id}`} className='single-post-owner-username-dj'>{post?.user?.username}</a>
+                  <a href={`/users/${post?.user.id}`} className='single-post-owner-username-dj'>{post?.user?.username}</a>
                </div>
                <div className='div-for-scroll'>
                   <div className='single-post-owner-comment-dj'>
                      <img src={post?.user.profile_image_url} className='commented-user-profile-image-dj' />
-                     <a href={`/users/${post?.user_id}`} className='single-post-comment-username-dj'>{post?.user?.username}</a>
+                     <a href={`/users/${post?.user.id}`} className='single-post-comment-username-dj'>{post?.user?.username}</a>
                      <span className='post-caption-dj'> {!showEditForm && (post?.content)}</span>
                   </div>
                   {commentsArray.map(comment => (
