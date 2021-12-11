@@ -1,0 +1,77 @@
+.splash-img {
+
+}
+
+.container-for-everything {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    height: 90vh;
+    align-items: center;
+
+}
+
+.container-for-login-form {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    width: 350px;
+    height: 350px;
+    border: 1px solid lightgray;
+    background-color: white;
+    padding-bottom: 30px;
+    padding-top: 25px;
+    margin-top: 50px;
+    margin-left: 30px;
+}
+
+.login-form-om {
+    /* margin: 0 auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-link-om {
+    border: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    margin-left: 30px;
+    background-color: white;
+    margin-top: 10px;
+    height: 80px;
+}
+
+.signup-redirect-button-om {
+    color: #0095F6;
+    text-decoration: none;
+}
+
+.splash-finstagram-om {
+    margin-bottom: 30px;
+    font-size: 50px;
+    font-family: 'Billabong', sans-serif;
+}
+
+.splash-welcome-om {
+    font-size: 17px;
+    color: #8E8E8E;
+    width: 284px;
+    text-align: center;
+    height: 63px;
+    margin-top: 35px;
+}
+
+.demo-buttons-om {
+    height: 35px;
+    width: 284px;
+    border: none;
+    margin-top: 10px;
+    background-color: #0095F6;
+    color: white;
+    border-radius: 5px;
+}

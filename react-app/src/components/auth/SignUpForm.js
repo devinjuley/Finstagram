@@ -63,7 +63,7 @@ const SignUpForm = () => {
 
   return (
     <div className='signup-main-om'>
-      <div id='signup-form-container'>
+      <div className='signup-form-container'>
         <div className='signup-finstagram-om'>
           Finstagram
         </div>
