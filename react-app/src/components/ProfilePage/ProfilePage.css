@@ -1,0 +1,28 @@
+#profile-page-container-om {
+    padding-top: 85px;
+    margin: 0 auto;
+}
+
+#profile-page-info-container-om {
+    display: flex;
+    flex-direction: row;
+    width: 927px;
+    margin: 0 auto;
+    padding-left: 7%;
+    padding-right: 7%;
+}
+
+#profile-image-om {
+    width:100%;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
+}
+
+#profile-info-om {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
