@@ -1,9 +1,11 @@
 .discover-parent-div-dj {
     display: flex;
     flex-wrap: wrap;
-    width: 927px;
+    width: 891px;
     height: auto;
     margin: 0 auto;
+    padding-top: 100px;
+    /* justify-content: center; */
 }
 
 .single-post-tile-dj {

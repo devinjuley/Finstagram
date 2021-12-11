@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 // thunk import
 import { createNewPost } from '../../store/post'
 
-// import styles from './LoginForm.module.css'
+//css
+import './CreatePost.css'
 
 const CreatePostForm = ({ hideForm }) => {
    const dispatch = useDispatch();
@@ -40,26 +41,32 @@ const CreatePostForm = ({ hideForm }) => {
 
 
    return (
-      <div >
-         <form onSubmit={handleSubmit}>
+      <div className='make-a-post-parent-dj'>
+         <form onSubmit={handleSubmit} className='make-a-post-form-dj'>
             <div>
                {errors.map((error, ind) => (
                   <div key={ind}>{error}</div>
                ))}
             </div>
             {/* <input type='file' /> */}
-            <input
-               type='text'
-               value={image_url}
-               onChange={(e) => setImage_URL(e.target.value)}
-               placeholder='This is for testing'
-            />
-            <textarea
-               value={caption}
-               placeholder='Add a caption to this photo!'
-               onChange={(e) => setCaption(e.target.value)}
-            />
-            <button type='submit'>
+            <div className='make-a-post-form-dj'>
+               <div>
+                  <input
+                     type='text'
+                     value={image_url}
+                     onChange={(e) => setImage_URL(e.target.value)}
+                     placeholder='provide an image URL'
+                     className='post-comment-text-area-dj'
+                  />
+               </div>
+               <textarea
+                  value={caption}
+                  placeholder='Add a caption to this photo!'
+                  onChange={(e) => setCaption(e.target.value)}
+                  className='post-comment-text-area-dj'
+               />
+            </div>
+            <button type='submit' className='post-comment-button-dj'>
                Submit
             </button>
          </form>

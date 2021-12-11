@@ -43,6 +43,8 @@
 .usename-and-comment-mainfeed-dj {
     padding-left: 5px;
     padding-top: 5px;
+    overflow-y: auto;
+    height: 19px;
 }
 
 .mainfeed-parent-div-dj {
@@ -105,10 +107,7 @@
     height: 200px;
 }
 
-.people-you-follow-mapping-dj::-webkit-scrollbar {
-    /* background-color: blue; */
 
-}
 
 .session-user-username-dj {
     font-weight: 600;
@@ -116,9 +115,9 @@
     color: black;
 }
 
-/* .mainfeed-caption-dj {
-    padding-top: 5px;
-} */
+.mainfeed-caption-dj {
+    overflow-y: auto;
+}
 
 .footer {
 
