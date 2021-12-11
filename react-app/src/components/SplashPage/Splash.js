@@ -15,15 +15,15 @@ const Splash = () => {
     const handleDemoLogin = async () => {
         const email = 'demo@aa.io';
         const password = 'password'
-        await dispatch(login(email,password))
+        await dispatch(login(email, password))
         return history.push('/')
     };
 
     return (
         <div className='container-for-everything'>
-            <div className='container-for-phone-pics'>
+            {/* <div className='container-for-phone-pics'>
                 <img className='splash-img' src="https://media.discordapp.net/attachments/916411132984565770/919325409013809262/unknown.png" alt='phone pics' />
-            </div>
+            </div> */}
             <div>
                 <div className='container-for-login-form'>
                     <div className='splash-finstagram-om'>
