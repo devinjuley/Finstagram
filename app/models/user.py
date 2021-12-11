@@ -90,6 +90,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'first_name': self.first_name,
             'last_name': self.last_name,
+            'profile_image_url': self.profile_image_url,
             'posts': {post.to_dict()['id']: post.to_dict() for post in self.posts}
         }
 
