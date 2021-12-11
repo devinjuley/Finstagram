@@ -28,7 +28,7 @@ const NavBar = () => {
         </li>
         <li className='navbar-discover-li-dj'>
           <NavLink to='/posts/discover' exact={true} className='navbar-discover-link-dj'>
-            <span>&#129517;</span>
+            ⌘
           </NavLink>
         </li>
         <li>
