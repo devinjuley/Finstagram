@@ -72,13 +72,13 @@ function ProfilePage() {
         if (!unfollowButton) {
             button = (
                 <div>
-                    <button onClick={handleFollowSubmit}>Follow</button>
+                    <button className='profile-follow-om' onClick={handleFollowSubmit}>Follow</button>
                 </div>
             )
         } else {
             button = (
                 <div>
-                    <button onClick={handleUnfollowSubmit}>Unfollow</button>
+                    <button className='profile-follow-om' onClick={handleUnfollowSubmit}>Unfollow</button>
                 </div>
             )
         }
@@ -89,26 +89,26 @@ function ProfilePage() {
             <div id='profile-page-info-container-om'>
                 <img src={profile?.profile_image_url} alt='profile-image' id='profile-image-om' />
                 <div id='profile-info-om'>
-                    <div>
+                    <div id='profile-username-om'>
                         {profile?.username}
                     </div>
                     <div>
                         {profile?.first_name + ' ' + profile?.last_name}
                     </div>
                 </div>
-                <div className='profile-follow'>
+                <div>
                     {button}
                 </div>
             </div>
-            <div className='profile-posts'>
-                <div>
+            {/* <div id='profile-posts'> */}
+                <div className='discover-parent-div-dj'>
                     {profilePosts?.map(post => (
                         <div key={post.id}>
                             <SinglePostTile post={post} />
                         </div>
                     ))}
                 </div>
-            </div>
+            {/* </div> */}
         </div>
     )
 }
