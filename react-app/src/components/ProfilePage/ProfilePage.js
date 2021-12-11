@@ -6,22 +6,25 @@ import { SinglePostTile } from '../DiscoverPage/DiscoverPage';
 //thunk import
 import { getProfileThunk } from '../../store/profile';
 import { addFollowThunk, removeFollowThunk, getFollowsThunk } from '../../store/follows';
-import { getProfilePostsThunk } from '../../store/post'
+import { getProfilePostsThunk, getAllPostsThunk } from '../../store/post'
 
 
 function ProfilePage() {
     const dispatch = useDispatch();
-    const [unfollowButton, setUnfollowButton] = useState(false)
-    const [buttonContent, setButtonContent] = useState(true)
+    const [unfollowButton, setUnfollowButton] = useState(false);
+    const [buttonContent, setButtonContent] = useState(true);
+
     const sessionUser = useSelector(state => state.session.user);
     const profile = useSelector(state => state.profile);
-    useSelector(state => state.posts)
+    const posts = useSelector(state => state.posts)
     useSelector(state => state.follows)
 
-    const profilePosts = Object.assign([], profile.posts)
+    // const profilePosts = Object.assign([], profile.posts)
+    const profilePosts = Object.assign([], posts)
     let { userId } = useParams()
 
     useEffect(() => {
+
         if (sessionUser.id == userId) {
             dispatch(getProfileThunk(sessionUser.id))
             dispatch(getProfilePostsThunk(sessionUser.id))

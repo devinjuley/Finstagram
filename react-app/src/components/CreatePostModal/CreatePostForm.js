@@ -22,11 +22,18 @@ const CreatePostForm = ({ hideForm }) => {
       };
       setErrors([]);
       let submittedPost = await dispatch(createNewPost(newPost))
+         // .catch(async (res) => {
+         //    const data = await res.json();
+         //    if (data && data.errors) setErrors(data.errors);
+         // });
          .catch(async (res) => {
             const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
+            if (data && data.errors) {
+               setErrors(data.errors)
+               return
+            };
          });
-      if (submittedPost) {
+      if (!submittedPost) {
          hideForm()
       }
    }
@@ -35,7 +42,12 @@ const CreatePostForm = ({ hideForm }) => {
    return (
       <div >
          <form onSubmit={handleSubmit}>
-            <input type='file' />
+            <div>
+               {errors.map((error, ind) => (
+                  <div key={ind}>{error}</div>
+               ))}
+            </div>
+            {/* <input type='file' /> */}
             <input
                type='text'
                value={image_url}

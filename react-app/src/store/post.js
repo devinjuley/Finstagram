@@ -58,13 +58,15 @@ export const createNewPost = (newPost) => async (dispatch) => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newPost)
-
         });
-
         if (response.ok) {
             const post = await response.json();
             dispatch(createPost(post))
-            return post;
+        } else if (response.status < 500) {
+            const data = await response.json()
+            if (data.errors) {
+                return data.errors
+            }
         }
     } catch (err) {
         console.log(err)
@@ -212,7 +214,7 @@ const postReducer = (state = initialState, action) => {
         }
         case GET_PROFILE_POSTS: {
             const newState = {
-                ...state,
+                // ...state,
                 ...action.payload.posts
             };
             return newState
