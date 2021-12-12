@@ -13,9 +13,7 @@ import { getProfilePostsThunk } from '../../store/post'
 
 function ProfilePage() {
     const dispatch = useDispatch();
-    const [unfollowButton, setUnfollowButton] = useState(false);
-    const [buttonContent, setButtonContent] = useState(true);
-    
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const sessionUser = useSelector(state => state.session.user);
     const profile = useSelector(state => state.profile);
@@ -28,115 +26,81 @@ function ProfilePage() {
 
     let { userId } = useParams()
 
-    useEffect(() => {
+    useEffect(async () => {
+        await dispatch(getProfileThunk(userId))
+        await dispatch(getProfilePostsThunk(userId))
+        await dispatch(getFollowsThunk(sessionUser.id))
+        if (!isLoaded) setIsLoaded(true);
 
-        if (sessionUser.id === Number(userId)) {
-            dispatch(getProfileThunk(sessionUser.id))
-            dispatch(getProfilePostsThunk(sessionUser.id))
-            dispatch(getFollowsThunk(sessionUser.id))
-        } else {
-            dispatch(getProfileThunk(userId))
-            dispatch(getProfilePostsThunk(userId))
-            dispatch(getFollowsThunk(sessionUser.id))
-        }
     }, [dispatch, userId, sessionUser.id]);
 
-
-    if (sessionUser.id === Number(userId)) {
-        if (buttonContent !== false) {
-            setButtonContent(false)
-        }
-    };
-
-    // && !unfollowButton
-
-    if (userId in follows) {
-        if (unfollowButton !== true) {
-            setUnfollowButton(true)
-        }
-    }
-
-    if (!(userId in follows)) {
-        if (unfollowButton !== false) {
-            setUnfollowButton(false)
-        }
-    }
-
-    // if (!userId in sessionUser.follows) {
-    //     if (unfollowButton !== false) {
-    //         setUnfollowButton(false)
-    //     }
-    // }
-
-    // if (!userId in sessionUser.follows) {
-    //     setUnfollowButton(false)
-    // }
-
-    const handleFollowSubmit = async () => {
+    const handleFollowSubmit = () => {
         const payload = {
             follower_id: sessionUser.id,
             followed_id: Number(userId)
         }
-        await dispatch(addFollowThunk(payload))
-        setUnfollowButton(true)
+        dispatch(addFollowThunk(payload))
     };
 
-    const handleUnfollowSubmit = async () => {
+    const handleUnfollowSubmit = () => {
         const payload = {
             follower_id: sessionUser.id,
             followed_id: Number(userId)
         }
-        await dispatch(removeFollowThunk(payload))
-        setUnfollowButton(false)
+        dispatch(removeFollowThunk(payload))
     };
 
+    // new button content logic
     let button = null;
-    if (buttonContent) {
-        if (unfollowButton === false) {
-            button = (
-                <div className='profile-button-house-om'>
-                    <a className='profile-follow-om' onClick={handleFollowSubmit}>Follow</a>
-                </div>
-            )
-        } else {
-            button = (
-                <div className='profile-button-house-om'>
-                    <a className='profile-unfollow-om' onClick={handleUnfollowSubmit}>Unfollow</a>
-                </div>
-            )
-        }
-    }
-
+    if (sessionUser.id === Number(userId)) {
+        button = null
+    } else if (Number(userId) in follows) {
+        button = (
+            <div className='profile-button-house-om'>
+                <a className='profile-unfollow-om' onClick={handleUnfollowSubmit}>Unfollow</a>
+            </div>
+        )
+    } else if (!(Number(userId) in follows)) {
+        button = (
+            <div className='profile-button-house-om'>
+                <a className='profile-follow-om' onClick={handleFollowSubmit}>Follow</a>
+            </div>
+        )
+    };
 
     return (
-        <div id='profile-page-container-om'>
-            <div className='profile-page-info-megacontainer-om'>
-                <div id='profile-page-info-container-om'>
-                    <img src={profile?.profile_image_url} alt='user-profile' id='profile-image-om' />
-                    <div id='profile-info-om'>
-                        <div id='profile-username-om'>
-                            {profile?.username}
+        <>
+            {isLoaded && (<div id='profile-page-container-om'>
+                <div className='profile-page-info-megacontainer-om'>
+                    <div id='profile-page-info-container-om'>
+                        <div className='profile-page-user-image-th'>
+                            {profile?.profile_image_url && (<img src={profile?.profile_image_url} alt='user-profile' id='profile-image-om' />)}
                         </div>
-                        <div>
-                            {profile?.first_name + ' ' + profile?.last_name}
+                        <div id='profile-info-om'>
+                            <div id='profile-username-om'>
+                                {profile?.username && (profile?.username)}
+                            </div>
+                            <div>
+                                {profile?.first_name && (profile?.first_name + ' ' + profile?.last_name)}
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        {button}
+                        <div className='follow-button-container-th'>
+                            {button}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className='profile-page-POSTS'>
-                POSTS
-            </div>
-            <div className='profile-parent-div-dj'>
-                {profilePosts?.map(post => (
-                    <div key={post.id}>
-                        <SinglePostTile post={post} />
-                    </div>
-                ))}
-            </div>
-        </div>
+                <div className='profile-page-POSTS'>
+                    POSTS
+                </div>
+                <div className='profile-parent-div-dj'>
+                    {profilePosts?.map(post => (
+                        <div key={post.id}>
+                            <SinglePostTile post={post} />
+                        </div>
+                    ))}
+                </div>
+            </div>)}
+        </>
     )
 }
 
