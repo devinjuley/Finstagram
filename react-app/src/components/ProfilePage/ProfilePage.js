@@ -16,6 +16,10 @@ function ProfilePage() {
     const [unfollowButton, setUnfollowButton] = useState(false);
     const [buttonContent, setButtonContent] = useState(true);
 
+
+    console.log('-----------------', unfollowButton);
+
+
     const sessionUser = useSelector(state => state.session.user);
     const profile = useSelector(state => state.profile);
     const posts = useSelector(state => state.posts)
@@ -45,9 +49,17 @@ function ProfilePage() {
         }
     };
 
-    if (userId in sessionUser.follows && !unfollowButton) {
-        setUnfollowButton(true)
+    // && !unfollowButton
+
+    if (userId in sessionUser.follows) {
+        if (unfollowButton !== true) {
+            setUnfollowButton(true)
+        }
     }
+
+    // if (!userId in sessionUser.follows) {
+    //     setUnfollowButton(false)
+    // }
 
     const handleFollowSubmit = async () => {
         const payload = {
