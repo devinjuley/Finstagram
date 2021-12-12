@@ -19,6 +19,7 @@
     background-color: #0095F6;
     color: white;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .signup-form-input-om {

@@ -7,7 +7,9 @@ function CreatePostFormModal() {
    const hideForm = () => setShowModal(false)
    return (
       <div>
-         <a onClick={() => setShowModal(true)} className='navbar-create-post-link-dj'>❇</a>
+         <a onClick={() => setShowModal(true)} className='navbar-create-post-link-dj'>
+            <img src='https://media.discordapp.net/attachments/917128220552331345/919424517133172756/unknown.png' />
+         </a>
          {showModal && (
             <Modal onClose={() => setShowModal(false)}>
                <CreatePostForm hideForm={hideForm} />
