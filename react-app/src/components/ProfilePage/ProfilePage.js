@@ -53,7 +53,7 @@ function ProfilePage() {
         }
     }
 
-    if (!userId in follows) {
+    if (!(userId in follows)) {
         if (unfollowButton !== false) {
             setUnfollowButton(false)
         }
@@ -126,7 +126,6 @@ function ProfilePage() {
             <div className='profile-page-POSTS'>
                 POSTS
             </div>
-            {/* <div id='profile-posts'> */}
             <div className='profile-parent-div-dj'>
                 {profilePosts?.map(post => (
                     <div key={post.id}>
