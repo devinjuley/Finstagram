@@ -83,7 +83,7 @@ function MainFeed() {
                     <div className='people-you-follow-dj'>People you follow</div>
                     <div className='people-you-follow-mapping-dj'>
                         {followsArr.map(person => (
-                            <div className='person-you-are-following-dj'>
+                            <div className='person-you-are-following-dj' key={person.id}>
                                 <img src={person.profile_image_url} className='commented-user-profile-image-dj' />
                                 <div>
                                     <a href={`/users/${person.id}`} className='username-inside-follow-list-dj'>{person.username}</a>

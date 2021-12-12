@@ -23,12 +23,17 @@ const NavBar = () => {
         <li id='search-om'>
           <SearchField />
         </li>
+        <li className='navbar-home-li-dj'>
+          <NavLink to='/' exact={true} className={'navbar-home-link-dj'}>
+            <img src='https://media.discordapp.net/attachments/917128220552331345/919422113163673720/unknown.png' />
+          </NavLink>
+        </li>
         <li className='navbar-create-post-li-dj'>
           <CreatePostFormModal activeClassName='active' />
         </li>
         <li className='navbar-discover-li-dj'>
           <NavLink to='/posts/discover' exact={true} className='navbar-discover-link-dj'>
-            ⌘
+            <img src='https://media.discordapp.net/attachments/917128220552331345/919420101416058910/unknown.png' />
           </NavLink>
         </li>
         <li>

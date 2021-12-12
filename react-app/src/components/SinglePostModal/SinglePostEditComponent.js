@@ -20,15 +20,16 @@ const EditSinglePost = ({ setShowEditForm, post }) => {
     }
 
     return (
-        <div className='edit-comment-parent-dj'>
-            <form onSubmit={handleEditSubmission}>
-                <textarea
-                    value={postContent}
-                    onChange={(e) => setPostContent(e.target.value)}
-                />
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+        // <div>
+        <form onSubmit={handleEditSubmission} className='edit-comment-parent-dj'>
+            <textarea
+                value={postContent}
+                onChange={(e) => setPostContent(e.target.value)}
+                className='edit-single-post-textarea-dj'
+            />
+            <button type="submit" className='edit-post-submit-button-dj'>Submit</button>
+        </form>
+        // </div>
     )
 }
 
