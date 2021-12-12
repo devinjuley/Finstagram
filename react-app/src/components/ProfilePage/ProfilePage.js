@@ -16,6 +16,10 @@ function ProfilePage() {
     const [unfollowButton, setUnfollowButton] = useState(false);
     const [buttonContent, setButtonContent] = useState(true);
 
+
+    console.log('-----------------', unfollowButton);
+
+
     const sessionUser = useSelector(state => state.session.user);
     const profile = useSelector(state => state.profile);
     const posts = useSelector(state => state.posts)
@@ -45,9 +49,17 @@ function ProfilePage() {
         }
     };
 
-    if (userId in sessionUser.follows && !unfollowButton) {
-        setUnfollowButton(true)
+    // && !unfollowButton
+
+    if (userId in sessionUser.follows) {
+        if (unfollowButton !== true) {
+            setUnfollowButton(true)
+        }
     }
+
+    // if (!userId in sessionUser.follows) {
+    //     setUnfollowButton(false)
+    // }
 
     const handleFollowSubmit = async () => {
         const payload = {
@@ -71,14 +83,14 @@ function ProfilePage() {
     if (buttonContent) {
         if (!unfollowButton) {
             button = (
-                <div>
-                    <button className='profile-follow-om' onClick={handleFollowSubmit}>Follow</button>
+                <div className='profile-button-house-om'>
+                    <a className='profile-follow-om' onClick={handleFollowSubmit}>Follow</a>
                 </div>
             )
         } else {
             button = (
-                <div>
-                    <button className='profile-follow-om' onClick={handleUnfollowSubmit}>Unfollow</button>
+                <div className='profile-button-house-om'>
+                    <a className='profile-unfollow-om' onClick={handleUnfollowSubmit}>Unfollow</a>
                 </div>
             )
         }
@@ -86,22 +98,27 @@ function ProfilePage() {
 
     return (
         <div id='profile-page-container-om'>
-            <div id='profile-page-info-container-om'>
-                <img src={profile?.profile_image_url} alt='profile-image' id='profile-image-om' />
-                <div id='profile-info-om'>
-                    <div id='profile-username-om'>
-                        {profile?.username}
+            <div className='profile-page-info-megacontainer-om'>
+                <div id='profile-page-info-container-om'>
+                    <img src={profile?.profile_image_url} alt='profile-image' id='profile-image-om' />
+                    <div id='profile-info-om'>
+                        <div id='profile-username-om'>
+                            {profile?.username}
+                        </div>
+                        <div>
+                            {profile?.first_name + ' ' + profile?.last_name}
+                        </div>
                     </div>
                     <div>
-                        {profile?.first_name + ' ' + profile?.last_name}
+                        {button}
                     </div>
                 </div>
-                <div>
-                    {button}
-                </div>
+            </div>
+            <div className='profile-page-POSTS'>
+                POSTS
             </div>
             {/* <div id='profile-posts'> */}
-                <div className='discover-parent-div-dj'>
+                <div className='profile-parent-div-dj'>
                     {profilePosts?.map(post => (
                         <div key={post.id}>
                             <SinglePostTile post={post} />
