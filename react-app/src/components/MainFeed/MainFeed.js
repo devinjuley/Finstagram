@@ -46,25 +46,39 @@ export const MainFeedTile = ({ post }) => {
 
 function MainFeed() {
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user)
-    const follows = useSelector(state => state.follows)
-    useSelector(state => state.posts)
-    const followsArr = Object.assign([], follows)
+    const sessionUser = useSelector(state => state.session.user);
+    const follows = useSelector(state => state.follows);
+    const allPosts = useSelector(state => state.posts)
+    const followsArr = Object.assign([], follows);
 
     useEffect(() => {
-        dispatch(getAllPostsThunk())
-        dispatch(getFollowsThunk(sessionUser.id))
-    }, [dispatch, sessionUser.id])
+        dispatch(getAllPostsThunk());
+        dispatch(getFollowsThunk(sessionUser.id));
+    }, [dispatch, sessionUser.id]);
 
-    const posts_arr = []
-    for (let key in follows) {
-        let user = follows[key]
-        for (let key in user.posts) {
-            posts_arr.push(user.posts[key])
+    // const posts_arr = [];
+    // for (let key in follows) {
+    //     let user = follows[key]
+    //     for (let key in user.posts) {
+    //         posts_arr.push(user.posts[key])
+    //     }
+    // }
+    // for (let postKey in sessionUser.posts) {
+    //     posts_arr.push(sessionUser.posts[postKey])
+    // };
 
+    const posts_arr = [];
+    for (let postKey in allPosts) {
+        let post = allPosts[postKey];
+        if (post.user_id === sessionUser.id || post.user_id in follows) {
+            posts_arr.push(post)
         }
     }
-    posts_arr.reverse()
+
+    // posts_arr.reverse()
+    posts_arr.sort((a,b) => {
+        return new Date(b.created_at) - new Date(a.created_at)
+    })
 
     return (
         <div className='mainfeed-parent-div-dj'>

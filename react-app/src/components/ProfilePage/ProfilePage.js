@@ -15,6 +15,7 @@ function ProfilePage() {
     const dispatch = useDispatch();
     const [unfollowButton, setUnfollowButton] = useState(false);
     const [buttonContent, setButtonContent] = useState(true);
+    
 
     const sessionUser = useSelector(state => state.session.user);
     const profile = useSelector(state => state.profile);
@@ -23,6 +24,8 @@ function ProfilePage() {
 
     // const profilePosts = Object.assign([], profile.posts)
     const profilePosts = Object.assign([], posts)
+    profilePosts.reverse();
+
     let { userId } = useParams()
 
     useEffect(() => {
@@ -133,7 +136,6 @@ function ProfilePage() {
                     </div>
                 ))}
             </div>
-            {/* </div> */}
         </div>
     )
 }
