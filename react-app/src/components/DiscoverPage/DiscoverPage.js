@@ -33,8 +33,13 @@ export const SinglePostTile = ({ post }) => {
 
 function Discover() {
    const dispatch = useDispatch();
-   const posts = useSelector(state => state.posts)
-   const posts_arr = Object.assign([], posts)
+   const posts = useSelector(state => state.posts);
+
+   const posts_arr = Object.assign([], posts);
+   // posts_arr.reverse();
+   posts_arr.sort((a, b) => {
+      return new Date(b.created_at) - new Date(a.created_at)
+   })
 
    useEffect(() => {
       dispatch(getAllPostsThunk())

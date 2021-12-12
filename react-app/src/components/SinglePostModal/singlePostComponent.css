@@ -7,7 +7,7 @@ body {
     display: flex;
     width: 1300px;
     height: 600px;
-    
+
 
 }
 
@@ -22,7 +22,7 @@ body {
 .edit-comment-parent-dj {
     display: flex;
     align-items: center;
-    
+
 }
 
 .single-post-child-2-dj {
@@ -50,6 +50,7 @@ body {
     color: rgb(31, 170, 216);
     background-color: white;
     padding-top: 12px;
+    cursor: pointer;
 }
 
 .post-comment-text-area-dj {
@@ -88,7 +89,7 @@ body {
     align-items: center;
     /* padding-right: 4px; */
     width: 420px;
-    
+
 
 }
 
@@ -125,7 +126,7 @@ body {
     font-weight: 600;
     text-decoration: none;
     color: black;
-   
+
 }
 
 .single-post-owner-username-dj:hover {
@@ -153,7 +154,7 @@ body {
     overflow-y: scroll;
     height: 479px;
     width: 452px;
-    
+
 }
 
 .div-for-scroll::-webkit-scrollbar {
@@ -161,7 +162,7 @@ body {
 }
 .comment-div-dj {
     width: 380px;
-    
+
 }
 
 
@@ -203,8 +204,3 @@ body {
     background-color: white;
     color: rgb(31, 170, 216);
 }
-
-
-
-
-
