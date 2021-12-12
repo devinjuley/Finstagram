@@ -57,8 +57,16 @@ const SinglePost = ({ hideForm, setShowModal, post }) => {
                <div className='div-for-scroll'>
                   <div className='single-post-owner-comment-dj'>
                      <img src={post?.user.profile_image_url} className='commented-user-profile-image-dj' />
-                     <a href={`/users/${post?.user.id}`} className='single-post-comment-username-dj'>{post?.user?.username}</a>
-                     <span className='post-caption-dj'> {!showEditForm && (post?.content)}</span>
+                     <div>
+                        <a href={`/users/${post?.user.id}`} className='single-post-comment-username-dj'>{!showEditForm && (post?.user?.username)}</a>
+                        <span className='post-caption-dj'> {!showEditForm && (post?.content)}</span>
+                        {buttons}
+                     </div>
+                     <div>
+                        {showEditForm && (
+                           <EditSinglePost post={post} setShowEditForm={setShowEditForm} />
+                        )}
+                     </div>
                   </div>
                   {commentsArray.map(comment => (
                      <div key={comment?.id} className='comment-username-and-comment-dj'>
@@ -70,13 +78,12 @@ const SinglePost = ({ hideForm, setShowModal, post }) => {
                         </div>
                      </div>
                   ))}
-                  {buttons}
                </div>
             </div>
             <div className='post-comment-dj'>
-               {!showEditForm && (
-                  <CreateCommentForm post={post} setShowModal={setShowModal} />
-               )}
+               {/* {!showEditForm && ( */}
+               <CreateCommentForm post={post} setShowModal={setShowModal} />
+               {/* )} */}
             </div>
          </div>
       </div>
@@ -87,12 +94,6 @@ const SinglePost = ({ hideForm, setShowModal, post }) => {
          <div>
             {content}
          </div>
-         <div>
-            {showEditForm && (
-               <EditSinglePost post={post} setShowEditForm={setShowEditForm} />
-            )}
-         </div>
-
       </div>
    );
 };
