@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCommentThunk } from '../../store/post';
 import EditSingleComment from './SingleCommentEditComponent';

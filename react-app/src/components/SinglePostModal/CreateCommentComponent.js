@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom'
 
 // thunk import
 import { addCommentThunk } from '../../store/post';
@@ -24,7 +23,7 @@ const CreateCommentForm = ({ showModal, setShowModal, post }) => {
 
       dispatch(addCommentThunk(comment))
       setCommentContent('')
-      if (showModal == false) {
+      if (showModal === false) {
          setShowModal(true)
       }
    }

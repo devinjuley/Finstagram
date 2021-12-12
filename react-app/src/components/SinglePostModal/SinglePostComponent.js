@@ -1,24 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EditSinglePost from './SinglePostEditComponent';
 import CreateCommentForm from './CreateCommentComponent';
 import CommentComponent from './CommentComponent';
 
 // thunk import
-import { deleteSinglePostThunk, deleteCommentThunk } from '../../store/post'
+import { deleteSinglePostThunk } from '../../store/post'
 
 // impost CSS
 import './singlePostComponent.css'
-
-// import styles from './LoginForm.module.css'
 
 const SinglePost = ({ hideForm, setShowModal, post }) => {
    const dispatch = useDispatch();
    const sessionUser = useSelector(state => state.session.user);
    const postComments = useSelector(state => state.posts[post.id].comments)
-   const [errors, setErrors] = useState([]);
    const [showEditForm, setShowEditForm] = useState(false);
-   // const commentsArray = Object.assign([], post.comments)
+   // const [errors, setErrors] = useState([]);
    const commentsArray = Object.assign([], postComments)
 
    let content;
@@ -46,17 +43,17 @@ const SinglePost = ({ hideForm, setShowModal, post }) => {
 
    content = (
       <div className='single-post-parent-dj'>
-         <img src={post?.images[0]?.image_url} className='single-post-image-in-modal-dj' />
+         <img src={post?.images[0]?.image_url} className='single-post-image-in-modal-dj' alt='post'/>
          <div className='single-post-child-2-dj'>
             <div className='comments-inner-div-dj'>
 
                <div className='single-post-owner-username-and-caption-dj'>
-                  <img src={post?.user.profile_image_url} className='commented-user-profile-image-dj' />
+                  <img src={post?.user.profile_image_url} className='commented-user-profile-image-dj' alt='user-profile'/>
                   <a href={`/users/${post?.user.id}`} className='single-post-owner-username-dj'>{post?.user?.username}</a>
                </div>
                <div className='div-for-scroll'>
                   <div className='single-post-owner-comment-dj'>
-                     <img src={post?.user.profile_image_url} className='commented-user-profile-image-dj' />
+                     <img src={post?.user.profile_image_url} className='commented-user-profile-image-dj' alt='user-profile'/>
                      <div>
                         <a href={`/users/${post?.user.id}`} className='single-post-comment-username-dj'>{!showEditForm && (post?.user?.username)}</a>
                         <span className='post-caption-dj'> {!showEditForm && (post?.content)}</span>
@@ -71,7 +68,7 @@ const SinglePost = ({ hideForm, setShowModal, post }) => {
                   {commentsArray.map(comment => (
                      <div key={comment?.id} className='comment-username-and-comment-dj'>
                         <div>
-                           <img src={comment?.user.profile_image_url} className='commented-user-profile-image-dj' />
+                           <img src={comment?.user.profile_image_url} className='commented-user-profile-image-dj' alt='user-profile'/>
                         </div>
                         <div>
                            <CommentComponent comment={comment} />
@@ -81,9 +78,7 @@ const SinglePost = ({ hideForm, setShowModal, post }) => {
                </div>
             </div>
             <div className='post-comment-dj'>
-               {/* {!showEditForm && ( */}
                <CreateCommentForm post={post} setShowModal={setShowModal} />
-               {/* )} */}
             </div>
          </div>
       </div>

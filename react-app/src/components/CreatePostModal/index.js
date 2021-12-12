@@ -8,7 +8,7 @@ function CreatePostFormModal() {
    return (
       <div>
          <a onClick={() => setShowModal(true)} className='navbar-create-post-link-dj'>
-            <img src='https://media.discordapp.net/attachments/917128220552331345/919424517133172756/unknown.png' />
+            <img src='https://media.discordapp.net/attachments/917128220552331345/919424517133172756/unknown.png' alt='create-post-link'/>
          </a>
          {showModal && (
             <Modal onClose={() => setShowModal(false)}>
