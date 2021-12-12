@@ -23,7 +23,7 @@ function ProfilePage() {
     const sessionUser = useSelector(state => state.session.user);
     const profile = useSelector(state => state.profile);
     const posts = useSelector(state => state.posts)
-    useSelector(state => state.follows)
+    const follows = useSelector(state => state.follows)
 
     // const profilePosts = Object.assign([], profile.posts)
     const profilePosts = Object.assign([], posts)
@@ -51,11 +51,23 @@ function ProfilePage() {
 
     // && !unfollowButton
 
-    if (userId in sessionUser.follows) {
+    if (userId in follows) {
         if (unfollowButton !== true) {
             setUnfollowButton(true)
         }
     }
+
+    if (!userId in follows) {
+        if (unfollowButton !== false) {
+            setUnfollowButton(false)
+        }
+    }
+
+    // if (!userId in sessionUser.follows) {
+    //     if (unfollowButton !== false) {
+    //         setUnfollowButton(false)
+    //     }
+    // }
 
     // if (!userId in sessionUser.follows) {
     //     setUnfollowButton(false)
@@ -81,7 +93,7 @@ function ProfilePage() {
 
     let button = null;
     if (buttonContent) {
-        if (!unfollowButton) {
+        if (unfollowButton == false) {
             button = (
                 <div className='profile-button-house-om'>
                     <a className='profile-follow-om' onClick={handleFollowSubmit}>Follow</a>
@@ -95,6 +107,7 @@ function ProfilePage() {
             )
         }
     }
+
 
     return (
         <div id='profile-page-container-om'>
@@ -118,13 +131,13 @@ function ProfilePage() {
                 POSTS
             </div>
             {/* <div id='profile-posts'> */}
-                <div className='profile-parent-div-dj'>
-                    {profilePosts?.map(post => (
-                        <div key={post.id}>
-                            <SinglePostTile post={post} />
-                        </div>
-                    ))}
-                </div>
+            <div className='profile-parent-div-dj'>
+                {profilePosts?.map(post => (
+                    <div key={post.id}>
+                        <SinglePostTile post={post} />
+                    </div>
+                ))}
+            </div>
             {/* </div> */}
         </div>
     )
