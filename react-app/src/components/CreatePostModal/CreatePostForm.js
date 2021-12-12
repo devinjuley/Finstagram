@@ -59,7 +59,7 @@ const CreatePostForm = ({ hideForm }) => {
                         type='text'
                         value={image_url}
                         onChange={(e) => setImage_URL(e.target.value)}
-                        placeholder='provide an image URL'
+                        placeholder='Provide an image URL'
                         className='create-form-input-om'
                      />
                   </div>

@@ -72,9 +72,14 @@ const SignUpForm = () => {
         </h2>
         <form onSubmit={onSignUp}>
           <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
+            {errors.map((error, ind) => {
+              const errorMessage = error.split(':')[1]
+              return (
+                <div key={ind}>
+                  {errorMessage}
+                </div>
+              )
+            })}
           </div>
           <div>
             {/* <label>First Name</label> */}
@@ -105,7 +110,7 @@ const SignUpForm = () => {
               name='profile_image_url'
               onChange={updateProfileImgUrl}
               value={profile_image_url}
-              placeholder='Load Profile Image'
+              placeholder='Provide a profile image URL'
               className='signup-form-input-om'
             ></input>
           </div>
@@ -157,10 +162,10 @@ const SignUpForm = () => {
           <button type='submit' className='signup-buttons-om'>Sign Up</button>
         </form>
       </div>
-        <div className='login-redirect-parent'>
-          <span>Have an account?</span>
-          <button onClick={(e) => history.push('/')} className='login-redirect-button-om'>Log in</button>
-        </div>
+      <div className='login-redirect-parent'>
+        <span>Have an account?</span>
+        <button onClick={(e) => history.push('/')} className='login-redirect-button-om'>Log in</button>
+      </div>
     </div>
   );
 };
