@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SinglePostTile } from '../DiscoverPage/DiscoverPage';
+
 //import thunk
 import { getAllPostsThunk } from '../../store/post';
 import { getFollowsThunk } from '../../store/follows';
@@ -18,11 +18,12 @@ import CreateCommentForm from '../SinglePostModal/CreateCommentComponent';
 export const MainFeedTile = ({ post }) => {
     const hideForm = () => setShowModal(false)
     const [showModal, setShowModal] = useState(false);
+
     return (
         <div className='single-post-tile-mainfeed-dj'>
             <div className='single-post-mainfeed-dj'>
                 <div className='pic-and-usename-mainfeed-dj'>
-                    <img src={post?.user?.profile_image_url} className='commented-user-profile-image-dj' />
+                    <img src={post?.user?.profile_image_url} className='commented-user-profile-image-dj' alt='user-profile'/>
                     <a href={`/users/${post?.user?.id}`} className='single-post-username-mainfeed-dj'>{post?.user?.username}</a>
                 </div>
                 <img src={post?.images[0]?.image_url} alt='post' onClick={() => setShowModal(true)} className='single-post-image-mainfeed-dj' />
@@ -39,9 +40,9 @@ export const MainFeedTile = ({ post }) => {
                 )}
             </div>
         </div>
-    );
+    )
 
-}
+};
 
 function MainFeed() {
     const dispatch = useDispatch();
@@ -53,7 +54,7 @@ function MainFeed() {
     useEffect(() => {
         dispatch(getAllPostsThunk())
         dispatch(getFollowsThunk(sessionUser.id))
-    }, [dispatch])
+    }, [dispatch, sessionUser.id])
 
     const posts_arr = []
     for (let key in follows) {
@@ -77,14 +78,14 @@ function MainFeed() {
             <div className='follows-div-parent-dj'>
                 <div className='follows-div-dj'>
                     <div className='session-user-logged-in-dj'>
-                        <img src={sessionUser?.profile_image_url} className='session-user-profile-photo-mainfeed-dj' />
+                        <img src={sessionUser?.profile_image_url} className='session-user-profile-photo-mainfeed-dj' alt='user-profile'/>
                         <a href={`/users/${sessionUser?.id}`} className='session-user-username-dj'>{sessionUser?.username}</a>
                     </div>
                     <div className='people-you-follow-dj'>People you follow</div>
                     <div className='people-you-follow-mapping-dj'>
                         {followsArr.map(person => (
                             <div className='person-you-are-following-dj' key={person.id}>
-                                <img src={person.profile_image_url} className='commented-user-profile-image-dj' />
+                                <img src={person.profile_image_url} className='commented-user-profile-image-dj' alt='user-profile'/>
                                 <div>
                                     <a href={`/users/${person.id}`} className='username-inside-follow-list-dj'>{person.username}</a>
                                     <div className='firstname-lastname-follow-dj'>{person.first_name} {person.last_name}</div>

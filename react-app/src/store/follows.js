@@ -74,7 +74,6 @@ const followsReducer = (state = initialState, action) => {
             const newState = {
                 ...state
             }
-            console.log(action.payload, '==============')
             if (action.payload.unfollowed_id in newState) {
                 delete newState[action.payload.unfollowed_id]
             }

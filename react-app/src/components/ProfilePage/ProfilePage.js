@@ -8,17 +8,13 @@ import './ProfilePage.css'
 //thunk import
 import { getProfileThunk } from '../../store/profile';
 import { addFollowThunk, removeFollowThunk, getFollowsThunk } from '../../store/follows';
-import { getProfilePostsThunk, getAllPostsThunk } from '../../store/post'
+import { getProfilePostsThunk } from '../../store/post'
 
 
 function ProfilePage() {
     const dispatch = useDispatch();
     const [unfollowButton, setUnfollowButton] = useState(false);
     const [buttonContent, setButtonContent] = useState(true);
-
-
-    console.log('-----------------', unfollowButton);
-
 
     const sessionUser = useSelector(state => state.session.user);
     const profile = useSelector(state => state.profile);
@@ -31,7 +27,7 @@ function ProfilePage() {
 
     useEffect(() => {
 
-        if (sessionUser.id == userId) {
+        if (sessionUser.id === Number(userId)) {
             dispatch(getProfileThunk(sessionUser.id))
             dispatch(getProfilePostsThunk(sessionUser.id))
             dispatch(getFollowsThunk(sessionUser.id))
@@ -40,10 +36,10 @@ function ProfilePage() {
             dispatch(getProfilePostsThunk(userId))
             dispatch(getFollowsThunk(sessionUser.id))
         }
-    }, [dispatch, userId]);
+    }, [dispatch, userId, sessionUser.id]);
 
 
-    if (sessionUser.id == userId) {
+    if (sessionUser.id === Number(userId)) {
         if (buttonContent !== false) {
             setButtonContent(false)
         }
@@ -57,7 +53,7 @@ function ProfilePage() {
         }
     }
 
-    if (!userId in follows) {
+    if (!(userId in follows)) {
         if (unfollowButton !== false) {
             setUnfollowButton(false)
         }
@@ -93,7 +89,7 @@ function ProfilePage() {
 
     let button = null;
     if (buttonContent) {
-        if (unfollowButton == false) {
+        if (unfollowButton === false) {
             button = (
                 <div className='profile-button-house-om'>
                     <a className='profile-follow-om' onClick={handleFollowSubmit}>Follow</a>
@@ -113,7 +109,7 @@ function ProfilePage() {
         <div id='profile-page-container-om'>
             <div className='profile-page-info-megacontainer-om'>
                 <div id='profile-page-info-container-om'>
-                    <img src={profile?.profile_image_url} alt='profile-image' id='profile-image-om' />
+                    <img src={profile?.profile_image_url} alt='user-profile' id='profile-image-om' />
                     <div id='profile-info-om'>
                         <div id='profile-username-om'>
                             {profile?.username}
@@ -130,7 +126,6 @@ function ProfilePage() {
             <div className='profile-page-POSTS'>
                 POSTS
             </div>
-            {/* <div id='profile-posts'> */}
             <div className='profile-parent-div-dj'>
                 {profilePosts?.map(post => (
                     <div key={post.id}>

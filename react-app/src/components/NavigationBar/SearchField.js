@@ -14,7 +14,7 @@ const SearchField = () => {
    const [resultDivStyle, setResultDivStyle] = useState({ visibility: 'hidden' })
 
    useEffect(() => {
-      if (searchString != '') {
+      if (searchString !== '') {
          dispatch(getSearchResultsThunk(searchString))
       }
    }, [dispatch, searchString])
@@ -31,9 +31,9 @@ const SearchField = () => {
             onClick={(e) => setResultDivStyle({ visibility: 'visible' })}
          />
          <div style={resultDivStyle} className='results-field-om' >
-            {(searchString != '') && (searchResults?.map(user => (
+            {(searchString !== '') && (searchResults?.map(user => (
                <a key={user?.id} href={`/users/${user.id}`} className='username-and-fullname-search-results-dj'>
-                  <img src={user?.profile_image_url} className='commented-user-profile-image-dj' />
+                  <img src={user?.profile_image_url} className='commented-user-profile-image-dj' alt='user-profile'/>
                   <div>
                      <div className='search-results-person-username-dj'>{user?.username}</div>
                      <div className='search-results-person-fullname-dj'>{user?.first_name + ' ' + user?.last_name}</div>
