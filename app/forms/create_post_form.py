@@ -9,4 +9,4 @@ class CreatePostForm(FlaskForm):
 
 class CreateImageForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
-    image_url = StringField('image_url', validators=[DataRequired(), URL(require_tld=True, message='Please enter a valid URL')])
+    image_url = StringField('image_url', validators=[DataRequired(message='Please provide a valid image URL'), URL(require_tld=True, message='Please provide a valid image URL')])

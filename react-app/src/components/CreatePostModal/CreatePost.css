@@ -54,8 +54,16 @@
 }
 
 .make-a-post-finstagram-om {
-    margin-bottom: 30px;
+    /* margin-bottom: 10px; */
     font-size: 50px;
     font-family: 'Billabong', sans-serif;
     text-align: center;
+}
+
+.create-error-container-om {
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
 }

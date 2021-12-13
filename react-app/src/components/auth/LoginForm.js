@@ -36,14 +36,19 @@ const LoginForm = () => {
     <div >
       <form onSubmit={onLogin} className='login-form-om'>
         <div className='error-messages-container-th'>
-          {errors.map((error, ind) => {
+          {/* {errors.map((error, ind) => {
             const errorMessage = error.split(': ')[1]
             return (
               <div key={ind} className='error-message-text-th'>
                 {errorMessage}
               </div>
             )
-          })}
+          })} */}
+          <div className='error-message-login-om'>
+            {errors.length > 0 && (
+              <div>The provided credentials are incorrect</div>
+            )}
+          </div>
         </div>
         <div>
           <input
