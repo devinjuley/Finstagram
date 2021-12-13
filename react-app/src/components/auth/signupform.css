@@ -80,5 +80,12 @@
     width: 284px;
     text-align: center;
     height: 63px;
+}
 
+.error-message-text-th {
+    color: maroon;
+}
+
+.error-messages-container-th {
+    margin-bottom: 15px;
 }

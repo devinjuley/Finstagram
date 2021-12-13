@@ -22,22 +22,13 @@ const CreatePostForm = ({ hideForm }) => {
          image_url,
       };
       setErrors([]);
-      let submittedPost = await dispatch(createNewPost(newPost))
-         // .catch(async (res) => {
-         //    const data = await res.json();
-         //    if (data && data.errors) setErrors(data.errors);
-         // });
-         .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) {
-               setErrors(data.errors)
-               return
-            };
-         });
-      if (!submittedPost) {
+      let data = await dispatch(createNewPost(newPost))
+      if (!data) {
          hideForm()
+      } else {
+         setErrors(data)
       }
-   }
+   };
 
 
    return (
@@ -47,10 +38,15 @@ const CreatePostForm = ({ hideForm }) => {
                Make a post!
             </div>
             <form onSubmit={handleSubmit} className='make-a-post-form-dj'>
-               <div>
-                  {errors.map((error, ind) => (
-                     <div key={ind}>{error}</div>
-                  ))}
+               <div className='error-messages-container-th'>
+                  {errors.map((error, ind) => {
+                     const errorMessage = error.split(': ')[1]
+                     return (
+                        <div key={ind} className='error-message-text-th'>
+                           {errorMessage}
+                        </div>
+                     )
+                  })}
                </div>
                {/* <input type='file' /> */}
                <div className='make-a-post-form-dj'>

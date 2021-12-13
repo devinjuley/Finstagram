@@ -25,8 +25,10 @@ const SignUpForm = () => {
         setErrors(data)
         return
       }
+      return history.push('/');
+    } else {
+      setErrors(['Password: Passwords do not match'])
     }
-    return history.push('/');
   };
 
   const updateFirstName = (e) => {
@@ -71,11 +73,11 @@ const SignUpForm = () => {
           Sign up to see photos from your friends.
         </h2>
         <form onSubmit={onSignUp}>
-          <div>
+          <div className='error-messages-container-th'>
             {errors.map((error, ind) => {
-              const errorMessage = error.split(':')[1]
+              const errorMessage = error.split(': ')[1]
               return (
-                <div key={ind}>
+                <div key={ind} className='error-message-text-th'>
                   {errorMessage}
                 </div>
               )

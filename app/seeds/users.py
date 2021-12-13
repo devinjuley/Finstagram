@@ -9,7 +9,7 @@ def seed_users():
         first_name='Demo',
         last_name='Demo',
         username='Demo',
-        profile_image_url='https://media.discordapp.net/attachments/917128220552331345/917128255033724938/MSWTWwno_400x400.png',
+        profile_image_url='https://cdn.discordapp.com/attachments/917128220552331345/919735578893889576/unknown.png',
         email='demo@aa.io',
         password='password')
 

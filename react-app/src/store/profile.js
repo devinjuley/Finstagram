@@ -1,11 +1,17 @@
 // constant
 const GET_PROFILE = 'profile/GET_PROFILE';
+const REMOVE_PROFILE = 'profile/REMOVE_PROFILE'
 
 // action creater
 const getProfile = (profile) => ({
     type: GET_PROFILE,
     payload: profile
 });
+
+const removeProfile = () => ({
+    type: REMOVE_PROFILE
+})
+
 
 // thunk
 export const getProfileThunk = (userId) => async(dispatch) => {
@@ -17,6 +23,9 @@ export const getProfileThunk = (userId) => async(dispatch) => {
     }
 };
 
+export const removeProfileThunk = () => (dispatch) => {
+    dispatch(removeProfile());
+}
 
 // reducer
 const initialState = {};
@@ -27,6 +36,9 @@ const profileReducer = (state = initialState, action) => {
                 ...action.payload
             }
             return newState
+        }
+        case REMOVE_PROFILE: {
+            return {}
         }
         default:
             return state
