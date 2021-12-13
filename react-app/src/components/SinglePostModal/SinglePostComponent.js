@@ -43,20 +43,20 @@ const SinglePost = ({ hideForm, setShowModal, post }) => {
 
    content = (
       <div className='single-post-parent-dj'>
-         <img src={post?.images[0]?.image_url} className='single-post-image-in-modal-dj' alt='post'/>
+         <img src={post?.images[0]?.image_url} className='single-post-image-in-modal-dj' alt='post' />
          <div className='single-post-child-2-dj'>
             <div className='comments-inner-div-dj'>
 
                <div className='single-post-owner-username-and-caption-dj'>
-                  <img src={post?.user.profile_image_url} className='commented-user-profile-image-dj' alt='user-profile'/>
+                  <img src={post?.user.profile_image_url} className='commented-user-profile-image-dj' alt='user-profile' />
                   <a href={`/users/${post?.user.id}`} className='single-post-owner-username-dj'>{post?.user?.username}</a>
                </div>
                <div className='div-for-scroll'>
                   <div className='single-post-owner-comment-dj'>
-                     <img src={post?.user.profile_image_url} className='commented-user-profile-image-dj' alt='user-profile'/>
+                     {post?.content?.length > 0 && (<img src={post?.user.profile_image_url} className='commented-user-profile-image-dj' alt='user-profile' />)}
                      <div>
-                        <a href={`/users/${post?.user.id}`} className='single-post-comment-username-dj'>{!showEditForm && (post?.user?.username)}</a>
-                        <span className='post-caption-dj'> {!showEditForm && (post?.content)}</span>
+                        <a href={`/users/${post?.user.id}`} className='single-post-comment-username-dj'>{!showEditForm && post?.content?.length > 0 && (post?.user?.username)}</a>
+                        <span className='post-caption-dj'> {!showEditForm && post?.content?.length > 0 && (post?.content)}</span>
                         {buttons}
                      </div>
                      <div>
@@ -68,7 +68,7 @@ const SinglePost = ({ hideForm, setShowModal, post }) => {
                   {commentsArray.map(comment => (
                      <div key={comment?.id} className='comment-username-and-comment-dj'>
                         <div>
-                           <img src={comment?.user.profile_image_url} className='commented-user-profile-image-dj' alt='user-profile'/>
+                           <img src={comment?.user.profile_image_url} className='commented-user-profile-image-dj' alt='user-profile' />
                         </div>
                         <div>
                            <CommentComponent comment={comment} />

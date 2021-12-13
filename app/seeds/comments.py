@@ -7,9 +7,9 @@ fake = Faker()
 def seed_comments():
 
    comments = []
-   for i in range(60):
+   for i in range(200):
       comment = Comment(
-         user_id=randint(2,5),
+         user_id=randint(1,5),
          post_id=randint(1,20),
          content=fake.sentence()
       )
