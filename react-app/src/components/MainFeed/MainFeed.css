@@ -167,3 +167,15 @@
 .footer-parent-div-dj {
     padding-top: 15px;
 }
+
+.main-feed-placeholder-text-dj {
+    color: gray;
+    font-size: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    width: 436px;
+    text-align: center;
+    font-family: 'Billabong', sans-serif;
+}
