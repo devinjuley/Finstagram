@@ -74,18 +74,28 @@ function MainFeed() {
     posts_arr.sort((a, b) => {
         return new Date(b.created_at) - new Date(a.created_at)
     })
+    let content;
+    if (followsArr.length < 1) {
+        content = (
+            <div className='main-feed-placeholder-text-dj'>Follow other users to populate your feed!</div>
+        )
+    } else {
+        content = (
+            <div>
+                {posts_arr.map(post => (
+                    <div key={post.id}>
+                        <MainFeedTile post={post} />
+                    </div>
+                ))}
+            </div>
+        )
+    }
 
     return (
         <>
             {isLoaded && (
                 <div className='mainfeed-parent-div-dj'>
-                    <div>
-                        {posts_arr.map(post => (
-                            <div key={post.id}>
-                                <MainFeedTile post={post} />
-                            </div>
-                        ))}
-                    </div>
+                    {content}
                     <div className='follows-div-parent-dj'>
                         <div className='follows-div-dj'>
                             <div className='session-user-logged-in-dj'>
@@ -141,8 +151,9 @@ function MainFeed() {
                             </div>
                         </div>
                     </div>
-                </div>
-            )}
+                </div >
+            )
+            }
         </>
     )
 }
