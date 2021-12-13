@@ -203,4 +203,5 @@ body {
     border: none;
     background-color: white;
     color: rgb(31, 170, 216);
+    cursor: pointer;
 }

@@ -64,7 +64,7 @@
     width: 350px;
     /* height: 415px; */
     /* border: 1px solid lightgray; */
-    height: 90vh;
+    height: 100%;
     /* height: 100%; */
 
 }
@@ -79,7 +79,7 @@
     color: #8E8E8E;
     width: 284px;
     text-align: center;
-    height: 63px;
+    height: 55px;
 }
 
 .error-message-text-th {
@@ -88,6 +88,12 @@
 }
 
 .error-messages-container-th {
+    margin-bottom: 5px;
+    height: fit-content;
+    /* background-color: pink; */
+}
+
+.signup-error-messages-container-th {
     margin-bottom: 15px;
     height: fit-content;
     /* background-color: pink; */
@@ -96,4 +102,11 @@
 .error-message-login-om {
     height: 30px;
     color: maroon;
+}
+
+.mega-parent-of-sign-up-dj {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 900px;
 }
