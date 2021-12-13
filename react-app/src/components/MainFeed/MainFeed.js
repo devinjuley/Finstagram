@@ -73,9 +73,10 @@ function MainFeed() {
 
     posts_arr.sort((a, b) => {
         return new Date(b.created_at) - new Date(a.created_at)
-    })
+    });
+
     let content;
-    if (followsArr.length < 1) {
+    if (posts_arr.length < 1) {
         content = (
             <div className='main-feed-placeholder-text-dj'>Follow other users to populate your feed!</div>
         )
