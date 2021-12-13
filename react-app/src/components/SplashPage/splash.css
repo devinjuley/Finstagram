@@ -52,7 +52,7 @@
 }
 
 .splash-finstagram-om {
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     font-size: 50px;
     font-family: 'Billabong', sans-serif;
 }
@@ -83,4 +83,3 @@
     height: 497px;
     border: 1px solid lightgray;
 }
-

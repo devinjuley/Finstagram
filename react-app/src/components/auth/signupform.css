@@ -84,8 +84,16 @@
 
 .error-message-text-th {
     color: maroon;
+    max-height: inherit;
 }
 
 .error-messages-container-th {
     margin-bottom: 15px;
+    height: fit-content;
+    /* background-color: pink; */
+}
+
+.error-message-login-om {
+    height: 30px;
+    color: maroon;
 }

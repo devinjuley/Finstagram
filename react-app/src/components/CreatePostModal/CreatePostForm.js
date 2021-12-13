@@ -38,7 +38,7 @@ const CreatePostForm = ({ hideForm }) => {
                Make a post!
             </div>
             <form onSubmit={handleSubmit} className='make-a-post-form-dj'>
-               <div className='error-messages-container-th'>
+               <div className='create-error-container-om'>
                   {errors.map((error, ind) => {
                      const errorMessage = error.split(': ')[1]
                      return (

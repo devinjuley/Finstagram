@@ -72,17 +72,17 @@ const SignUpForm = () => {
         <h2 className='signup-welcome-om'>
           Sign up to see photos from your friends.
         </h2>
+        <div className='error-messages-container-th'>
+          {errors.map((error, ind) => {
+            const errorMessage = error.split(': ')[1]
+            return (
+              <div key={ind} className='error-message-text-th'>
+                {errorMessage}
+              </div>
+            )
+          })}
+        </div>
         <form onSubmit={onSignUp}>
-          <div className='error-messages-container-th'>
-            {errors.map((error, ind) => {
-              const errorMessage = error.split(': ')[1]
-              return (
-                <div key={ind} className='error-message-text-th'>
-                  {errorMessage}
-                </div>
-              )
-            })}
-          </div>
           <div>
             {/* <label>First Name</label> */}
             <input
