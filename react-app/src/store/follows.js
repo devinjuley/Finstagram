@@ -1,6 +1,7 @@
 // constants
 const ADD_FOLLOW = 'follows/ADD_FOLLOW';
-const REMOVE_FOLLOW = 'follows/REMOVE_FOLLOW'
+const REMOVE_FOLLOW = 'follows/REMOVE_FOLLOW';
+const REMOVE_ALL_FOLLOWS = 'follows/REMOVE_ALL_FOLLOWS'
 const GET_FOLLOWS = 'follows/GET_FOLLOWS'
 
 
@@ -18,6 +19,10 @@ const removeFollow = (data) => ({
 const getFollows = (follows) => ({
     type: GET_FOLLOWS,
     payload: follows
+});
+
+const removeAllFollows = () => ({
+    type: REMOVE_ALL_FOLLOWS
 });
 
 
@@ -55,7 +60,11 @@ export const getFollowsThunk = (userId) => async (dispatch) => {
         dispatch(getFollows(follows))
         return follows
     }
-}
+};
+
+export const removeAllFollowsThunk = () => (dispatch) => {
+    dispatch(removeAllFollows());
+};
 
 
 // reducer
@@ -85,6 +94,9 @@ const followsReducer = (state = initialState, action) => {
                 ...action.payload
             }
             return newState;
+        }
+        case REMOVE_ALL_FOLLOWS: {
+            return {}
         }
         default:
             return state

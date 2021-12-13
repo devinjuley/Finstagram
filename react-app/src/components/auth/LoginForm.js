@@ -35,10 +35,15 @@ const LoginForm = () => {
   return (
     <div >
       <form onSubmit={onLogin} className='login-form-om'>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+        <div className='error-messages-container-th'>
+          {errors.map((error, ind) => {
+            const errorMessage = error.split(': ')[1]
+            return (
+              <div key={ind} className='error-message-text-th'>
+                {errorMessage}
+              </div>
+            )
+          })}
         </div>
         <div>
           <input

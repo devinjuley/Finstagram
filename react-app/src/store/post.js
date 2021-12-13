@@ -6,7 +6,8 @@ const EDIT_SINGLE_POST = 'post/EDIT_SINGLE_POST';
 const ADD_COMMENT = 'post/ADD_COMMENT'
 const DELETE_COMMENT = 'post/DELETE_COMMENT';
 const EDIT_COMMENT = 'post/EDIT_COMMENT';
-const GET_PROFILE_POSTS = 'post/GET_PROFILE_POSTS'
+const GET_PROFILE_POSTS = 'post/GET_PROFILE_POSTS';
+const REMOVE_ALL_POSTS = 'post/REMOVE_ALL_POSTS';
 
 
 // action creators
@@ -49,6 +50,10 @@ const editComment = (comment) => ({
     type: EDIT_COMMENT,
     payload: comment
 });
+
+const removeAllPosts = () =>({
+    type: REMOVE_ALL_POSTS
+})
 
 
 // thunks
@@ -155,6 +160,10 @@ export const editCommentThunk = (comment) => async (dispatch) => {
         dispatch(editComment(comment));
         return comment
     }
+};
+
+export const removeAllPostsThunk = () => (dispatch) => {
+    dispatch(removeAllPosts())
 }
 
 
@@ -218,6 +227,9 @@ const postReducer = (state = initialState, action) => {
                 ...action.payload.posts
             };
             return newState
+        }
+        case REMOVE_ALL_POSTS: {
+            return {}
         }
         default:
             return state;

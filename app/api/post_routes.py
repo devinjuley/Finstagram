@@ -47,7 +47,7 @@ def createPost():
         )
         form_image = CreateImageForm()
         form_image['csrf_token'].data = request.cookies['csrf_token']
-        
+
         if form_image.validate_on_submit():
             db.session.add(new_post)
             db.session.commit()
@@ -62,7 +62,7 @@ def createPost():
 
             return Post.query.get(postId).to_dict()
         else:
-            return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+            return {'errors': validation_errors_to_error_messages(form_image.errors)}, 401
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
