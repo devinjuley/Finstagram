@@ -24,7 +24,7 @@
     padding-bottom: 30px;
     padding-top: 25px;
     margin-top: 50px;
-    margin-left: 30px;
+    margin-left: 10px;
 }
 
 .login-form-om {
@@ -40,7 +40,7 @@
     align-items: center;
     justify-content: center;
     width: 350px;
-    margin-left: 30px;
+    margin-left: 10px;
     background-color: white;
     margin-top: 10px;
     height: 80px;
@@ -76,3 +76,11 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.splash-page-image-dj {
+    margin-top: 53px;
+    /* margin-right: 0px; */
+    height: 497px;
+    border: 1px solid lightgray;
+}
+

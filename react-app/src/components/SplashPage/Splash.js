@@ -21,9 +21,9 @@ const Splash = () => {
 
     return (
         <div className='container-for-everything'>
-            {/* <div className='container-for-phone-pics'>
-                <img className='splash-img' src="https://media.discordapp.net/attachments/916411132984565770/919325409013809262/unknown.png" alt='phone pics' />
-            </div> */}
+            <div className='container-for-phone-pics'>
+                <img className='splash-img' src="https://media.discordapp.net/attachments/917128220552331345/919750495139143680/unknown.png?width=678&height=640" alt='phone pics' className='splash-page-image-dj' />
+            </div>
             <div>
                 <div className='container-for-login-form'>
                     <div className='splash-finstagram-om'>
