@@ -48,7 +48,7 @@
     border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
     position: fixed;
     z-index: 3;
-    background-color: rgba(var(--d87,255,255,255),1);
+    background-color: #fefffe;
     -webkit-box-align: center;
 }
 

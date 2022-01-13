@@ -1,134 +1,85 @@
-# Flask React Project
+## Summary
+[Finstagram](https://finstagram-social.herokuapp.com/) is an Instagram clone with very slight variations to HTML/CSS.  Users can sign-up/login and create posts with photos or make comments on posts.  Logged in users can also edit/delete their own posts and comments.
 
-This is the starter for the Flask React project.
+## Overall Structure
+The app includes the following four features: full CRUD for posts, full CRUD for comments, search for user by username/first name/last name, and the ability to follow other users and have their posts populate your main feed.
+### List of features
+* Create an account
+* Login and logout
+* Login as a demo user
+* Create a post with an image included by clicking the create post symbol in the navbar
+* Edit a post
+* Delete a post
+* Create a comment on a post
+* Edit a comment
+* Delete a comment
+* View all posts by clicking the discover symbol in the navbar
+* View the profile page of other users
+* Follow other users by clicking the follow button on their profile page
+* Unfollow other users by clicking the unfollow button on their profile page
+* Clicking on a post makes the post full screen where you can view the caption and comments
 
-## Getting started
+## Backend
+All backend routes were designed in Flask using Python coding language
+## Frontend
+All frontend routes and components were designed in React using Javascript coding language
 
-1. Clone this repository (only this branch)
+### Dependencies
+* alembic
+* click
+* dnspython
+* email-validator
+* faker
+* flask-cors
+* flask-login
+* flask-migrate
+* flask-sqlalchemy
+* flask-wtf
+* flask
+* greenlet
+* gunicorn
+* idna
+* itsdangerous
+* mako
+* markupsafe
+* python-dateutil
+* python-dotenv
+* python-editor
+* setuptools
+* six
+* sqlalchemy
+* text-unidecode
+* werkzeug
+* wtforms
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+## Login/Splash Page
+When an unregistered user first visits the website, they are presented with a Splash page that includes a login form and a link to sign up.
+![GitHub Logo](https://i.imgur.com/eHdW809.png)
 
-2. Install dependencies
+## Sign-up Page
+When a user clicks sign up on the login/splash page, they are redirected to the sign-up form to create an account.
+![GitHub Logo](https://i.imgur.com/3KgqrOY.png)
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+## Main Feed
+Once a user signs up or logs in, they are redirected to the main feed page, where the can view all posts made by users that they follow on the website.  They can also access the navbar to click links that send them to other pages.  The navbar includes a home button, discover button, create a post button, logout button, and a search bar.  If a user did not logout the last time they visited the website, their user persists and will take them to the main feed page automatically.
+![GitHub Logo](https://i.imgur.com/oRPmvwU.png)
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+## Discover Page
+By clicking the discover button (compass symbol) in the navbar, the user is sent to the discover page where they can view all posts made on the website.  Most recent posts are shown at the top.
+![GitHub Logo](https://i.imgur.com/2rAy84y.png)
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+## Create a Post Modal
+By clicking on the create a post button (plus symbol) in the navbar, the user is sent to the create a post modal.  The user can create a post including a photo and an optional caption comment.
+![GitHub Logo](https://i.imgur.com/QAOWvMM.png)
 
-   ```bash
-   pipenv shell
-   ```
+## Single Post Modal
+By clicking on any post on the main feed, profile page, or discover page, the user is redirected to the single post modal.  There, the user will be able to view the photo, caption and comments on an enlarged screen.  They will also have the ability to create comments.
+![GitHub Logo](https://i.imgur.com/nJZaHEv.png)
 
-   ```bash
-   flask db upgrade
-   ```
+## Profile Page
+By clicking the profile button (circular image of the logged in user) the user is redirected to their own profile page.  The profile page displays the users profile including photo, username, full name, and all posts made by the user.  Clicking the name of any other user on the website will redirect the logged in user to their profile page.
+![GitHub Logo](https://i.imgur.com/fZjvXIC.png)
 
-   ```bash
-   flask seed all
-   ```
 
-   ```bash
-   flask run
-   ```
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
-
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
-
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
-
-## Deploy to Heroku
-
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
-
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
-
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
-
-   ```bash
-   heroku login
-   ```
-
-6. Login to the heroku container registry
-
-   ```bash
-   heroku container:login
-   ```
-
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. Release your docker container to heroku
-
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
-
-10. set up your database
-
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
-
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
-
-12. profit
-
-### For M1 Mac users
-
-(Replaces **Step 8**)
-
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
-
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
-
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
