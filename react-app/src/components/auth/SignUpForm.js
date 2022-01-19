@@ -84,10 +84,10 @@ const SignUpForm = () => {
           </h2>
           <div className='signup-error-messages-container-th'>
             {errors.map((error, ind) => {
-              const errorMessage = error.split(': ')[1]
+              // const errorMessage = error.split(': ')[1]
               return (
                 <div key={ind} className='error-message-text-th'>
-                  {errorMessage}
+                  {error}
                 </div>
               )
             })}
