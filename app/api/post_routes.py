@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.forms.edit_post_form import EditPostForm
 from app.models import Post, Image, db
 from app.forms import CreatePostForm, CreateImageForm, EditPostForm
-from app.s3_helpers import upload_file_to_s3, allowed_file, get_unique_filename
+from app.s3_helpers import upload_file_to_s3, allowed_file, get_unique_filename, delete_file_from_s3
 
 post_routes = Blueprint('posts', __name__)
 
@@ -95,6 +95,8 @@ def createPost():
 @login_required
 def deletePost(postId):
     post = Post.query.get(postId)
+    key = post.images[0].image_url.split('/')[-1]
+    delete_file_from_s3(key)
     db.session.delete(post)
     db.session.commit()
     return post.to_dict()
