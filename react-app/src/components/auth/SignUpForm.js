@@ -8,7 +8,7 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
-  const [profile_image_url, setProfileImgUrl] = useState('');
+  const [profile_image, setProfileImg] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,9 +20,18 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(first_name, last_name, profile_image_url, username, email, password));
+      const formData = new FormData();
+      formData.append("profile_image", profile_image);
+      formData.append("first_name", first_name);
+      formData.append("last_name", last_name);
+      formData.append("last_name", last_name);
+      formData.append("username", username);
+      formData.append("email", email);
+      formData.append("password", password);
+
+      const data = await dispatch(signUp(formData));
       if (data) {
-        setErrors(data)
+        setErrors([data])
         return
       }
       return history.push('/');
@@ -39,8 +48,8 @@ const SignUpForm = () => {
     setLastName(e.target.value);
   };
 
-  const updateProfileImgUrl = (e) => {
-    setProfileImgUrl(e.target.value);
+  const updateProfileImg = (e) => {
+    setProfileImg(e.target.files[0]);
   };
 
   const updateUsername = (e) => {
@@ -109,11 +118,12 @@ const SignUpForm = () => {
             <div>
               {/* <label>Load Profile Image</label> */}
               <input
-                type='text'
-                name='profile_image_url'
-                onChange={updateProfileImgUrl}
-                value={profile_image_url}
-                placeholder='Provide a profile image URL'
+                type='file'
+                name='profile_image'
+                accept="image/*"
+                onChange={updateProfileImg}
+                // value={profile_image}
+                placeholder='Upload a profile image'
                 className='signup-form-input-om'
               ></input>
             </div>

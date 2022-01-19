@@ -61,10 +61,10 @@ def sign_up():
     Creates a new user and logs them in
     """
 
-    if "image" not in request.files:
+    if "profile_image" not in request.files:
         return {"errors": ["image required"]}, 400
 
-    image = request.files["image"]
+    image = request.files["profile_image"]
 
     if not allowed_file(image.filename):
         return {"errors": ["file type not permitted"]}, 400
