@@ -11,18 +11,24 @@ const CreatePostForm = ({ hideForm }) => {
    const dispatch = useDispatch();
    const sessionUser = useSelector(state => state.session.user);
    const [caption, setCaption] = useState('');
-   const [image_url, setImage_URL] = useState('');
+   const [post_image, setPostImage] = useState(null);
    const [errors, setErrors] = useState([]);
 
    const handleSubmit = async (e) => {
       e.preventDefault();
-      const newPost = {
-         user_id: sessionUser.id,
-         content: caption,
-         image_url,
-      };
+      // const newPost = {
+      //    user_id: sessionUser.id,
+      //    content: caption,
+      //    // image_url,
+      // };
+      const formData = new FormData();
+      formData.append('user_id', sessionUser.id);
+      formData.append('content', caption);
+      formData.append('post_image', post_image);
+
+
       setErrors([]);
-      let data = await dispatch(createNewPost(newPost))
+      let data = await dispatch(createNewPost(formData))
       if (!data) {
          hideForm()
       } else {
@@ -52,11 +58,13 @@ const CreatePostForm = ({ hideForm }) => {
                <div className='make-a-post-form-dj'>
                   <div>
                      <input
-                        type='text'
-                        value={image_url}
-                        onChange={(e) => setImage_URL(e.target.value)}
-                        placeholder='Provide an image URL'
+                        type='file'
+                        // value={image_url}
+                        accept='image/*'
+                        onChange={(e) => setPostImage(e.target.files[0])}
+                        // placeholder='Provide an image URL'
                         className='create-form-input-om'
+                        name='post_image'
                      />
                   </div>
                   <textarea

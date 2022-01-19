@@ -61,8 +61,8 @@ export const createNewPost = (newPost) => async (dispatch) => {
     try {
         const response = await fetch('/api/posts/new', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newPost)
+            // headers: { 'Content-Type': 'application/json' },
+            body: newPost
         });
         if (response.ok) {
             const post = await response.json();

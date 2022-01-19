@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.forms.edit_post_form import EditPostForm
 from app.models import Post, Image, db
 from app.forms import CreatePostForm, CreateImageForm, EditPostForm
+from app.s3_helpers import upload_file_to_s3, allowed_file, get_unique_filename
 
 post_routes = Blueprint('posts', __name__)
 
@@ -38,9 +39,31 @@ def getPosts():
 @post_routes.route('/new', methods=['POST'])
 @login_required
 def createPost():
+
+    if "post_image" not in request.files:
+        print('you messed up')
+        return {"errors": ["image required"]}, 400
+
+    image = request.files["post_image"]
+
+    if not allowed_file(image.filename):
+        return {"errors": ["file type not permitted"]}, 400
+
+    image.filename = get_unique_filename(image.filename)
+
+
     form = CreatePostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+
+        upload = upload_file_to_s3(image)
+        if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload, 400
+        url = upload["url"]
+
         new_post = Post(
             user_id=form.data['user_id'],
             content=form.data['content'],
@@ -55,7 +78,7 @@ def createPost():
             new_image = Image(
                 user_id=form_image.data['user_id'],
                 post_id=postId,
-                image_url=form_image.data['image_url']
+                image_url=url
             )
             db.session.add(new_image)
             db.session.commit()
