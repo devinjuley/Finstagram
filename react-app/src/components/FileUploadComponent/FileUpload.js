@@ -14,7 +14,7 @@ const FileUploadComponent = ({ setProfileImg }) => {
 
    return (
       <div>
-         <Dropzone onDrop={onDrop} multiple={false}>
+         <Dropzone onDrop={onDrop} multiple={false} accept='image/*'>
             {({ getRootProps, getInputProps }) => (
                <section>
                   <div {...getRootProps({ className: "dropzone" })}>
