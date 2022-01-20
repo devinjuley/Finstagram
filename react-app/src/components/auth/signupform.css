@@ -10,6 +10,13 @@
     padding-top: 25px;
 }
 
+.signup-form-container form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .signup-buttons-om {
     height: 35px;
     width: 284px;
@@ -118,4 +125,24 @@
     align-items: center;
     padding-bottom: 30px;
     padding-top: 25px;
+}
+
+.upload-image-container-th {
+    width: 268px;
+}
+
+.upload-image-container-th svg {
+    fill: rgba(0, 149, 246, .8);
+    font-size: 6rem;
+}
+
+.upload-image-container-th svg:hover {
+    fill: rgba(0, 149, 246, 1);
+    cursor: pointer;
+}
+
+.upload-image-input-th{
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
 }

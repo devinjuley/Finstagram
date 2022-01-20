@@ -110,15 +110,18 @@ const SignUpForm = () => {
                 })}
               </div>
               <form onSubmit={onSignUp}>
-                <div>
+                <div className='upload-image-container-th'>
                   {/* <label>Load Profile Image</label> */}
-                  <CloudUploadIcon />
+                  <label for='profile_image'>
+                    <CloudUploadIcon className='cloud-icon' />
+                  </label>
                   <input
                     type='file'
                     name='profile_image'
                     accept="image/*"
                     onChange={updateProfileImg}
                     // value={profile_image}
+                    className='upload-image-input-th'
                     placeholder='Upload a profile image'
                   ></input>
                 </div>
