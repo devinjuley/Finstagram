@@ -41,8 +41,7 @@ def getPosts():
 def createPost():
 
     if "post_image" not in request.files:
-        print('you messed up')
-        return {"errors": ["image required"]}, 400
+        return {"errors": ["Post image required"]}, 400
 
     image = request.files["post_image"]
 

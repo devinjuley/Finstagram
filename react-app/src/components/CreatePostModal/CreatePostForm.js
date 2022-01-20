@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+// component import
+import FileUploadComponent from '../FileUploadComponent/PostImageFileUpload';
+
 // thunk import
 import { createNewPost } from '../../store/post'
 
@@ -48,7 +51,7 @@ const CreatePostForm = ({ hideForm }) => {
                   Loading
                </div> */}
                <div>
-                  <img src='https://finstagram-social-bucket.s3.us-west-1.amazonaws.com/loading.gif' alt='loading'/>
+                  <img src='https://finstagram-social-bucket.s3.us-west-1.amazonaws.com/loading.gif' alt='loading' />
                </div>
             </div>
          )}
@@ -60,26 +63,18 @@ const CreatePostForm = ({ hideForm }) => {
                <form onSubmit={handleSubmit} className='make-a-post-form-dj'>
                   <div className='create-error-container-om'>
                      {errors.map((error, ind) => {
-                        const errorMessage = error.split(': ')[1]
+                        // const errorMessage = error.split(': ')[1]
                         return (
                            <div key={ind} className='error-message-text-th'>
-                              {errorMessage}
+                              {error}
                            </div>
                         )
                      })}
                   </div>
                   {/* <input type='file' /> */}
                   <div className='make-a-post-form-dj'>
-                     <div>
-                        <input
-                           type='file'
-                           // value={image_url}
-                           accept='image/*'
-                           onChange={(e) => setPostImage(e.target.files[0])}
-                           // placeholder='Provide an image URL'
-                           className='create-form-input-om'
-                           name='post_image'
-                        />
+                     <div className='upload-image-container-th'>
+                        <FileUploadComponent setPostImage={setPostImage} />
                      </div>
                      <textarea
                         value={caption}

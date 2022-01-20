@@ -4,7 +4,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
 // component import
-import FileUploadComponent from '../FileUploadComponent/FileUpload';
+import FileUploadComponent from '../FileUploadComponent/ProfileImageFileUpload';
 
 import './signupform.css';
 
@@ -111,19 +111,6 @@ const SignUpForm = () => {
               </div>
               <form onSubmit={onSignUp}>
                 <div className='upload-image-container-th'>
-                  {/* <label>Load Profile Image</label> */}
-                  {/* <label for='profile_image'>
-                    <CloudUploadIcon className='cloud-icon' />
-                  </label>
-                  <input
-                    type='file'
-                    name='profile_image'
-                    accept="image/*"
-                    onChange={updateProfileImg}
-                    // value={profile_image}
-                    className='upload-image-input-th'
-                    placeholder='Upload a profile image'
-                  ></input> */}
                   <FileUploadComponent setProfileImg={setProfileImg} />
                 </div>
                 <div>
