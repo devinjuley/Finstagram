@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
+
+// icon import
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
 import './signupform.css';
 
 const SignUpForm = () => {
@@ -107,6 +111,18 @@ const SignUpForm = () => {
               </div>
               <form onSubmit={onSignUp}>
                 <div>
+                  {/* <label>Load Profile Image</label> */}
+                  <CloudUploadIcon />
+                  <input
+                    type='file'
+                    name='profile_image'
+                    accept="image/*"
+                    onChange={updateProfileImg}
+                    // value={profile_image}
+                    placeholder='Upload a profile image'
+                  ></input>
+                </div>
+                <div>
                   {/* <label>First Name</label> */}
                   <input
                     type='text'
@@ -125,18 +141,6 @@ const SignUpForm = () => {
                     onChange={updateLastName}
                     value={last_name}
                     placeholder='Last Name'
-                    className='signup-form-input-om'
-                  ></input>
-                </div>
-                <div>
-                  {/* <label>Load Profile Image</label> */}
-                  <input
-                    type='file'
-                    name='profile_image'
-                    accept="image/*"
-                    onChange={updateProfileImg}
-                    // value={profile_image}
-                    placeholder='Upload a profile image'
                     className='signup-form-input-om'
                   ></input>
                 </div>
