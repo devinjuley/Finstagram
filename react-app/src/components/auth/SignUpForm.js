@@ -38,13 +38,13 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(formData));
       if (data) {
         setLoading(false);
-        setErrors([data])
+        setErrors(data)
         return
       }
       setLoading(false);
       return history.push('/');
     } else {
-      setErrors(['Password: Passwords do not match'])
+      setErrors(['Passwords do not match'])
     }
   };
 
