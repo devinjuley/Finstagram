@@ -4,7 +4,6 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
 // component import
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import FileUploadComponent from '../FileUploadComponent/FileUpload';
 
 import './signupform.css';

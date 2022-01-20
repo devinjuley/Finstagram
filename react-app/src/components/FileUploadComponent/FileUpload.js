@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Dropzone from "react-dropzone";
 
+// component import
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
 const FileUploadComponent = ({ setProfileImg }) => {
 
    const [selectedFiles, setSelectedFiles] = useState(undefined);
@@ -17,14 +20,18 @@ const FileUploadComponent = ({ setProfileImg }) => {
          <Dropzone onDrop={onDrop} multiple={false} accept='image/*'>
             {({ getRootProps, getInputProps }) => (
                <section>
-                  <div {...getRootProps({ className: "dropzone" })}>
+                  <div {...getRootProps({ className: "dropzone" })} >
                      <input {...getInputProps()} />
                      {selectedFiles && selectedFiles[0].name ? (
-                        <div className="selected-file">
+                        <div className="file-continer-th">
                            {selectedFiles && selectedFiles[0].name}
                         </div>
                      ) : (
-                        "Drag and drop file here, or click to select file"
+                        <div className="file-continer-th">
+                           <CloudUploadIcon />
+                           Drag and drop<br />
+                           profile image here.
+                        </div>
                      )}
                   </div>
                </section>
