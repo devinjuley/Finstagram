@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
-// icon import
+// component import
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import FileUploadComponent from '../FileUploadComponent/FileUpload';
 
 import './signupform.css';
 
@@ -12,7 +13,7 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
-  const [profile_image, setProfileImg] = useState('');
+  const [profile_image, setProfileImg] = useState(null);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -56,9 +57,9 @@ const SignUpForm = () => {
     setLastName(e.target.value);
   };
 
-  const updateProfileImg = (e) => {
-    setProfileImg(e.target.files[0]);
-  };
+  // const updateProfileImg = (e) => {
+  //   setProfileImg(e.target.files[0]);
+  // };
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -112,7 +113,7 @@ const SignUpForm = () => {
               <form onSubmit={onSignUp}>
                 <div className='upload-image-container-th'>
                   {/* <label>Load Profile Image</label> */}
-                  <label for='profile_image'>
+                  {/* <label for='profile_image'>
                     <CloudUploadIcon className='cloud-icon' />
                   </label>
                   <input
@@ -123,7 +124,8 @@ const SignUpForm = () => {
                     // value={profile_image}
                     className='upload-image-input-th'
                     placeholder='Upload a profile image'
-                  ></input>
+                  ></input> */}
+                  <FileUploadComponent setProfileImg={setProfileImg} />
                 </div>
                 <div>
                   {/* <label>First Name</label> */}
